@@ -1,0 +1,1966 @@
+{
+  "Настройки": {
+    "en": "Settings",
+    "zh": "设置"
+  },
+  "Не удалось сохранить язык": {
+    "en": "Could not save language",
+    "zh": "无法保存语言"
+  },
+  "Язык": {
+    "en": "Language",
+    "zh": "语言"
+  },
+  "Язык интерфейса": {
+    "en": "Interface language",
+    "zh": "界面语言"
+  },
+  "Главная": {
+    "en": "Home",
+    "zh": "首页"
+  },
+  "Оформление": {
+    "en": "Appearance",
+    "zh": "外观"
+  },
+  "Тема приложения": {
+    "en": "App theme",
+    "zh": "应用主题"
+  },
+  "Как в системе": {
+    "en": "System default",
+    "zh": "跟随系统"
+  },
+  "Светлая": {
+    "en": "Light",
+    "zh": "浅色"
+  },
+  "Тёмная": {
+    "en": "Dark",
+    "zh": "深色"
+  },
+  "Светлый фон": {
+    "en": "Light background",
+    "zh": "浅色背景"
+  },
+  "Тёмный фон": {
+    "en": "Dark background",
+    "zh": "深色背景"
+  },
+  "Следовать настройкам телефона": {
+    "en": "Follow device settings",
+    "zh": "跟随设备设置"
+  },
+  "Светлая, тёмная или системная тема": {
+    "en": "Light, dark or system theme",
+    "zh": "浅色、深色或系统主题"
+  },
+  "Тема меняется сразу и не прерывает подключение.": {
+    "en": "Theme changes immediately without disconnecting.",
+    "zh": "主题立即生效，不会断开连接。"
+  },
+  "Меняется сразу, без переподключения.": {
+    "en": "Applies immediately, without reconnecting.",
+    "zh": "立即生效，无需重新连接。"
+  },
+  "Изменения сохраняются автоматически": {
+    "en": "Changes are saved automatically",
+    "zh": "更改自动保存"
+  },
+  "Сохраняется автоматически. Сетевые параметры применятся после переподключения.": {
+    "en": "Saved automatically. Network settings apply after reconnecting.",
+    "zh": "自动保存。网络设置将在重新连接后生效。"
+  },
+  "Подключение": {
+    "en": "Connection",
+    "zh": "连接"
+  },
+  "Подключение и трафик": {
+    "en": "Connection and traffic",
+    "zh": "连接与流量"
+  },
+  "Приложение": {
+    "en": "Application",
+    "zh": "应用"
+  },
+  "Транспорт": {
+    "en": "Transport",
+    "zh": "传输"
+  },
+  "Маршрутизация": {
+    "en": "Routing",
+    "zh": "路由"
+  },
+  "Маскировка трафика": {
+    "en": "Traffic camouflage",
+    "zh": "流量伪装"
+  },
+  "Диагностика": {
+    "en": "Diagnostics",
+    "zh": "诊断"
+  },
+  "Журнал": {
+    "en": "Logs",
+    "zh": "日志"
+  },
+  "Журнал и сообщения об ошибках": {
+    "en": "Logs and errors",
+    "zh": "日志与错误"
+  },
+  "Журнал работы и уровень записи": {
+    "en": "Logs and verbosity",
+    "zh": "日志与记录级别"
+  },
+  "TLS-профиль и дополнительные пакеты": {
+    "en": "TLS profile and extra packets",
+    "zh": "TLS 配置与附加数据包"
+  },
+  "TLS-профиль, заполнение пакетов": {
+    "en": "TLS profile and padding",
+    "zh": "TLS 配置与填充"
+  },
+  "TLS-профиль и заполнение пакетов": {
+    "en": "TLS profile and padding",
+    "zh": "TLS 配置与填充"
+  },
+  "DNS, MTU и параметры Android VPN": {
+    "en": "DNS, MTU and Android VPN settings",
+    "zh": "DNS、MTU 与 Android VPN 设置"
+  },
+  "TCP, QUIC, XHTTP и повторные подключения": {
+    "en": "TCP, QUIC, XHTTP and reconnections",
+    "zh": "TCP、QUIC、XHTTP 与重新连接"
+  },
+  "TCP, QUIC и XHTTP": {
+    "en": "TCP, QUIC and XHTTP",
+    "zh": "TCP、QUIC 与 XHTTP"
+  },
+  "Параметры сети": {
+    "en": "Network settings",
+    "zh": "网络设置"
+  },
+  "DNS-сервер": {
+    "en": "DNS server",
+    "zh": "DNS 服务器"
+  },
+  "Адрес DNS-сервера, например 1.1.1.1": {
+    "en": "DNS server address, e.g. 1.1.1.1",
+    "zh": "DNS 服务器地址，例如 1.1.1.1"
+  },
+  "DNS через VPN": {
+    "en": "DNS through VPN",
+    "zh": "通过 VPN 查询 DNS"
+  },
+  "При выключении DNS-запросы идут напрямую, FakeDNS не используется.": {
+    "en": "When disabled, DNS goes directly and FakeDNS is not used.",
+    "zh": "关闭后 DNS 将直接连接，且不使用 FakeDNS。"
+  },
+  "Подставлять локальные адреса для определения доменов. Требуется DNS через VPN.": {
+    "en": "Use local addresses to identify domains. Requires DNS through VPN.",
+    "zh": "使用本地地址识别域名，需要通过 VPN 查询 DNS。"
+  },
+  "Блокировать IPv6": {
+    "en": "Block IPv6",
+    "zh": "阻止 IPv6"
+  },
+  "Не использовать IPv6. При выключении IPv6 пойдёт через VPN — сервер должен его поддерживать.": {
+    "en": "Block IPv6. When disabled, IPv6 uses the VPN and requires server support.",
+    "zh": "阻止 IPv6。关闭后 IPv6 将通过 VPN，需要服务器支持。"
+  },
+  "Защита при отключении": {
+    "en": "Disconnect protection",
+    "zh": "断线保护"
+  },
+  "Блокировку интернета без VPN включает Android. Откройте настройки Atlant и включите постоянный VPN и блокировку соединений без VPN.": {
+    "en": "Android provides VPN lockdown. Open Atlant VPN settings and enable always-on VPN and blocking connections without VPN.",
+    "zh": "Android 提供 VPN 锁定。请打开 Atlant VPN 设置，启用始终开启 VPN 并阻止无 VPN 连接。"
+  },
+  "Открыть настройки VPN": {
+    "en": "Open VPN settings",
+    "zh": "打开 VPN 设置"
+  },
+  "Как передавать трафик": {
+    "en": "Traffic transport",
+    "zh": "流量传输方式"
+  },
+  "Режим": {
+    "en": "Mode",
+    "zh": "模式"
+  },
+  "Раздельно для TCP и UDP": {
+    "en": "Separate TCP and UDP",
+    "zh": "分别处理 TCP 与 UDP"
+  },
+  "Весь трафик через TCP": {
+    "en": "All traffic over TCP",
+    "zh": "所有流量通过 TCP"
+  },
+  "Весь трафик через QUIC": {
+    "en": "All traffic over QUIC",
+    "zh": "所有流量通过 QUIC"
+  },
+  "Транспорт TCP": {
+    "en": "TCP transport",
+    "zh": "TCP 传输"
+  },
+  "По профилю (старое значение)": {
+    "en": "From profile (legacy)",
+    "zh": "使用配置（旧设置）"
+  },
+  "Транспорт выбирается здесь, а не в профиле сервера.": {
+    "en": "Choose the transport here, not in the server profile.",
+    "zh": "在此选择传输方式，而不是在服务器配置中选择。"
+  },
+  "Передача UDP-трафика": {
+    "en": "UDP transport",
+    "zh": "UDP 传输"
+  },
+  "Через TCP": {
+    "en": "Over TCP",
+    "zh": "通过 TCP"
+  },
+  "Через QUIC": {
+    "en": "Over QUIC",
+    "zh": "通过 QUIC"
+  },
+  "Общее TCP-соединение": {
+    "en": "Shared TCP connection",
+    "zh": "共享 TCP 连接"
+  },
+  "Объединять потоки в одну сессию Yamux (Mux).": {
+    "en": "Multiplex streams in a single Yamux session (Mux).",
+    "zh": "将数据流复用到单个 Yamux 会话（Mux）。"
+  },
+  "Повторные подключения": {
+    "en": "Reconnections",
+    "zh": "重新连接"
+  },
+  "Резервное подключение через TCP": {
+    "en": "TCP fallback",
+    "zh": "TCP 备用连接"
+  },
+  "Пробовать TCP, если подключиться через QUIC не удалось.": {
+    "en": "Try TCP when QUIC cannot connect.",
+    "zh": "QUIC 无法连接时尝试 TCP。"
+  },
+  "Кэш QUIC-сессий": {
+    "en": "QUIC session cache",
+    "zh": "QUIC 会话缓存"
+  },
+  "Использовать сохранённую TLS-сессию при повторном подключении.": {
+    "en": "Reuse a saved TLS session when reconnecting.",
+    "zh": "重新连接时复用已保存的 TLS 会话。"
+  },
+  "Смена порта сервера": {
+    "en": "Server port hopping",
+    "zh": "服务器端口跳跃"
+  },
+  "Экспериментально: выбирать другой порт каждые 2 минуты. Требуется поддержка на сервере, иначе подключение не установится.": {
+    "en": "Experimental: change port every 2 minutes. Requires server support; otherwise connections will fail.",
+    "zh": "实验功能：每两分钟切换端口。需要服务器支持，否则将无法连接。"
+  },
+  "Параметры маскировки": {
+    "en": "Camouflage settings",
+    "zh": "伪装设置"
+  },
+  "TLS-профиль": {
+    "en": "TLS profile",
+    "zh": "TLS 配置"
+  },
+  "TLS-профиль:": {
+    "en": "TLS profile:",
+    "zh": "TLS 配置："
+  },
+  "Chrome 120 (совместимость)": {
+    "en": "Chrome 120 (compatibility)",
+    "zh": "Chrome 120（兼容模式）"
+  },
+  "Профиль задаёт только ClientHello, а не поведение всего браузера. Старый профиль Android/OkHttp несовместим с REALITY: выберите один из списка. Случайный профиль не имитирует браузер.": {
+    "en": "The profile controls ClientHello, not all browser behavior. Android/OkHttp is incompatible with REALITY: choose a listed profile. Randomized profiles do not imitate a browser.",
+    "zh": "此配置仅决定 ClientHello，不代表浏览器的全部行为。Android/OkHttp 与 REALITY 不兼容，请选择列表中的配置。随机配置不能模拟浏览器。"
+  },
+  "Шаблон TLS ClientHello. В профиле сервера может быть указан отдельный шаблон.": {
+    "en": "TLS ClientHello template. A server profile may override it.",
+    "zh": "TLS ClientHello 模板。服务器配置可以单独覆盖此设置。"
+  },
+  "Заполнение пакетов": {
+    "en": "Packet padding",
+    "zh": "数据包填充"
+  },
+  "Добавлять данные для изменения размеров зашифрованных блоков (Padding).": {
+    "en": "Add padding to vary encrypted record sizes.",
+    "zh": "添加填充以改变加密记录大小。"
+  },
+  "Фоновые запросы": {
+    "en": "Background requests",
+    "zh": "后台请求"
+  },
+  "Отправлять дополнительные запросы к SNI-узлу. Увеличивает расход трафика.": {
+    "en": "Send extra requests to the SNI host. Increases traffic usage.",
+    "zh": "向 SNI 主机发送额外请求，会增加流量消耗。"
+  },
+  "Эти настройки не гарантируют нераспознаваемость VPN. Отключение заполнения меняет характеристики трафика.": {
+    "en": "These settings do not guarantee an undetectable VPN. Disabling padding changes traffic characteristics.",
+    "zh": "这些设置不能保证 VPN 无法被识别。关闭填充将改变流量特征。"
+  },
+  "Что записывать": {
+    "en": "Logging level",
+    "zh": "日志级别"
+  },
+  "Не записывать": {
+    "en": "Disabled",
+    "zh": "关闭"
+  },
+  "Только ошибки": {
+    "en": "Errors only",
+    "zh": "仅错误"
+  },
+  "Ошибки и предупреждения": {
+    "en": "Errors and warnings",
+    "zh": "错误与警告"
+  },
+  "Основные события": {
+    "en": "Information",
+    "zh": "基本信息"
+  },
+  "Подробный журнал": {
+    "en": "Debug",
+    "zh": "调试日志"
+  },
+  "Подробный журнал может содержать адреса подключений. Проверяйте его перед отправкой другим людям.": {
+    "en": "Verbose logs may contain connection addresses. Review them before sharing.",
+    "zh": "详细日志可能包含连接地址，分享前请检查。"
+  },
+  "Открыть журнал": {
+    "en": "Open logs",
+    "zh": "打开日志"
+  },
+  "Просмотреть, скопировать или очистить записи": {
+    "en": "View, copy or clear entries",
+    "zh": "查看、复制或清空记录"
+  },
+  "Журнал скопирован": {
+    "en": "Logs copied",
+    "zh": "日志已复制"
+  },
+  "Куда направлять трафик": {
+    "en": "Traffic routing",
+    "zh": "流量路由"
+  },
+  "Использовать правила": {
+    "en": "Use routing rules",
+    "zh": "使用路由规则"
+  },
+  "Всё через VPN": {
+    "en": "All through VPN",
+    "zh": "全部通过 VPN"
+  },
+  "Только по правилам": {
+    "en": "Rules only",
+    "zh": "仅按规则"
+  },
+  "Кроме исключений": {
+    "en": "Except exclusions",
+    "zh": "排除例外"
+  },
+  "Через VPN, кроме исключений": {
+    "en": "VPN except exclusions",
+    "zh": "除例外外均使用 VPN"
+  },
+  "Совпавшие адреса через VPN, остальные напрямую": {
+    "en": "Matching addresses use VPN; others connect directly",
+    "zh": "匹配的地址使用 VPN，其他地址直接连接"
+  },
+  "Выбранные приложения и адреса напрямую, остальные через VPN": {
+    "en": "Selected apps and addresses connect directly; others use VPN",
+    "zh": "所选应用与地址直接连接，其他流量使用 VPN"
+  },
+  "Правила сохраняются автоматически. После изменения режима или списка приложений переподключите VPN.": {
+    "en": "Rules are saved automatically. Reconnect after changing the mode or app list.",
+    "zh": "规则自动保存。更改模式或应用列表后请重新连接 VPN。"
+  },
+  "Адреса": {
+    "en": "Addresses",
+    "zh": "地址"
+  },
+  "Приложения": {
+    "en": "Applications",
+    "zh": "应用"
+  },
+  "Адреса через VPN": {
+    "en": "Addresses through VPN",
+    "zh": "通过 VPN 的地址"
+  },
+  "Адреса без VPN": {
+    "en": "Addresses without VPN",
+    "zh": "绕过 VPN 的地址"
+  },
+  "Приложения для VPN": {
+    "en": "Apps through VPN",
+    "zh": "通过 VPN 的应用"
+  },
+  "Приложения без VPN": {
+    "en": "Apps without VPN",
+    "zh": "绕过 VPN 的应用"
+  },
+  "Список адресов": {
+    "en": "Address list",
+    "zh": "地址列表"
+  },
+  "Домен, IP-адрес или подсеть — по одному на строку. Домен включает поддомены. Для всех сайтов .ru: *.ru. Например: example.com или 192.168.0.0/16.": {
+    "en": "One domain, IP or subnet per line. Domains include subdomains. Use *.ru for all .ru sites. Examples: example.com or 192.168.0.0/16.",
+    "zh": "每行一个域名、IP 或子网。域名包含子域名。所有 .ru 网站可使用 *.ru。例如 example.com 或 192.168.0.0/16。"
+  },
+  "Прямые подключения не защищены VPN. Имя определяется через FakeDNS, TLS/HTTP или QUIC. Если браузер скрывает имя через ECH, включите FakeDNS и используйте системный DNS вместо защищённого DNS браузера. Уже открытые соединения сохраняют прежний маршрут.": {
+    "en": "Direct connections are not protected by VPN. Names are detected using FakeDNS, TLS/HTTP or QUIC. If ECH hides names, enable FakeDNS and use system DNS instead of browser secure DNS. Existing connections keep their route.",
+    "zh": "直接连接不受 VPN 保护。通过 FakeDNS、TLS/HTTP 或 QUIC 识别域名。如果 ECH 隐藏域名，请启用 FakeDNS 并使用系统 DNS 而非浏览器安全 DNS。现有连接保持原路由。"
+  },
+  "Выбранные приложения целиком идут через VPN. Для остальных применяются адресные правила. На Android ниже 10 приложение соединения может не определиться — тогда трафик остаётся через VPN.": {
+    "en": "Selected apps always use VPN; address rules apply to other apps. Below Android 10, unidentified apps remain protected by VPN.",
+    "zh": "所选应用的全部流量使用 VPN，其他应用按地址规则处理。在 Android 10 以下，无法识别的应用仍通过 VPN 连接。"
+  },
+  "Выбрано: {0}": {
+    "en": "Selected: {0}",
+    "zh": "已选择：{0}"
+  },
+  "Найти приложение": {
+    "en": "Find an app",
+    "zh": "查找应用"
+  },
+  "По названию или имени пакета": {
+    "en": "By name or package ID",
+    "zh": "按名称或包名"
+  },
+  "Выбрать найденные": {
+    "en": "Select results",
+    "zh": "选择搜索结果"
+  },
+  "Снять выбор со всех": {
+    "en": "Clear selection",
+    "zh": "清除选择"
+  },
+  "Загрузка списка приложений…": {
+    "en": "Loading applications…",
+    "zh": "正在加载应用列表…"
+  },
+  "Список приложений пуст": {
+    "en": "No applications",
+    "zh": "应用列表为空"
+  },
+  "Ничего не найдено. Измените поисковый запрос.": {
+    "en": "No results. Try a different search.",
+    "zh": "未找到结果，请更改搜索条件。"
+  },
+  "Без исключений по приложениям и адресам": {
+    "en": "No app or address exclusions",
+    "zh": "没有应用或地址例外"
+  },
+  "Правила выключены · всё через VPN": {
+    "en": "Rules disabled · all through VPN",
+    "zh": "规则已关闭 · 全部通过 VPN"
+  },
+  "Смешанные правила: на Android ниже 10 неизвестные приложения защищаются VPN": {
+    "en": "Mixed rules: unidentified apps below Android 10 use VPN",
+    "zh": "混合规则：Android 10 以下无法识别的应用使用 VPN"
+  },
+  "Списки приложений и адресов сохранены. Чтобы изменить их, включите правила и выберите соответствующий режим.": {
+    "en": "App and address lists are saved. Enable rules and select a mode to edit them.",
+    "zh": "应用与地址列表已保存。启用规则并选择相应模式以编辑。"
+  },
+  "Записей: {0}": {
+    "en": "Entries: {0}",
+    "zh": "记录数：{0}"
+  },
+  "Пока нет записей. Уровень записи можно изменить в разделе «Диагностика».": {
+    "en": "No entries yet. Change logging level in Diagnostics.",
+    "zh": "暂无记录。可在诊断中更改日志级别。"
+  },
+  "Очистить": {
+    "en": "Clear",
+    "zh": "清空"
+  },
+  "Копировать": {
+    "en": "Copy",
+    "zh": "复制"
+  },
+  "Отмена": {
+    "en": "Cancel",
+    "zh": "取消"
+  },
+  "Назад": {
+    "en": "Back",
+    "zh": "返回"
+  },
+  "Сохранить": {
+    "en": "Save",
+    "zh": "保存"
+  },
+  "Удалить": {
+    "en": "Delete",
+    "zh": "删除"
+  },
+  "Добавить": {
+    "en": "Add",
+    "zh": "添加"
+  },
+  "Готово": {
+    "en": "Done",
+    "zh": "完成"
+  },
+  "Редактировать": {
+    "en": "Edit",
+    "zh": "编辑"
+  },
+  "Отключить": {
+    "en": "Disconnect",
+    "zh": "断开"
+  },
+  "Отключено": {
+    "en": "Disconnected",
+    "zh": "未连接"
+  },
+  "Подключено": {
+    "en": "Connected",
+    "zh": "已连接"
+  },
+  "Подключение...": {
+    "en": "Connecting...",
+    "zh": "正在连接..."
+  },
+  "Устанавливаем соединение…": {
+    "en": "Establishing connection…",
+    "zh": "正在建立连接…"
+  },
+  "ПОДКЛЮЧИТЬ": {
+    "en": "CONNECT",
+    "zh": "连接"
+  },
+  "ПОДКЛЮЧЕНИЕ": {
+    "en": "CONNECTING",
+    "zh": "连接中"
+  },
+  "ОТКЛЮЧИТЬ": {
+    "en": "DISCONNECT",
+    "zh": "断开"
+  },
+  "Подключить VPN": {
+    "en": "Connect VPN",
+    "zh": "连接 VPN"
+  },
+  "Отключить VPN": {
+    "en": "Disconnect VPN",
+    "zh": "断开 VPN"
+  },
+  "Туннель активен. Трафик защищён.": {
+    "en": "Tunnel active. Traffic is protected.",
+    "zh": "隧道已启用，流量受保护。"
+  },
+  "Личное пространство в сети": {
+    "en": "Your private space online",
+    "zh": "您的私密网络空间"
+  },
+  "Нажмите +, чтобы добавить сервер или подписку": {
+    "en": "Tap + to add a server or subscription",
+    "zh": "点击 + 添加服务器或订阅"
+  },
+  "Выберите сервер для подключения": {
+    "en": "Choose a server to connect",
+    "zh": "选择要连接的服务器"
+  },
+  "Выберите сервер перед подключением": {
+    "en": "Select a server before connecting",
+    "zh": "连接前请选择服务器"
+  },
+  "Сначала добавьте сервер через '+' в правом верхнем углу!": {
+    "en": "Add a server using + in the upper-right corner first.",
+    "zh": "请先点击右上角的 + 添加服务器。"
+  },
+  "Требуется разрешение для запуска VPN": {
+    "en": "VPN permission is required",
+    "zh": "需要 VPN 权限"
+  },
+  "Серверы ({0})": {
+    "en": "Servers ({0})",
+    "zh": "服务器（{0}）"
+  },
+  "Список серверов пуст": {
+    "en": "No servers yet",
+    "zh": "暂无服务器"
+  },
+  "Добавленные вручную": {
+    "en": "Manually added",
+    "zh": "手动添加"
+  },
+  "Пинг": {
+    "en": "Ping",
+    "zh": "延迟"
+  },
+  "Пинг всех": {
+    "en": "Ping all",
+    "zh": "测试所有延迟"
+  },
+  "Проверить задержку (Ping)": {
+    "en": "Check latency (ping)",
+    "zh": "测试延迟"
+  },
+  "Проверка доступности TCP сокета": {
+    "en": "Check TCP connectivity",
+    "zh": "检查 TCP 连接"
+  },
+  "{0} мс": {
+    "en": "{0} ms",
+    "zh": "{0} 毫秒"
+  },
+  "Действия сервера {0}": {
+    "en": "Server actions: {0}",
+    "zh": "服务器操作：{0}"
+  },
+  "Действия подписки": {
+    "en": "Subscription actions",
+    "zh": "订阅操作"
+  },
+  "Подписка": {
+    "en": "Subscription",
+    "zh": "订阅"
+  },
+  "Подписка · серверов: {0}": {
+    "en": "Subscription · servers: {0}",
+    "zh": "订阅 · 服务器：{0}"
+  },
+  "Название подписки": {
+    "en": "Subscription name",
+    "zh": "订阅名称"
+  },
+  "Настройки подписки": {
+    "en": "Subscription settings",
+    "zh": "订阅设置"
+  },
+  "Редактировать подписку": {
+    "en": "Edit subscription",
+    "zh": "编辑订阅"
+  },
+  "Удалить подписку": {
+    "en": "Delete subscription",
+    "zh": "删除订阅"
+  },
+  "Удалить подписку?": {
+    "en": "Delete subscription?",
+    "zh": "删除订阅？"
+  },
+  "«{0}» и её серверы будут удалены из приложения. Серверы, добавленные вручную, останутся.": {
+    "en": "“{0}” and its servers will be removed. Manually added servers will remain.",
+    "zh": "将删除订阅“{0}”及其中的服务器，手动添加的服务器将保留。"
+  },
+  "Обновить подписку": {
+    "en": "Update subscription",
+    "zh": "更新订阅"
+  },
+  "Загрузка подписки…": {
+    "en": "Updating subscription…",
+    "zh": "正在更新订阅…"
+  },
+  "Обновить серверы сразу после сохранения": {
+    "en": "Update servers immediately after saving",
+    "zh": "保存后立即更新服务器"
+  },
+  "Ссылка на подписку (URL)": {
+    "en": "Subscription URL",
+    "zh": "订阅链接"
+  },
+  "Копировать ссылку": {
+    "en": "Copy link",
+    "zh": "复制链接"
+  },
+  "Обновлено {0}": {
+    "en": "Updated {0}",
+    "zh": "更新于 {0}"
+  },
+  "Трафик: {0}": {
+    "en": "Traffic: {0}",
+    "zh": "流量：{0}"
+  },
+  "Общий учёт всех VDS": {
+    "en": "Shared quota across all VDS",
+    "zh": "所有 VDS 共用额度"
+  },
+  "Учёт: сервер подписки": {
+    "en": "Accounting: subscription server",
+    "zh": "计费：订阅服务器"
+  },
+  "Безлимит": {
+    "en": "Unlimited",
+    "zh": "无限制"
+  },
+  "Осталось %.2f / %.2f ГиБ": {
+    "en": "Remaining %.2f / %.2f GiB",
+    "zh": "剩余 %.2f / %.2f GiB"
+  },
+  "До ": {
+    "en": "Until ",
+    "zh": "有效期至 "
+  },
+  "Развёрнута": {
+    "en": "Expanded",
+    "zh": "已展开"
+  },
+  "Свёрнута": {
+    "en": "Collapsed",
+    "zh": "已折叠"
+  },
+  "По умолч.": {
+    "en": "Default",
+    "zh": "默认"
+  },
+  "Добавить вручную": {
+    "en": "Add manually",
+    "zh": "手动添加"
+  },
+  "Добавить сервер Atlant": {
+    "en": "Add Atlant server",
+    "zh": "添加 Atlant 服务器"
+  },
+  "Редактирование сервера": {
+    "en": "Edit server",
+    "zh": "编辑服务器"
+  },
+  "Импортировать": {
+    "en": "Import",
+    "zh": "导入"
+  },
+  "Из буфера": {
+    "en": "From clipboard",
+    "zh": "从剪贴板导入"
+  },
+  "Вставить из буфера": {
+    "en": "Paste from clipboard",
+    "zh": "从剪贴板粘贴"
+  },
+  "Вставить ссылку": {
+    "en": "Paste link",
+    "zh": "粘贴链接"
+  },
+  "Вставить": {
+    "en": "Paste",
+    "zh": "粘贴"
+  },
+  "Буфер обмена пуст": {
+    "en": "Clipboard is empty",
+    "zh": "剪贴板为空"
+  },
+  "Буфер пуст": {
+    "en": "Clipboard is empty",
+    "zh": "剪贴板为空"
+  },
+  "Вставлено из буфера": {
+    "en": "Pasted from clipboard",
+    "zh": "已从剪贴板粘贴"
+  },
+  "Сканировать QR-код": {
+    "en": "Scan QR code",
+    "zh": "扫描二维码"
+  },
+  "Содержимое QR-кода / URL": {
+    "en": "QR code content / URL",
+    "zh": "二维码内容 / URL"
+  },
+  "Вставьте ссылку или данные из QR-кода (atlant:// или подписку https://):": {
+    "en": "Paste a link or QR code content (atlant:// or an https:// subscription):",
+    "zh": "粘贴链接或二维码内容（atlant:// 或 https:// 订阅）："
+  },
+  "Формат": {
+    "en": "Format",
+    "zh": "格式"
+  },
+  "Параметры": {
+    "en": "Parameters",
+    "zh": "参数"
+  },
+  "Параметры (Ручное)": {
+    "en": "Parameters (manual)",
+    "zh": "参数（手动）"
+  },
+  "Имя сервера": {
+    "en": "Server name",
+    "zh": "服务器名称"
+  },
+  "Адрес (IP:Порт)": {
+    "en": "Address (IP:port)",
+    "zh": "地址（IP:端口）"
+  },
+  "Например, Мой VPS": {
+    "en": "For example, My VPS",
+    "zh": "例如：我的 VPS"
+  },
+  "например: 1.2.3.4:443": {
+    "en": "Example: 1.2.3.4:443",
+    "zh": "例如：1.2.3.4:443"
+  },
+  "например: Личный VPS или Подписка": {
+    "en": "Example: Personal VPS or Subscription",
+    "zh": "例如：个人 VPS 或订阅"
+  },
+  "например: user1": {
+    "en": "Example: user1",
+    "zh": "例如：user1"
+  },
+  "например: www.microsoft.com": {
+    "en": "Example: www.microsoft.com",
+    "zh": "例如：www.microsoft.com"
+  },
+  "SNI Домен (маскировка)": {
+    "en": "SNI domain (camouflage)",
+    "zh": "SNI 域名（伪装）"
+  },
+  "SNI Домен": {
+    "en": "SNI domain",
+    "zh": "SNI 域名"
+  },
+  "Группа / Категория": {
+    "en": "Group / category",
+    "zh": "分组 / 类别"
+  },
+  "Пользователь (Username)": {
+    "en": "Username",
+    "zh": "用户名"
+  },
+  "Ключ PBK (64 hex)": {
+    "en": "PBK key (64 hex)",
+    "zh": "PBK 密钥（64 位十六进制）"
+  },
+  "Статический ключ сервера (server_pub_key)": {
+    "en": "Static server key (server_pub_key)",
+    "zh": "服务器静态密钥（server_pub_key）"
+  },
+  "Статический ключ сервера": {
+    "en": "Static server key",
+    "zh": "服务器静态密钥"
+  },
+  "Публичный ключ REALITY": {
+    "en": "REALITY public key",
+    "zh": "REALITY 公钥"
+  },
+  "ОСНОВНЫЕ ПАРАМЕТРЫ": {
+    "en": "GENERAL",
+    "zh": "基本参数"
+  },
+  "АУТЕНТИФИКАЦИЯ И КЛЮЧИ": {
+    "en": "AUTHENTICATION AND KEYS",
+    "zh": "认证与密钥"
+  },
+  "ЗАЩИТА И ТРАНСПОРТ": {
+    "en": "SECURITY AND TRANSPORT",
+    "zh": "安全与传输"
+  },
+  "ДЕЙСТВИЯ": {
+    "en": "ACTIONS",
+    "zh": "操作"
+  },
+  "Защита: REALITY TLS 1.3": {
+    "en": "Security: REALITY TLS 1.3",
+    "zh": "安全：REALITY TLS 1.3"
+  },
+  "Для экспорта и передачи конфигурации": {
+    "en": "For exporting and sharing configurations",
+    "zh": "用于导出与分享配置"
+  },
+  "TCP, XHTTP и QUIC выбираются в настройках клиента. Создавать отдельный профиль для каждого транспорта не нужно.": {
+    "en": "Select TCP, XHTTP or QUIC in client settings. Separate server profiles per transport are not needed.",
+    "zh": "在客户端设置中选择 TCP、XHTTP 或 QUIC，无需为每种传输创建独立服务器配置。"
+  },
+  "TLS-маскировка под SNI домен и ключи PBK. Защита работает для всех транспортов.": {
+    "en": "TLS camouflage using the SNI domain and PBK keys. Protection applies to all transports.",
+    "zh": "使用 SNI 域名和 PBK 密钥进行 TLS 伪装，适用于所有传输。"
+  },
+  "Адрес сервера (IP:Порт) не может быть пустым!": {
+    "en": "Server address (IP:port) cannot be empty.",
+    "zh": "服务器地址（IP:端口）不能为空。"
+  },
+  "Ключ скопирован в буфер!": {
+    "en": "Key copied to clipboard.",
+    "zh": "密钥已复制到剪贴板。"
+  },
+  "Скопировать ссылку atlant://": {
+    "en": "Copy atlant:// link",
+    "zh": "复制 atlant:// 链接"
+  },
+  "Копия": {
+    "en": "Copy",
+    "zh": "副本"
+  },
+  "Сервер добавлен": {
+    "en": "Server added",
+    "zh": "服务器已添加"
+  },
+  "Сервер удален": {
+    "en": "Server removed",
+    "zh": "服务器已删除"
+  },
+  "Удалить сервер": {
+    "en": "Delete server",
+    "zh": "删除服务器"
+  },
+  "Удалить этот сервер": {
+    "en": "Delete this server",
+    "zh": "删除此服务器"
+  },
+  "Удалить сервер?": {
+    "en": "Delete server?",
+    "zh": "删除服务器？"
+  },
+  "Сервер будет удален из списка": {
+    "en": "The server will be removed from the list",
+    "zh": "服务器将从列表中删除"
+  },
+  "Вы действительно хотите удалить сервер '{0}'?": {
+    "en": "Delete server '{0}'?",
+    "zh": "删除服务器“{0}”？"
+  },
+  "Сервер успешно добавлен!": {
+    "en": "Server added successfully.",
+    "zh": "服务器添加成功。"
+  },
+  "Сервер '{0}' обновлен": {
+    "en": "Server '{0}' updated",
+    "zh": "服务器“{0}”已更新"
+  },
+  "Сервер '{0}' сохранен": {
+    "en": "Server '{0}' saved",
+    "zh": "服务器“{0}”已保存"
+  },
+  "JSON редактор": {
+    "en": "JSON editor",
+    "zh": "JSON 编辑器"
+  },
+  "JSON валиден и готов к сохранению": {
+    "en": "JSON is valid and ready to save",
+    "zh": "JSON 有效，可以保存"
+  },
+  "JSON отформатирован": {
+    "en": "JSON formatted",
+    "zh": "JSON 已格式化"
+  },
+  "JSON скопирован": {
+    "en": "JSON copied",
+    "zh": "JSON 已复制"
+  },
+  "Ошибка синтаксиса JSON": {
+    "en": "JSON syntax error",
+    "zh": "JSON 语法错误"
+  },
+  "В JSON есть ошибка. Исправьте её перед переходом.": {
+    "en": "Fix the JSON error before switching views.",
+    "zh": "切换视图前请修复 JSON 错误。"
+  },
+  "Исправьте синтаксис JSON перед сохранением!": {
+    "en": "Fix JSON syntax before saving.",
+    "zh": "保存前请修复 JSON 语法。"
+  },
+  "Ошибка JSON: {0}": {
+    "en": "JSON error: {0}",
+    "zh": "JSON 错误：{0}"
+  },
+  "Ошибка в JSON: {0}": {
+    "en": "JSON error: {0}",
+    "zh": "JSON 错误：{0}"
+  },
+  "{0} строк": {
+    "en": "{0} lines",
+    "zh": "{0} 行"
+  },
+  "Сброс": {
+    "en": "Reset",
+    "zh": "重置"
+  },
+  "Сброшено к текущим параметрам": {
+    "en": "Reset to current settings",
+    "zh": "已恢复为当前设置"
+  },
+  "Ошибка": {
+    "en": "Error",
+    "zh": "错误"
+  },
+  "Информация": {
+    "en": "Information",
+    "zh": "信息"
+  },
+  "Предупреждение": {
+    "en": "Warning",
+    "zh": "警告"
+  },
+  "Личный сервер": {
+    "en": "Personal server",
+    "zh": "个人服务器"
+  },
+  "Тест": {
+    "en": "Test",
+    "zh": "测试"
+  },
+  "English · Русский · 简体中文": {
+    "en": "English · Русский · 简体中文",
+    "zh": "English · Русский · 简体中文"
+  },
+  "Русский": {
+    "en": "Русский",
+    "zh": "Русский"
+  },
+  " · безлимит": {
+    "en": " · unlimited",
+    "zh": " · 无限制"
+  },
+  " · использовано ": {
+    "en": " · used ",
+    "zh": " · 已使用 "
+  },
+  " из ": {
+    "en": " of ",
+    "zh": " / "
+  },
+  "% лимита": {
+    "en": "% of quota",
+    "zh": "% 额度"
+  },
+  "+ Добавить": {
+    "en": "+ Add",
+    "zh": "+ 添加"
+  },
+  "0-RTT: не поддерживается": {
+    "en": "0-RTT: not supported",
+    "zh": "0-RTT：不支持"
+  },
+  "64 hex символа из вашего профиля": {
+    "en": "64 hexadecimal characters from your profile",
+    "zh": "配置中的 64 位十六进制字符"
+  },
+  "Atlant VPN готов к работе.": {
+    "en": "Atlant VPN is ready.",
+    "zh": "Atlant VPN 已就绪。"
+  },
+  "DNS, MTU, системный VPN и SOCKS5": {
+    "en": "DNS, MTU, system VPN and SOCKS5",
+    "zh": "DNS、MTU、系统 VPN 与 SOCKS5"
+  },
+  "Early data не используется: полезные данные требуют взаимной аутентификации.": {
+    "en": "Early data is not used: payload requires mutual authentication.",
+    "zh": "不使用早期数据：有效载荷需要双向认证。"
+  },
+  "FakeDNS · локальные адреса доменов": {
+    "en": "FakeDNS · local domain addresses",
+    "zh": "FakeDNS · 域名本地地址"
+  },
+  "HTTPS downgrade запрещён": {
+    "en": "HTTPS downgrade is not allowed",
+    "zh": "不允许降级 HTTPS"
+  },
+  "Info (стандартный)": {
+    "en": "Info (default)",
+    "zh": "信息（默认）"
+  },
+  "Legacy padding: используйте настройку выше": {
+    "en": "Legacy padding: use the setting above",
+    "zh": "旧版填充：请使用上方设置"
+  },
+  "None (без вывода логов)": {
+    "en": "None (no logging)",
+    "zh": "无（不记录日志）"
+  },
+  "Port Hopping: не поддерживается": {
+    "en": "Port hopping: not supported",
+    "zh": "端口跳跃：不支持"
+  },
+  "QR-код подписки": {
+    "en": "Subscription QR code",
+    "zh": "订阅二维码"
+  },
+  "Reality TLS 1.3 с маскировкой под SNI и взаимным 2-ECDH обменом": {
+    "en": "REALITY TLS 1.3 with SNI camouflage and mutual 2-ECDH exchange",
+    "zh": "REALITY TLS 1.3，使用 SNI 伪装与双向 2-ECDH 交换"
+  },
+  "TCP, QUIC, XHTTP и общие соединения": {
+    "en": "TCP, QUIC, XHTTP and shared connections",
+    "zh": "TCP、QUIC、XHTTP 与共享连接"
+  },
+  "TCP-подключение не удалось": {
+    "en": "TCP connection failed",
+    "zh": "TCP 连接失败"
+  },
+  "UDP-пакеты можно передавать через QUIC или TCP.": {
+    "en": "UDP packets can be transported over QUIC or TCP.",
+    "zh": "UDP 数据包可通过 QUIC 或 TCP 传输。"
+  },
+  "URL адрес подписки (ссылка для автообновления)": {
+    "en": "Subscription URL (automatic updates)",
+    "zh": "订阅链接（用于自动更新）"
+  },
+  "URL подписки не указан": {
+    "en": "Subscription URL is missing",
+    "zh": "未填写订阅链接"
+  },
+  "VPN-клиент": {
+    "en": "VPN client",
+    "zh": "VPN 客户端"
+  },
+  "Warning (только предупреждения)": {
+    "en": "Warning (warnings only)",
+    "zh": "警告（仅警告）"
+  },
+  "[GUI] Ожидание подключения к серверу...": {
+    "en": "[GUI] Waiting for server connection...",
+    "zh": "[GUI] 正在等待连接服务器..."
+  },
+  "[GUI] Служба ядра недоступна...": {
+    "en": "[GUI] Core service unavailable...",
+    "zh": "[GUI] 核心服务不可用..."
+  },
+  "{0} (импортирован; проверьте совместимость)": {
+    "en": "{0} (imported; check compatibility)",
+    "zh": "{0}（已导入，请检查兼容性）"
+  },
+  "{0} сервер(ов)": {
+    "en": "{0} servers",
+    "zh": "{0} 个服务器"
+  },
+  "Автопереключение: не поддерживается": {
+    "en": "Automatic fallback: not supported",
+    "zh": "自动切换：不支持"
+  },
+  "Адрес (Host:Port)": {
+    "en": "Address (host:port)",
+    "zh": "地址（主机:端口）"
+  },
+  "Адрес SOCKS5": {
+    "en": "SOCKS5 address",
+    "zh": "SOCKS5 地址"
+  },
+  "Адрес сервера не может быть пустым": {
+    "en": "Server address cannot be empty",
+    "zh": "服务器地址不能为空"
+  },
+  "Б": {
+    "en": "B",
+    "zh": "B"
+  },
+  "Блокировать интернет при обрыве соединения": {
+    "en": "Block internet when the connection drops",
+    "zh": "连接中断时阻止网络访问"
+  },
+  "Блокировать сеть при обрыве VPN": {
+    "en": "Block network when VPN disconnects",
+    "zh": "VPN 断开时阻止网络"
+  },
+  "Блокировка IPv6": {
+    "en": "IPv6 blocking",
+    "zh": "IPv6 阻止"
+  },
+  "Блокировка при обрыве": {
+    "en": "Kill switch",
+    "zh": "断网保护"
+  },
+  "Весь трафик": {
+    "en": "All traffic",
+    "zh": "全部流量"
+  },
+  "Возможности ядра": {
+    "en": "Core capabilities",
+    "zh": "核心功能"
+  },
+  "Время TCP-подключения; не проверка VPN-аутентификации": {
+    "en": "TCP connection time; does not verify VPN authentication",
+    "zh": "TCP 连接耗时，不验证 VPN 认证"
+  },
+  "Вставьте ссылку или импортируйте подписку": {
+    "en": "Paste a link or import a subscription",
+    "zh": "粘贴链接或导入订阅"
+  },
+  "Вставьте ссылку на подписку или сервер (atlant://, https://):": {
+    "en": "Paste a subscription or server link (atlant://, https://):",
+    "zh": "粘贴订阅或服务器链接（atlant://、https://）："
+  },
+  "Входящий прокси": {
+    "en": "Inbound proxy",
+    "zh": "入站代理"
+  },
+  "Вы уверены, что хотите удалить этот сервер?": {
+    "en": "Are you sure you want to delete this server?",
+    "zh": "确定要删除此服务器吗？"
+  },
+  "Выберите общий транспорт или отдельный способ передачи UDP.": {
+    "en": "Choose a shared transport or a separate UDP transport.",
+    "zh": "选择统一传输或单独的 UDP 传输方式。"
+  },
+  "Выберите сервер": {
+    "en": "Select a server",
+    "zh": "选择服务器"
+  },
+  "Выберите сервер и запустите VPN.": {
+    "en": "Select a server and start the VPN.",
+    "zh": "选择服务器并启动 VPN。"
+  },
+  "Выберите сервер и подключитесь, когда будете готовы.": {
+    "en": "Select a server and connect when ready.",
+    "zh": "选择服务器，准备好后连接。"
+  },
+  "Выбрать .exe": {
+    "en": "Choose .exe",
+    "zh": "选择 .exe"
+  },
+  "Выбрать сервер": {
+    "en": "Choose server",
+    "zh": "选择服务器"
+  },
+  "Выход": {
+    "en": "Exit",
+    "zh": "退出"
+  },
+  "Генератор фоновых запросов не реализован в Windows-ядре. Серверный decoy работает независимо.": {
+    "en": "Background requests are not implemented in the Windows core. Server-side decoy operates independently.",
+    "zh": "Windows 核心未实现后台请求。服务器端伪装独立运行。"
+  },
+  "ГиБ": {
+    "en": "GiB",
+    "zh": "GiB"
+  },
+  "Группа / Подписка": {
+    "en": "Group / subscription",
+    "zh": "分组 / 订阅"
+  },
+  "Действует до ": {
+    "en": "Expires ",
+    "zh": "到期时间 "
+  },
+  "Для подписки требуется HTTPS с проверяемым сертификатом": {
+    "en": "Subscriptions require HTTPS with a verified certificate",
+    "zh": "订阅需要使用具有有效证书的 HTTPS"
+  },
+  "Добавить сервер": {
+    "en": "Add server",
+    "zh": "添加服务器"
+  },
+  "Добавлено": {
+    "en": "Added",
+    "zh": "已添加"
+  },
+  "Добавлено: {0}": {
+    "en": "Added: {0}",
+    "zh": "已添加：{0}"
+  },
+  "Добавьте первый сервер": {
+    "en": "Add your first server",
+    "zh": "添加第一个服务器"
+  },
+  "Домены и IP в обход VPN": {
+    "en": "Domains and IPs bypassing VPN",
+    "zh": "绕过 VPN 的域名与 IP"
+  },
+  "Домены и IP-адреса": {
+    "en": "Domains and IP addresses",
+    "zh": "域名与 IP 地址"
+  },
+  "Дополнительные пакеты в простое": {
+    "en": "Extra idle packets",
+    "zh": "空闲附加数据包"
+  },
+  "Дополнительные функции": {
+    "en": "Additional features",
+    "zh": "附加功能"
+  },
+  "Доступ к SOCKS5 из локальной сети": {
+    "en": "Allow LAN access to SOCKS5",
+    "zh": "允许局域网访问 SOCKS5"
+  },
+  "Доступность дополнительных функций": {
+    "en": "Additional feature availability",
+    "zh": "附加功能可用性"
+  },
+  "Дублирующий legacy-переключатель не используется Windows-ядром. Настройте «Заполнение пакетов» выше.": {
+    "en": "The duplicate legacy toggle is unused in the Windows core. Configure Packet padding above.",
+    "zh": "Windows 核心不使用重复的旧版开关。请配置上方的数据包填充。"
+  },
+  "Журнал скопирован в буфер обмена": {
+    "en": "Logs copied to clipboard",
+    "zh": "日志已复制到剪贴板"
+  },
+  "Завершить работу Atlant VPN?": {
+    "en": "Exit Atlant VPN?",
+    "zh": "退出 Atlant VPN？"
+  },
+  "Завершить работу приложения": {
+    "en": "Exit application",
+    "zh": "退出应用"
+  },
+  "Загрузка активных процессов...": {
+    "en": "Loading running processes...",
+    "zh": "正在加载运行中的进程..."
+  },
+  "Загрузка процессов Windows...": {
+    "en": "Loading Windows processes...",
+    "zh": "正在加载 Windows 进程..."
+  },
+  "Закрыть": {
+    "en": "Close",
+    "zh": "关闭"
+  },
+  "Запущенные": {
+    "en": "Running",
+    "zh": "运行中"
+  },
+  "Запущенные приложения": {
+    "en": "Running applications",
+    "zh": "运行中的应用"
+  },
+  "Защита соединения": {
+    "en": "Connection security",
+    "zh": "连接安全"
+  },
+  "Импорт из буфера обмена...": {
+    "en": "Importing from clipboard...",
+    "zh": "正在从剪贴板导入..."
+  },
+  "Импортировано: {0} сервер(ов)": {
+    "en": "Imported: {0} servers",
+    "zh": "已导入：{0} 个服务器"
+  },
+  "Интервал пакетов, секунды": {
+    "en": "Packet interval, seconds",
+    "zh": "数据包间隔（秒）"
+  },
+  "Исключения не применяются. Ваши списки приложений и адресов сохранены.": {
+    "en": "Exclusions do not apply. Your app and address lists are preserved.",
+    "zh": "不应用例外，您的应用与地址列表已保留。"
+  },
+  "Использовано ": {
+    "en": "Used ",
+    "zh": "已使用 "
+  },
+  "Как часто отправлять дополнительные пакеты в простое.": {
+    "en": "How often to send extra packets while idle.",
+    "zh": "空闲时发送附加数据包的频率。"
+  },
+  "КиБ": {
+    "en": "KiB",
+    "zh": "KiB"
+  },
+  "Конфигурация JSON": {
+    "en": "JSON configuration",
+    "zh": "JSON 配置"
+  },
+  "Локальный прокси": {
+    "en": "Local proxy",
+    "zh": "本地代理"
+  },
+  "Маршрутизация всей системы через адаптер": {
+    "en": "Route the whole system through the adapter",
+    "zh": "通过适配器路由整个系统"
+  },
+  "Маршрутизация системы через адаптер Wintun": {
+    "en": "Route system traffic through Wintun",
+    "zh": "通过 Wintun 路由系统流量"
+  },
+  "Маскировка": {
+    "en": "Camouflage",
+    "zh": "伪装"
+  },
+  "МиБ": {
+    "en": "MiB",
+    "zh": "MiB"
+  },
+  "Минимальный и максимальный размер случайного заполнения пакетов": {
+    "en": "Minimum and maximum random padding size",
+    "zh": "随机填充的最小与最大大小"
+  },
+  "Моя подписка Atlant": {
+    "en": "My Atlant subscription",
+    "zh": "我的 Atlant 订阅"
+  },
+  "Моя подписка Atlant (или оставить пустым)": {
+    "en": "My Atlant subscription (or leave empty)",
+    "zh": "我的 Atlant 订阅（或留空）"
+  },
+  "Название": {
+    "en": "Name",
+    "zh": "名称"
+  },
+  "Настройки сервера": {
+    "en": "Server settings",
+    "zh": "服务器设置"
+  },
+  "Настройки сохранены": {
+    "en": "Settings saved",
+    "zh": "设置已保存"
+  },
+  "Настройки: {0}": {
+    "en": "Settings: {0}",
+    "zh": "设置：{0}"
+  },
+  "Не выбран": {
+    "en": "Not selected",
+    "zh": "未选择"
+  },
+  "Не обновлялась": {
+    "en": "Not updated yet",
+    "zh": "尚未更新"
+  },
+  "Не реализовано в текущем Windows-ядре.": {
+    "en": "Not implemented in the current Windows core.",
+    "zh": "当前 Windows 核心未实现此功能。"
+  },
+  "Не реализовано в текущем Windows-ядре. Выберите транспорт вручную.": {
+    "en": "Not implemented in the current Windows core. Select the transport manually.",
+    "zh": "当前 Windows 核心未实现此功能，请手动选择传输方式。"
+  },
+  "Не удалось загрузить настройки. Изменения не сохранены.": {
+    "en": "Could not load settings. Changes were not saved.",
+    "zh": "无法加载设置，更改未保存。"
+  },
+  "Не удалось загрузить процессы: {0}": {
+    "en": "Could not load processes: {0}",
+    "zh": "无法加载进程：{0}"
+  },
+  "Не удалось получить ответ GUI: ": {
+    "en": "Could not get a GUI response: ",
+    "zh": "无法获取 GUI 响应："
+  },
+  "Не удалось создать QR-код. Скопируйте ссылку.": {
+    "en": "Could not generate a QR code. Copy the link instead.",
+    "zh": "无法生成二维码，请复制链接。"
+  },
+  "Неверная ссылка": {
+    "en": "Invalid link",
+    "zh": "链接无效"
+  },
+  "Недопустимое перенаправление подписки": {
+    "en": "Invalid subscription redirect",
+    "zh": "订阅重定向无效"
+  },
+  "Неизвестная ошибка": {
+    "en": "Unknown error",
+    "zh": "未知错误"
+  },
+  "Некорректный JSON синтаксис: ": {
+    "en": "Invalid JSON syntax: ",
+    "zh": "JSON 语法无效："
+  },
+  "Нет TCP": {
+    "en": "No TCP",
+    "zh": "无 TCP 连接"
+  },
+  "Нет добавленных серверов. Нажмите \"+ Добавить\" или \"Вставить\" ссылку/подписку.": {
+    "en": "No servers yet. Click \"+ Add\" or \"Paste\" a link/subscription.",
+    "zh": "暂无服务器。点击“+ 添加”或“粘贴”链接或订阅。"
+  },
+  "Обновление подписки...": {
+    "en": "Updating subscription...",
+    "zh": "正在更新订阅..."
+  },
+  "Общий трафик подписки на всех подключённых VDS": {
+    "en": "Shared subscription traffic across connected VDS",
+    "zh": "所有已连接 VDS 共用的订阅流量"
+  },
+  "Объединение потоков в сессию Yamux (по умолчанию выключено — прямое соединение 1-в-1)": {
+    "en": "Multiplex streams in Yamux (off by default: direct one-to-one connections)",
+    "zh": "通过 Yamux 复用数据流（默认关闭，使用一对一直连）"
+  },
+  "Ожидаем ответ ядра VPN.": {
+    "en": "Waiting for the VPN core.",
+    "zh": "正在等待 VPN 核心响应。"
+  },
+  "Осталось ": {
+    "en": "Remaining ",
+    "zh": "剩余 "
+  },
+  "Отдельный DNS через VPN": {
+    "en": "Separate DNS through VPN",
+    "zh": "独立的 VPN DNS"
+  },
+  "Отдельный Remote DNS: не поддерживается": {
+    "en": "Separate remote DNS: not supported",
+    "zh": "独立远程 DNS：不支持"
+  },
+  "Отдельный переключатель не реализован в Windows-ядре. DNS зависит от TUN и правил маршрутизации.": {
+    "en": "A separate toggle is not implemented in the Windows core. DNS follows TUN and routing rules.",
+    "zh": "Windows 核心未实现独立开关。DNS 取决于 TUN 和路由规则。"
+  },
+  "Отключить IPv6 для защиты от утечек": {
+    "en": "Disable IPv6 to prevent leaks",
+    "zh": "关闭 IPv6 以防止泄漏"
+  },
+  "Отправлять дополнительные пакеты в паузах. Увеличивает расход трафика.": {
+    "en": "Send extra packets during pauses. Increases traffic usage.",
+    "zh": "暂停期间发送附加数据包，会增加流量消耗。"
+  },
+  "Очистка системных маршрутов, DNS и Winsock": {
+    "en": "Reset system routes, DNS and Winsock",
+    "zh": "重置系统路由、DNS 与 Winsock"
+  },
+  "Ошибка добавления сервера: ": {
+    "en": "Could not add server: ",
+    "zh": "无法添加服务器："
+  },
+  "Ошибка запуска VPN: ": {
+    "en": "Could not start VPN: ",
+    "zh": "无法启动 VPN："
+  },
+  "Ошибка импорта: ": {
+    "en": "Import failed: ",
+    "zh": "导入失败："
+  },
+  "Ошибка проверки": {
+    "en": "Check failed",
+    "zh": "检查失败"
+  },
+  "Ошибка связи с ядром: ": {
+    "en": "Core communication failed: ",
+    "zh": "核心通信失败："
+  },
+  "Ошибка сохранения подписки: ": {
+    "en": "Could not save subscription: ",
+    "zh": "无法保存订阅："
+  },
+  "Ошибка сохранения: ": {
+    "en": "Could not save: ",
+    "zh": "无法保存："
+  },
+  "Ошибка удаления сервера": {
+    "en": "Could not delete server",
+    "zh": "无法删除服务器"
+  },
+  "Ошибка удаления: ": {
+    "en": "Could not delete: ",
+    "zh": "无法删除："
+  },
+  "Ошибка: ": {
+    "en": "Error: ",
+    "zh": "错误："
+  },
+  "ПОДПИСКА": {
+    "en": "SUBSCRIPTION",
+    "zh": "订阅"
+  },
+  "Параметры сервера": {
+    "en": "Server parameters",
+    "zh": "服务器参数"
+  },
+  "Передача трафика": {
+    "en": "Traffic transport",
+    "zh": "流量传输"
+  },
+  "Перезапуск VPN для применения Kill Switch...": {
+    "en": "Restarting VPN to apply kill switch...",
+    "zh": "正在重启 VPN 以应用断网保护..."
+  },
+  "Перезапуск VPN для применения TUN режима...": {
+    "en": "Restarting VPN to apply TUN mode...",
+    "zh": "正在重启 VPN 以应用 TUN 模式..."
+  },
+  "Перезапуск VPN для применения настроек...": {
+    "en": "Restarting VPN to apply settings...",
+    "zh": "正在重启 VPN 以应用设置..."
+  },
+  "Переключить тему": {
+    "en": "Toggle theme",
+    "zh": "切换主题"
+  },
+  "Переподключение к выбранному серверу...": {
+    "en": "Reconnecting to selected server...",
+    "zh": "正在重新连接所选服务器..."
+  },
+  "По одному на строку:": {
+    "en": "One per line:",
+    "zh": "每行一个："
+  },
+  "Поддерживаются форматы 2.x, 3.x, 4.x, 6.x и 7.x": {
+    "en": "Supports formats 2.x, 3.x, 4.x, 6.x and 7.x",
+    "zh": "支持 2.x、3.x、4.x、6.x 与 7.x 格式"
+  },
+  "Поделиться": {
+    "en": "Share",
+    "zh": "分享"
+  },
+  "Подписка обновлена! Серверов: {0}": {
+    "en": "Subscription updated. Servers: {0}",
+    "zh": "订阅已更新，服务器：{0}"
+  },
+  "Подписка удалена": {
+    "en": "Subscription removed",
+    "zh": "订阅已删除"
+  },
+  "Подписка успешно сохранена": {
+    "en": "Subscription saved",
+    "zh": "订阅已保存"
+  },
+  "Подробный журнал может содержать адреса подключений. Проверяйте его перед отправкой.": {
+    "en": "Verbose logs may contain connection addresses. Review before sharing.",
+    "zh": "详细日志可能包含连接地址，分享前请检查。"
+  },
+  "Поиск процесса (chrome, telegram)...": {
+    "en": "Find process (chrome, telegram)...",
+    "zh": "查找进程（chrome、telegram）..."
+  },
+  "Пользователь": {
+    "en": "User",
+    "zh": "用户"
+  },
+  "Правила приложений действуют в режиме TUN. Домен включает поддомены; IP-адреса и подсети тоже поддерживаются. Прямые подключения не защищены VPN.": {
+    "en": "App rules work in TUN mode. Domains include subdomains; IPs and subnets are supported. Direct connections are not protected by VPN.",
+    "zh": "应用规则在 TUN 模式下生效。域名包含子域名，也支持 IP 与子网。直接连接不受 VPN 保护。"
+  },
+  "Правила сохранены. Для применения переподключите VPN.": {
+    "en": "Rules saved. Reconnect VPN to apply.",
+    "zh": "规则已保存，重新连接 VPN 后生效。"
+  },
+  "Приложение {0} уже есть в списке": {
+    "en": "Application {0} is already listed",
+    "zh": "应用 {0} 已在列表中"
+  },
+  "Приложения (.exe)": {
+    "en": "Applications (.exe)",
+    "zh": "应用（.exe）"
+  },
+  "Приложения в обход VPN (.exe)": {
+    "en": "Applications bypassing VPN (.exe)",
+    "zh": "绕过 VPN 的应用（.exe）"
+  },
+  "Проверить пинг": {
+    "en": "Check latency",
+    "zh": "测试延迟"
+  },
+  "Проверить пинг серверов": {
+    "en": "Check server latency",
+    "zh": "测试服务器延迟"
+  },
+  "Проверка пинга завершена": {
+    "en": "Latency check completed",
+    "zh": "延迟测试已完成"
+  },
+  "Проверка пинга...": {
+    "en": "Checking latency...",
+    "zh": "正在测试延迟..."
+  },
+  "Профиль Atlant": {
+    "en": "Atlant profile",
+    "zh": "Atlant 配置"
+  },
+  "Профиль ClientHello через uTLS, не поведение всего браузера. Android/OkHttp несовместим с REALITY; случайный профиль не имитирует браузер. Импортированные значения не заменяются автоматически.": {
+    "en": "A uTLS ClientHello profile, not full browser behavior. Android/OkHttp is incompatible with REALITY; randomized profiles do not imitate a browser. Imported values are not replaced automatically.",
+    "zh": "uTLS ClientHello 配置不代表浏览器的全部行为。Android/OkHttp 与 REALITY 不兼容，随机配置不能模拟浏览器。导入的设置不会自动替换。"
+  },
+  "Профиль задаёт только ClientHello. Android/OkHttp несовместим с REALITY; случайный профиль не имитирует браузер. Импортированное значение: {0}.": {
+    "en": "The profile controls ClientHello only. Android/OkHttp is incompatible with REALITY; randomized profiles do not imitate a browser. Imported value: {0}.",
+    "zh": "此配置仅决定 ClientHello。Android/OkHttp 与 REALITY 不兼容，随机配置不能模拟浏览器。导入的值：{0}。"
+  },
+  "Процессы не найдены": {
+    "en": "No processes found",
+    "zh": "未找到进程"
+  },
+  "Пул 198.18.0.0/15 для доменной маршрутизации. Проверка DNS-утечек требуется отдельно.": {
+    "en": "Pool 198.18.0.0/15 for domain routing. DNS leaks require separate testing.",
+    "zh": "用于域名路由的地址池 198.18.0.0/15。DNS 泄漏需要单独检查。"
+  },
+  "РЕЖИМ МАРШРУТИЗАЦИИ": {
+    "en": "ROUTING MODE",
+    "zh": "路由模式"
+  },
+  "Размер MTU": {
+    "en": "MTU size",
+    "zh": "MTU 大小"
+  },
+  "Размер заполнения, байт": {
+    "en": "Padding size, bytes",
+    "zh": "填充大小（字节）"
+  },
+  "Размер пакета: {0}–1500 байт. Обычно 1360. Некорректное значение не сохраняется.": {
+    "en": "Packet size: {0}–1500 bytes. Usually 1360. Invalid values are not saved.",
+    "zh": "数据包大小：{0}–1500 字节，通常为 1360。无效值不会保存。"
+  },
+  "Ранние данные QUIC (0-RTT)": {
+    "en": "QUIC early data (0-RTT)",
+    "zh": "QUIC 早期数据（0-RTT）"
+  },
+  "Редактирование подписки": {
+    "en": "Edit subscription",
+    "zh": "编辑订阅"
+  },
+  "Редактировать параметры": {
+    "en": "Edit parameters",
+    "zh": "编辑参数"
+  },
+  "Режим TUN": {
+    "en": "TUN mode",
+    "zh": "TUN 模式"
+  },
+  "Режим передачи трафика": {
+    "en": "Traffic transport mode",
+    "zh": "流量传输模式"
+  },
+  "Режим подключения": {
+    "en": "Connection mode",
+    "zh": "连接模式"
+  },
+  "СЕРВЕРА": {
+    "en": "SERVERS",
+    "zh": "服务器"
+  },
+  "Сбой": {
+    "en": "Failed",
+    "zh": "失败"
+  },
+  "Сбой выбора сервера: ": {
+    "en": "Server selection failed: ",
+    "zh": "服务器选择失败："
+  },
+  "Сбой обновления": {
+    "en": "Update failed",
+    "zh": "更新失败"
+  },
+  "Сбой обновления: ": {
+    "en": "Update failed: ",
+    "zh": "更新失败："
+  },
+  "Сбой сохранения: ": {
+    "en": "Save failed: ",
+    "zh": "保存失败："
+  },
+  "Сбой удаления: ": {
+    "en": "Delete failed: ",
+    "zh": "删除失败："
+  },
+  "Сброс сети": {
+    "en": "Network reset",
+    "zh": "网络重置"
+  },
+  "Сброс сети Windows": {
+    "en": "Windows network reset",
+    "zh": "Windows 网络重置"
+  },
+  "Сброс сети Windows...": {
+    "en": "Resetting Windows network...",
+    "zh": "正在重置 Windows 网络..."
+  },
+  "Сброс сети выполнен": {
+    "en": "Network reset completed",
+    "zh": "网络重置已完成"
+  },
+  "Сброс сети выполнен успешно": {
+    "en": "Network reset completed successfully",
+    "zh": "网络重置成功"
+  },
+  "Сбросить сетевые маршруты, кэш DNS и Winsock до стандартных?": {
+    "en": "Reset network routes, DNS cache and Winsock to defaults?",
+    "zh": "将网络路由、DNS 缓存与 Winsock 重置为默认设置？"
+  },
+  "Сбросить сеть": {
+    "en": "Reset network",
+    "zh": "重置网络"
+  },
+  "Сервер не принял настройки": {
+    "en": "Server rejected settings",
+    "zh": "服务器拒绝了设置"
+  },
+  "Сервер переключен": {
+    "en": "Server switched",
+    "zh": "已切换服务器"
+  },
+  "Сервер сохранен": {
+    "en": "Server saved",
+    "zh": "服务器已保存"
+  },
+  "Сервер успешно удален": {
+    "en": "Server removed successfully",
+    "zh": "服务器已成功删除"
+  },
+  "Серверы": {
+    "en": "Servers",
+    "zh": "服务器"
+  },
+  "Сетевые параметры применяются после сохранения и переподключения. Настройки маскировки не гарантируют нераспознаваемость VPN.": {
+    "en": "Network settings apply after saving and reconnecting. Camouflage settings do not guarantee an undetectable VPN.",
+    "zh": "网络设置在保存并重新连接后生效。伪装设置不能保证 VPN 无法被识别。"
+  },
+  "Системный · TUN": {
+    "en": "System · TUN",
+    "zh": "系统 · TUN"
+  },
+  "Скопировано": {
+    "en": "Copied",
+    "zh": "已复制"
+  },
+  "Слишком много перенаправлений": {
+    "en": "Too many redirects",
+    "zh": "重定向次数过多"
+  },
+  "Совпавшие приложения и адреса напрямую": {
+    "en": "Matching apps and addresses connect directly",
+    "zh": "匹配的应用与地址直接连接"
+  },
+  "Совпавшие приложения и адреса через VPN": {
+    "en": "Matching apps and addresses use VPN",
+    "zh": "匹配的应用与地址使用 VPN"
+  },
+  "Соединение отключено": {
+    "en": "Connection closed",
+    "zh": "连接已关闭"
+  },
+  "Сохранение...": {
+    "en": "Saving...",
+    "zh": "正在保存..."
+  },
+  "Сохранить настройки": {
+    "en": "Save settings",
+    "zh": "保存设置"
+  },
+  "Сохранить правила": {
+    "en": "Save rules",
+    "zh": "保存规则"
+  },
+  "Список исключений пуст. Добавьте приложения для прямого доступа.": {
+    "en": "No exclusions. Add apps for direct access.",
+    "zh": "例外列表为空，请添加直接访问网络的应用。"
+  },
+  "Список пуст": {
+    "en": "List is empty",
+    "zh": "列表为空"
+  },
+  "Список пуст. Добавьте приложения кнопкой «Выбрать .exe» или «Запущенные».": {
+    "en": "The list is empty. Add apps using Choose .exe or Running.",
+    "zh": "列表为空，请通过“选择 .exe”或“运行中”添加应用。"
+  },
+  "Справка по полям JSON:": {
+    "en": "JSON field reference:",
+    "zh": "JSON 字段参考："
+  },
+  "Ссылка atlant:// скопирована в буфер обмена": {
+    "en": "atlant:// link copied to clipboard",
+    "zh": "atlant:// 链接已复制到剪贴板"
+  },
+  "Ссылка даёт доступ к VPN. Передавайте её только тем, кому доверяете.": {
+    "en": "This link grants VPN access. Share it only with people you trust.",
+    "zh": "此链接授予 VPN 访问权限，请仅分享给信任的人。"
+  },
+  "Ссылка и QR-код подписки": {
+    "en": "Subscription link and QR code",
+    "zh": "订阅链接与二维码"
+  },
+  "Ссылка подписки": {
+    "en": "Subscription link",
+    "zh": "订阅链接"
+  },
+  "Старый переключатель заполнения": {
+    "en": "Legacy padding toggle",
+    "zh": "旧版填充开关"
+  },
+  "ТиБ": {
+    "en": "TiB",
+    "zh": "TiB"
+  },
+  "Тип правил": {
+    "en": "Rule type",
+    "zh": "规则类型"
+  },
+  "Транспорт профиля": {
+    "en": "Profile transport",
+    "zh": "配置传输"
+  },
+  "Транспортный уровень для потоков TCP": {
+    "en": "Transport for TCP streams",
+    "zh": "TCP 数据流的传输方式"
+  },
+  "Трафик": {
+    "en": "Traffic",
+    "zh": "流量"
+  },
+  "Трафик учётной записи на сервере подписки": {
+    "en": "Account traffic on the subscription server",
+    "zh": "订阅服务器上的账户流量"
+  },
+  "Туннель запущен": {
+    "en": "Tunnel started",
+    "zh": "隧道已启动"
+  },
+  "Тёмная тема": {
+    "en": "Dark theme",
+    "zh": "深色主题"
+  },
+  "Удалено: {0}": {
+    "en": "Deleted: {0}",
+    "zh": "已删除：{0}"
+  },
+  "Удалить из списка": {
+    "en": "Remove from list",
+    "zh": "从列表中移除"
+  },
+  "Удалить подписку \"{0}\" и её сервера?": {
+    "en": "Delete subscription \"{0}\" and its servers?",
+    "zh": "删除订阅“{0}”及其中的服务器？"
+  },
+  "Удалить эту подписку и её серверы?": {
+    "en": "Delete this subscription and its servers?",
+    "zh": "删除此订阅及其中的服务器？"
+  },
+  "Укажите MTU от 1200 до 1500 и адрес DNS-сервера.": {
+    "en": "Enter an MTU from 1200 to 1500 and a DNS server address.",
+    "zh": "请输入 1200 至 1500 的 MTU 与 DNS 服务器地址。"
+  },
+  "Укажите адрес сервера (IP:Port)": {
+    "en": "Enter server address (IP:port)",
+    "zh": "请输入服务器地址（IP:端口）"
+  },
+  "Управление подпиской": {
+    "en": "Manage subscription",
+    "zh": "管理订阅"
+  },
+  "Уровень записи журнала": {
+    "en": "Logging level",
+    "zh": "日志级别"
+  },
+  "Фоновый Decoy: не поддерживается": {
+    "en": "Background decoy: not supported",
+    "zh": "后台伪装：不支持"
+  },
+  "Фоновый веб-трафик (Decoy)": {
+    "en": "Background web traffic (decoy)",
+    "zh": "后台网络流量（伪装）"
+  },
+  "Ядро запущено. Доступность интернета проверяется отдельно.": {
+    "en": "Core started. Internet connectivity must be checked separately.",
+    "zh": "核心已启动，互联网连接需要单独检查。"
+  },
+  "← Все настройки": {
+    "en": "← All settings",
+    "zh": "← 所有设置"
+  },
+  "• \"group\" — группа серверов": {
+    "en": "• \"group\" — server group",
+    "zh": "• \"group\" — 服务器分组"
+  },
+  "• \"name\" — имя сервера\n": {
+    "en": "• \"name\" — server name\n",
+    "zh": "• \"name\" — 服务器名称\n"
+  },
+  "• \"pbk\" — публичный ключ REALITY\n": {
+    "en": "• \"pbk\" — REALITY public key\n",
+    "zh": "• \"pbk\" — REALITY 公钥\n"
+  },
+  "• \"security\" — reality (защита TLS 1.3)\n": {
+    "en": "• \"security\" — reality (TLS 1.3 security)\n",
+    "zh": "• \"security\" — reality（TLS 1.3 安全）\n"
+  },
+  "• \"server\" — адрес host:port (обязательно)\n": {
+    "en": "• \"server\" — host:port address (required)\n",
+    "zh": "• \"server\" — 主机:端口地址（必填）\n"
+  },
+  "• \"server_pub_key\" — ключ сервера\n": {
+    "en": "• \"server_pub_key\" — server key\n",
+    "zh": "• \"server_pub_key\" — 服务器密钥\n"
+  },
+  "• \"sni\" — SNI маскировка REALITY\n": {
+    "en": "• \"sni\" — REALITY camouflage SNI\n",
+    "zh": "• \"sni\" — REALITY 伪装 SNI\n"
+  },
+  "• \"transport\" — tcp (прямой) или xhttp (HTTP/2 поверх REALITY)\n": {
+    "en": "• \"transport\" — tcp (direct) or xhttp (HTTP/2 over REALITY)\n",
+    "zh": "• \"transport\" — tcp（直接）或 xhttp（基于 REALITY 的 HTTP/2）\n"
+  },
+  "• \"user\" — логин / пользователь\n": {
+    "en": "• \"user\" — login / username\n",
+    "zh": "• \"user\" — 登录名 / 用户名\n"
+  }
+}

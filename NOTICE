@@ -1,0 +1,7 @@
+Atlant VPN
+Copyright 2026 Atlant VPN contributors
+
+Original server and shared protocol code is licensed under Apache-2.0.
+Client applications remain MIT; management components remain GPL-3.0-only.
+Third-party code retains its own licenses and copyright notices.
+See LICENSING.md and THIRD_PARTY_NOTICES.md for scope and attribution.

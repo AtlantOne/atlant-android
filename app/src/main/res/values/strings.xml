@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">AtlantVPN</string>
+    <string name="subscription_qr">Subscription link / QR code</string>
+    <string name="qr_copy_fallback">You can copy the link below.</string>
+    <string name="subscription_share_warning">This link grants VPN access. Share it only with people you trust.</string>
+    <string name="copy_subscription_link">Copy link</string>
+    <string name="link_copied">Copied</string>
+    <string name="close_share">Close</string>
+    <string name="qr_camera_prompt">Point the camera at an Atlant profile or subscription QR code</string>
+    <string name="qr_camera_title">Scan QR code</string>
+    <string name="qr_camera_permission">Camera access is disabled. Allow it in app settings, then return here. You can also paste a link.</string>
+    <string name="qr_camera_unavailable">The camera could not be opened. Close other camera apps and try again, or paste a link.</string>
+    <string name="qr_camera_retry">Try again</string>
+    <string name="qr_camera_settings">App settings</string>
+    <string name="qr_manual_input">Paste link</string>
+</resources>

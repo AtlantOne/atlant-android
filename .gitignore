@@ -1,0 +1,96 @@
+# ==========================================
+# Серверные секреты, ключи и приватные конфиги
+# ==========================================
+settings.json
+users.json
+*.db
+*.db-wal
+*.db-shm
+*.db.lock
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+*.sqlite.lock
+*.sqlite3
+*.sqlite3-wal
+*.sqlite3-shm
+*.sqlite3.lock
+*.pre-sqlite
+atlant_server_key.bin
+*.bin
+atlant_config.json
+local.properties
+.mcp.json
+.agentsroom/
+.claude/
+*.key
+!third_party/quic-go/internal/testdata/priv.key
+!third_party/quic-go/http3/internal/testdata/priv.key
+tests/localbench/tools/
+*.test
+*.pprof
+
+# ==========================================
+# Скомпилированные бинарники и библиотеки
+# (Выкладывать через GitHub Releases)
+# ==========================================
+artifacts/
+*.exe
+*.dll
+*.so
+*.dylib
+*.syso
+*.a
+*.o
+client/android/atlant-android-*
+server/atlant-server
+client/linux/atlant-linux
+server.exe
+atlant_server*
+atlant_win_64.exe
+atlant_gui.exe
+
+# ==========================================
+# Тяжелые сборки и архивы
+# ==========================================
+*.aar
+*.jar
+!gradle/wrapper/gradle-wrapper.jar
+*.zip
+*.pcap
+*.apk
+app/build/
+build/
+.gradle/
+.kotlin/
+
+# ==========================================
+# Временные папки, локальные бэкапы и скратч
+# ==========================================
+private/subscription-acme/
+**/account.pem
+**/subscription.pem
+arr/
+lin/
+win/
+debug/
+backup_*/
+wintun_official/
+scratch_*/
+scratch/
+test_isp_*.py
+ba.bat
+build_aar.py
+
+# ==========================================
+# Кэши IDE, логи и отладочные файлы
+# ==========================================
+__pycache__/
+*.pyc
+.idea/
+.vscode/
+*.log
+stdout.txt
+stderr.txt
+tun_out.txt
+tun_err.txt

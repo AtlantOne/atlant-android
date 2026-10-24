@@ -1,0 +1,15 @@
+<resources>
+    <string name="subscription_qr">Ссылка и QR-код подписки</string>
+    <string name="qr_copy_fallback">Ссылку можно скопировать ниже.</string>
+    <string name="subscription_share_warning">Ссылка даёт доступ к VPN. Передавайте её только тем, кому доверяете.</string>
+    <string name="copy_subscription_link">Копировать ссылку</string>
+    <string name="link_copied">Скопировано</string>
+    <string name="close_share">Закрыть</string>
+    <string name="qr_camera_prompt">Наведите камеру на QR-код профиля Atlant или подписки</string>
+    <string name="qr_camera_title">Сканировать QR-код</string>
+    <string name="qr_camera_permission">Доступ к камере запрещён. Разрешите его в настройках приложения и вернитесь сюда. Также можно вставить ссылку.</string>
+    <string name="qr_camera_unavailable">Не удалось открыть камеру. Закройте другие приложения с камерой и повторите попытку или вставьте ссылку.</string>
+    <string name="qr_camera_retry">Повторить</string>
+    <string name="qr_camera_settings">Настройки приложения</string>
+    <string name="qr_manual_input">Вставить ссылку</string>
+</resources>

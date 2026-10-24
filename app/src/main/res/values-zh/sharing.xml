@@ -1,0 +1,15 @@
+<resources>
+    <string name="subscription_qr">订阅链接 / 二维码</string>
+    <string name="qr_copy_fallback">您可以复制下方链接。</string>
+    <string name="subscription_share_warning">此链接授予 VPN 访问权限，请仅与可信的人分享。</string>
+    <string name="copy_subscription_link">复制链接</string>
+    <string name="link_copied">已复制</string>
+    <string name="close_share">关闭</string>
+    <string name="qr_camera_prompt">将相机对准 Atlant 配置或订阅二维码</string>
+    <string name="qr_camera_title">扫描二维码</string>
+    <string name="qr_camera_permission">相机权限已禁用。请在应用设置中允许，然后返回。也可以粘贴链接。</string>
+    <string name="qr_camera_unavailable">无法打开相机。请关闭其他使用相机的应用后重试，或粘贴链接。</string>
+    <string name="qr_camera_retry">重试</string>
+    <string name="qr_camera_settings">应用设置</string>
+    <string name="qr_manual_input">粘贴链接</string>
+</resources>

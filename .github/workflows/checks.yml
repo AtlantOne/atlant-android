@@ -1,0 +1,24 @@
+name: Android source checks
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          persist-credentials: false
+      - name: Validate source containers and translations
+        run: |
+          python3 - <<'PY'
+          import json, pathlib, xml.etree.ElementTree as ET, zipfile
+          for path in pathlib.Path('app/src').rglob('*.xml'):
+              ET.parse(path)
+          json.loads(pathlib.Path('app/src/main/assets/client-languages.json').read_text())
+          with zipfile.ZipFile('gradle/wrapper/gradle-wrapper.jar') as archive:
+              assert archive.testzip() is None
+          PY
+      # Full Kotlin/APK builds need the matching native AAR from atlant-core.
+      # This job is source validation, not a claim of Android runtime coverage.
