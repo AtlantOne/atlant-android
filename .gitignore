@@ -22,7 +22,6 @@ atlant_config.json
 local.properties
 .mcp.json
 .agentsroom/
-.claude/
 *.key
 !third_party/quic-go/internal/testdata/priv.key
 !third_party/quic-go/http3/internal/testdata/priv.key
