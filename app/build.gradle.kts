@@ -9,6 +9,9 @@ plugins {
 // Local UI tests use an isolated package/output and never load the ARM VPN library.
 val localUiTest = providers.gradleProperty("atlantUiTest").orNull == "true"
 val atlantAar = providers.gradleProperty("atlantAar").orElse("atlant.aar").get()
+val requestedAbis = providers.gradleProperty("atlantAbis").orElse("arm64-v8a").get().split(',')
+require(requestedAbis.isNotEmpty() && requestedAbis.all { it in setOf("arm64-v8a", "armeabi-v7a", "x86", "x86_64") }) { "Unsupported Android ABI" }
+val splitPublicApks = providers.gradleProperty("atlantSplitApks").orNull == "true"
 require(Regex("[A-Za-z0-9_.-]+\\.aar").matches(atlantAar)) { "atlantAar must be a library filename" }
 layout.buildDirectory.set(rootProject.layout.projectDirectory.dir(if (localUiTest) "artifacts/build/android/ui-test" else "artifacts/build/android/app"))
 
@@ -55,13 +58,22 @@ android {
         if (localUiTest) applicationIdSuffix = ".uitest"
         minSdk = 24
         targetSdk = 37
-        versionCode = 7
-        versionName = "2.0.2"
+        versionCode = 8
+        versionName = "2.0.3"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         ndk {
-            abiFilters.add(if (localUiTest) "x86_64" else "arm64-v8a")
+            abiFilters.addAll(if (localUiTest) listOf("x86_64") else requestedAbis)
+        }
+    }
+
+    splits {
+        abi {
+            isEnable = splitPublicApks && !localUiTest
+            reset()
+            include(*requestedAbis.toTypedArray())
+            isUniversalApk = true
         }
     }
 
