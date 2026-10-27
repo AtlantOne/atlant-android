@@ -291,6 +291,7 @@ class AtlantVpnService : VpnService() {
                     Atlant.setTunnelStateListener { state, message ->
                         if (state == "failed") {
                             durationHandler.post {
+                                if (generation != tunnelGeneration.get()) return@post
                                 Log.e(TAG, "Native tunnel failed: $message")
                                 VpnManager.log("Критическая ошибка TUN: $message", LogLevel.ERROR)
                                 stopTunnel()
