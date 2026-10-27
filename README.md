@@ -1,7 +1,15 @@
 # Atlant for Android
 
-Android graphical client for [Atlant Core](https://github.com/AtlantOne/atlant-core).
-This repository contains application sources, not server credentials or signing keys.
+Atlant's Android app brings TCP/REALITY, XHTTP and direct QUIC REALITY into one
+client. Import a subscription or scan its QR code, choose a server and connect.
+App and domain routing rules let you decide which traffic uses the VPN.
+
+The native [Atlant Core](https://github.com/AtlantOne/atlant-core) handles the
+tunnel. Its QUIC REALITY handshake starts directly over UDP, without a TCP
+bootstrap or access tickets. The VPN server does not need its own domain or a
+public CA certificate: the client checks its pinned key instead.
+
+The interface supports light and dark themes and English, Russian and Chinese.
 
 ## Build
 
@@ -23,5 +31,5 @@ checked before Kotlin compilation. Release signing keys must stay outside source
 control; use your own stable key for application updates.
 
 Original application sources are MIT licensed. Libraries retain their own terms.
-See `LICENSE` and `THIRD_PARTY_NOTICES.md`. Experimental protocol limitations are
-described in `THREAT_MODEL.md`.
+See `LICENSE` and `THIRD_PARTY_NOTICES.md`. The protocol's security boundaries
+are described in `THREAT_MODEL.md`.
