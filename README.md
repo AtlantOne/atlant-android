@@ -1,5 +1,7 @@
 # Atlant for Android
 
+[Download APK](https://github.com/AtlantOne/atlant-android/releases) · [Main project](https://github.com/AtlantOne/atlant-core) · [Help and feedback](https://github.com/AtlantOne/atlant-core/discussions/categories/q-a)
+
 Atlant's Android app supports both TCP and QUIC, with direct REALITY and XHTTP
 on the TCP path and direct QUIC REALITY over UDP. Import a subscription or scan
 its QR code, choose a server and connect.
@@ -11,6 +13,17 @@ opening a TCP connection. The VPN server does not need its own domain or a
 public CA certificate: the client checks its pinned key instead.
 
 The interface supports light and dark themes and English, Russian and Chinese.
+
+## Start using Atlant
+
+1. Download the universal APK from Releases, or select your device architecture.
+2. Import an Atlant subscription URL, scan its QR code, or add a server profile.
+3. Select the server, choose your transport settings and connect. Accept Android's
+   VPN permission prompt when asked.
+
+You need a profile from your own server or its operator. For the protocol,
+server downloads and community, visit [Atlant Core](https://github.com/AtlantOne/atlant-core).
+Do not include your subscription URL or credentials in public bug reports.
 
 ## Build
 
