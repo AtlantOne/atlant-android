@@ -1,12 +1,13 @@
 # Atlant for Android
 
-Atlant's Android app brings TCP/REALITY, XHTTP and direct QUIC REALITY into one
-client. Import a subscription or scan its QR code, choose a server and connect.
+Atlant's Android app supports both TCP and QUIC, with direct REALITY and XHTTP
+on the TCP path and direct QUIC REALITY over UDP. Import a subscription or scan
+its QR code, choose a server and connect.
 App and domain routing rules let you decide which traffic uses the VPN.
 
 The native [Atlant Core](https://github.com/AtlantOne/atlant-core) handles the
-tunnel. Its QUIC REALITY handshake starts directly over UDP, without a TCP
-bootstrap or access tickets. The VPN server does not need its own domain or a
+tunnel. Its QUIC REALITY handshake starts directly over UDP, without first
+opening a TCP connection. The VPN server does not need its own domain or a
 public CA certificate: the client checks its pinned key instead.
 
 The interface supports light and dark themes and English, Russian and Chinese.
