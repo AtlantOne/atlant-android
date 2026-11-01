@@ -26,6 +26,7 @@ val verifyAtlantLibrary = tasks.register("verifyAtlantLibrary") {
             JarInputStream(aar.getInputStream(classes)).use { jar ->
                 var hasRouter = false
                 var hasSetter = false
+                var hasAdministration = false
                 var entry = jar.nextJarEntry
                 while (entry != null) {
                     when (entry.name) {
@@ -33,11 +34,13 @@ val verifyAtlantLibrary = tasks.register("verifyAtlantLibrary") {
                         "atlant/Atlant.class" -> {
                             val api = jar.readBytes().toString(Charsets.ISO_8859_1)
                             hasSetter = api.contains("setAppRouter")
+                            hasAdministration = api.contains("adminBegin") && api.contains("adminProbe") && api.contains("adminStatus") && api.contains("adminClose") && api.contains("adminCall")
                         }
                     }
                     entry = jar.nextJarEntry
                 }
                 check(hasRouter && hasSetter) { "Outdated $atlantAar: required routing API missing. $hint" }
+                check(hasAdministration) { "Outdated $atlantAar: SSH administration API missing. Rebuild with scripts/build-aar.ps1." }
             }
         }
     }
@@ -58,8 +61,8 @@ android {
         if (localUiTest) applicationIdSuffix = ".uitest"
         minSdk = 24
         targetSdk = 37
-        versionCode = 11
-        versionName = "2.0.6"
+        versionCode = 12
+        versionName = "2.0.7"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 

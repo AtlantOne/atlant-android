@@ -1962,5 +1962,841 @@
   "• \"user\" — логин / пользователь\n": {
     "en": "• \"user\" — login / username\n",
     "zh": "• \"user\" — 登录名 / 用户名\n"
+  },
+  "\nДоверять этому ключу?": {
+    "en": "\nTrust this key?",
+    "zh": "\n信任此密钥？"
+  },
+  " Сохранить SSH-пароль в защищённом хранилище Windows": {
+    "en": " Save SSH password in Windows protected storage",
+    "zh": " 将 SSH 密码保存到 Windows 安全存储"
+  },
+  "IP или домен": {
+    "en": "IP address or domain",
+    "zh": "IP 地址或域名"
+  },
+  "SSH недоступен": {
+    "en": "SSH unavailable",
+    "zh": "SSH 不可用"
+  },
+  "SSH-канал закрыт; сервер продолжает работать": {
+    "en": "SSH channel closed; the server is still running",
+    "zh": "SSH 通道已关闭；服务器仍在运行"
+  },
+  "SSH-логин": {
+    "en": "SSH username",
+    "zh": "SSH 用户名"
+  },
+  "SSH-пароль": {
+    "en": "SSH password",
+    "zh": "SSH 密码"
+  },
+  "SSH-подключение": {
+    "en": "Connecting over SSH",
+    "zh": "正在连接 SSH"
+  },
+  "SSH-порт": {
+    "en": "SSH port",
+    "zh": "SSH 端口"
+  },
+  "Будет создано отдельное Docker-развёртывание. Если Docker отсутствует, он будет установлен из пакетов Debian/Ubuntu. Существующие службы не заменяются. Сборка может занять несколько минут.": {
+    "en": "A separate Docker deployment will be created. If Docker is missing, it will be installed from Debian/Ubuntu packages. Existing services will be kept. The build may take several minutes.",
+    "zh": "将创建独立的 Docker 部署。如果未安装 Docker，将从 Debian/Ubuntu 软件包安装。现有服务将保留。构建可能需要几分钟。"
+  },
+  "Данные на VDS останутся.": {
+    "en": "Data on the VDS will be kept.",
+    "zh": "VDS 上的数据将保留。"
+  },
+  "Добавить по ключу или подписке": {
+    "en": "Add a key or subscription",
+    "zh": "添加密钥或订阅"
+  },
+  "Добавить свой сервер": {
+    "en": "Add your own server",
+    "zh": "添加自己的服务器"
+  },
+  "Доверять": {
+    "en": "Trust",
+    "zh": "信任"
+  },
+  "Закрыть SSH-канал": {
+    "en": "Close SSH channel",
+    "zh": "关闭 SSH 通道"
+  },
+  "Закрыть SSH-канал / отменить установку": {
+    "en": "Close SSH channel / cancel installation",
+    "zh": "关闭 SSH 通道 / 取消安装"
+  },
+  "Как хотите использовать Atlant?": {
+    "en": "How would you like to use Atlant?",
+    "zh": "您想如何使用 Atlant？"
+  },
+  "Канал закрыт; сервер продолжает работать": {
+    "en": "Channel closed; the server is still running",
+    "zh": "通道已关闭；服务器仍在运行"
+  },
+  "Ключ или подписка": {
+    "en": "Key or subscription",
+    "zh": "密钥或订阅"
+  },
+  "Локальный порт панели на сервере": {
+    "en": "Local panel port on the server",
+    "zh": "服务器上的本地面板端口"
+  },
+  "Мои серверы": {
+    "en": "My servers",
+    "zh": "我的服务器"
+  },
+  "Назад к моим серверам": {
+    "en": "Back to my servers",
+    "zh": "返回我的服务器"
+  },
+  "Не удалось открыть защищённый список серверов": {
+    "en": "Could not open the protected server list",
+    "zh": "无法打开加密服务器列表"
+  },
+  "Не удалось сохранить": {
+    "en": "Could not save",
+    "zh": "无法保存"
+  },
+  "Новый сервер": {
+    "en": "New server",
+    "zh": "新服务器"
+  },
+  "Операция не выполнена": {
+    "en": "Operation failed",
+    "zh": "操作失败"
+  },
+  "Ошибка сохранения": {
+    "en": "Save failed",
+    "zh": "保存失败"
+  },
+  "Панель готова": {
+    "en": "Panel ready",
+    "zh": "面板已就绪"
+  },
+  "Подготовка исходников": {
+    "en": "Preparing source code",
+    "zh": "正在准备源代码"
+  },
+  "Подключение закрыто": {
+    "en": "Connection closed",
+    "zh": "连接已关闭"
+  },
+  "Подключение панели": {
+    "en": "Connecting to the panel",
+    "zh": "正在连接面板"
+  },
+  "Подключиться по ключу или установить VPN на свой сервер. Оба варианта останутся доступны в меню.": {
+    "en": "Connect with a key or install VPN on your own server. Both options remain available in the menu.",
+    "zh": "通过密钥连接，或在自己的服务器上安装 VPN。两种方式都可以随时在菜单中使用。"
+  },
+  "Подтвердите SSH-ключ": {
+    "en": "Confirm SSH host key",
+    "zh": "确认 SSH 主机密钥"
+  },
+  "Подтверждённый SSH-отпечаток": {
+    "en": "Verified SSH fingerprint",
+    "zh": "已确认的 SSH 指纹"
+  },
+  "Порт VPN": {
+    "en": "VPN port",
+    "zh": "VPN 端口"
+  },
+  "Проверить SSH-ключ": {
+    "en": "Check SSH host key",
+    "zh": "检查 SSH 主机密钥"
+  },
+  "Сверьте SSH-отпечаток с консолью провайдера:\n": {
+    "en": "Compare the SSH fingerprint with your provider console:\n",
+    "zh": "请与服务商控制台核对 SSH 指纹：\n"
+  },
+  "Сверьте отпечаток с консолью провайдера:\n{0}": {
+    "en": "Compare the fingerprint with your provider console:\n{0}",
+    "zh": "请与服务商控制台核对指纹：\n{0}"
+  },
+  "Свой сервер": {
+    "en": "Own server",
+    "zh": "自己的服务器"
+  },
+  "Сервер сохранён": {
+    "en": "Server saved",
+    "zh": "服务器已保存"
+  },
+  "Сначала проверьте и подтвердите SSH-ключ": {
+    "en": "Check and confirm the SSH host key first",
+    "zh": "请先检查并确认 SSH 主机密钥"
+  },
+  "Сохранить пароль в Android Keystore": {
+    "en": "Save password using Android Keystore",
+    "zh": "使用 Android Keystore 保存密码"
+  },
+  "Сохранить сервер": {
+    "en": "Save server",
+    "zh": "保存服务器"
+  },
+  "Удалить из приложения": {
+    "en": "Remove from app",
+    "zh": "从应用中移除"
+  },
+  "Удалить сервер из приложения? Данные на VDS останутся.": {
+    "en": "Remove this server from the app? Data on the VDS will be kept.",
+    "zh": "从应用中移除此服务器？VDS 上的数据将保留。"
+  },
+  "Удалить сервер из списка?": {
+    "en": "Remove server from the list?",
+    "zh": "从列表中移除服务器？"
+  },
+  "Укажите адрес сервера": {
+    "en": "Enter the server address",
+    "zh": "请输入服务器地址"
+  },
+  "Управлять сервером": {
+    "en": "Manage server",
+    "zh": "管理服务器"
+  },
+  "Установить": {
+    "en": "Install",
+    "zh": "安装"
+  },
+  "Установить Atlant в Docker? Если Docker отсутствует, он будет установлен из пакетов Debian/Ubuntu. Существующие службы не заменяются. Сборка может занять несколько минут.": {
+    "en": "Install Atlant in Docker? If Docker is missing, it will be installed from Debian/Ubuntu packages. Existing services will be kept. The build may take several minutes.",
+    "zh": "在 Docker 中安装 Atlant？如果未安装 Docker，将从 Debian/Ubuntu 软件包安装。现有服务将保留。构建可能需要几分钟。"
+  },
+  "Установить Atlant через Docker": {
+    "en": "Install Atlant with Docker",
+    "zh": "通过 Docker 安装 Atlant"
+  },
+  "Установить на свой сервер": {
+    "en": "Install on your own server",
+    "zh": "安装到自己的服务器"
+  },
+  "Установить сервер?": {
+    "en": "Install server?",
+    "zh": "安装服务器？"
+  },
+  "Установить через Docker": {
+    "en": "Install with Docker",
+    "zh": "通过 Docker 安装"
+  },
+  "Установка Docker и сборка": {
+    "en": "Installing Docker and building",
+    "zh": "正在安装 Docker 并构建"
+  },
+  "Установка Docker и сборка. Можно переключиться на другой экран.": {
+    "en": "Installing Docker and building. You can switch to another screen.",
+    "zh": "正在安装 Docker 并构建。您可以切换到其他页面。"
+  },
+  "Установка в Docker и управление через защищённый SSH-канал. Порты 80/443 не используются по умолчанию.": {
+    "en": "Install in Docker and manage over a secure SSH channel. Ports 80/443 are not used by default.",
+    "zh": "在 Docker 中安装并通过安全的 SSH 通道管理。默认不使用 80/443 端口。"
+  },
+  "Установка через SSH в Docker. Панель управления открывается через защищённый SSH-канал; 80 и 443 не используются по умолчанию.": {
+    "en": "Install in Docker over SSH. The panel opens through a secure SSH channel; ports 80 and 443 are not used by default.",
+    "zh": "通过 SSH 在 Docker 中安装。面板通过安全的 SSH 通道打开；默认不使用 80 和 443 端口。"
+  },
+  "по умолчанию": {
+    "en": "default",
+    "zh": "默认"
+  },
+  "Дополнительно": {
+    "en": "Advanced",
+    "zh": "高级设置"
+  },
+  "Изменить сервер": {
+    "en": "Edit server",
+    "zh": "编辑服务器"
+  },
+  "Подключение к серверу": {
+    "en": "Connect to server",
+    "zh": "连接服务器"
+  },
+  "Действия сервера": {
+    "en": "Server actions",
+    "zh": "服务器操作"
+  },
+  "Добавьте свой сервер": {
+    "en": "Add your own server",
+    "zh": "添加自己的服务器"
+  },
+  "Установить Atlant": {
+    "en": "Install Atlant",
+    "zh": "安装 Atlant"
+  },
+  "Уже установлен": {
+    "en": "Already installed",
+    "zh": "已安装"
+  },
+  "Сохранять пароль на этом устройстве": {
+    "en": "Remember password on this device",
+    "zh": "在此设备上保存密码"
+  },
+  "Обновление Atlant": {
+    "en": "Updating Atlant",
+    "zh": "正在更新 Atlant"
+  },
+  "Обновить Atlant": {
+    "en": "Update Atlant",
+    "zh": "更新 Atlant"
+  },
+  "Контейнер остановлен": {
+    "en": "Container is stopped",
+    "zh": "容器已停止"
+  },
+  "Установить или обновить Atlant? Существующая установка будет обновлена с сохранением пользователей, подписок, ключей и настроек. Другие службы не изменяются.": {
+    "en": "Install or update Atlant? An existing installation will be updated while keeping users, subscriptions, keys and settings. Other services are kept.",
+    "zh": "安装或更新 Atlant？现有安装将更新，并保留用户、订阅、密钥和设置。其他服务保持不变。"
+  },
+  "QR-код": {
+    "en": "QR code",
+    "zh": "二维码"
+  },
+  "Адрес VPN для клиентов (IP/домен:порт)": {
+    "en": "Public VPN address (IP/domain:port)",
+    "zh": "客户端 VPN 地址（IP/域名:端口）"
+  },
+  "Адрес прослушивания": {
+    "en": "Listen address",
+    "zh": "监听地址"
+  },
+  "Без срока": {
+    "en": "No expiry",
+    "zh": "永久有效"
+  },
+  "В сети": {
+    "en": "Online",
+    "zh": "在线"
+  },
+  "Версия": {
+    "en": "Version",
+    "zh": "版本"
+  },
+  "Включено": {
+    "en": "Enabled",
+    "zh": "已启用"
+  },
+  "Включить": {
+    "en": "Enable",
+    "zh": "启用"
+  },
+  "Время работы": {
+    "en": "Uptime",
+    "zh": "运行时间"
+  },
+  "Выберите подключения": {
+    "en": "Select connections",
+    "zh": "选择连接"
+  },
+  "Выберите транспорт": {
+    "en": "Select a transport",
+    "zh": "选择传输方式"
+  },
+  "Группа": {
+    "en": "Group",
+    "zh": "分组"
+  },
+  "Группы": {
+    "en": "Groups",
+    "zh": "分组"
+  },
+  "Добавить группу": {
+    "en": "Add group",
+    "zh": "添加分组"
+  },
+  "Добавить подключение": {
+    "en": "Add connection",
+    "zh": "添加连接"
+  },
+  "Добавить пользователя": {
+    "en": "Add user",
+    "zh": "添加用户"
+  },
+  "Заметка": {
+    "en": "Note",
+    "zh": "备注"
+  },
+  "Запустить": {
+    "en": "Start",
+    "zh": "启动"
+  },
+  "Идентификатор": {
+    "en": "ID",
+    "zh": "标识符"
+  },
+  "Изменить": {
+    "en": "Edit",
+    "zh": "编辑"
+  },
+  "Изменить подключение": {
+    "en": "Edit connection",
+    "zh": "编辑连接"
+  },
+  "Изменить подписку": {
+    "en": "Edit subscription",
+    "zh": "编辑订阅"
+  },
+  "Имя пользователя": {
+    "en": "Username",
+    "zh": "用户名"
+  },
+  "Имя сервера REALITY (SNI)": {
+    "en": "REALITY server name (SNI)",
+    "zh": "REALITY 服务器名称（SNI）"
+  },
+  "Лимит IP": {
+    "en": "IP limit",
+    "zh": "IP 数量限制"
+  },
+  "Лимит трафика (ГиБ)": {
+    "en": "Traffic limit (GiB)",
+    "zh": "流量限制（GiB）"
+  },
+  "Некорректная дата": {
+    "en": "Invalid date",
+    "zh": "日期无效"
+  },
+  "Обзор": {
+    "en": "Overview",
+    "zh": "概览"
+  },
+  "Остановить": {
+    "en": "Stop",
+    "zh": "停止"
+  },
+  "Отключить сессии": {
+    "en": "Disconnect sessions",
+    "zh": "断开会话"
+  },
+  "Перезапустить": {
+    "en": "Restart",
+    "zh": "重启"
+  },
+  "Подключения": {
+    "en": "Connections",
+    "zh": "连接"
+  },
+  "Подписки": {
+    "en": "Subscriptions",
+    "zh": "订阅"
+  },
+  "Подтвердить": {
+    "en": "Confirm",
+    "zh": "确认"
+  },
+  "Подтвердить изменение": {
+    "en": "Confirm change",
+    "zh": "确认更改"
+  },
+  "Пользователи": {
+    "en": "Users",
+    "zh": "用户"
+  },
+  "Применить": {
+    "en": "Apply",
+    "zh": "应用"
+  },
+  "Применить подключения": {
+    "en": "Apply connections",
+    "zh": "应用连接"
+  },
+  "Сбросить": {
+    "en": "Reset",
+    "zh": "重置"
+  },
+  "Служба VPN": {
+    "en": "VPN service",
+    "zh": "VPN 服务"
+  },
+  "Создать подписку": {
+    "en": "Create subscription",
+    "zh": "创建订阅"
+  },
+  "Срок действия": {
+    "en": "Expires",
+    "zh": "有效期"
+  },
+  "Ссылка": {
+    "en": "Link",
+    "zh": "链接"
+  },
+  "Ссылка и QR-код": {
+    "en": "Link and QR code",
+    "zh": "链接和二维码"
+  },
+  "Ссылка недоступна": {
+    "en": "Link unavailable",
+    "zh": "链接不可用"
+  },
+  "Управление сервером": {
+    "en": "Server management",
+    "zh": "服务器管理"
+  },
+  "Уровень логирования": {
+    "en": "Log level",
+    "zh": "日志级别"
+  },
+  "Это действие изменит доступ или остановит активные подключения.": {
+    "en": "This action changes access or stops active connections.",
+    "zh": "此操作将更改访问权限或断开活动连接。"
+  },
+  "Изменение уровня логирования применяется после перезапуска службы VPN.": {
+    "en": "Log level changes take effect after restarting the VPN service.",
+    "zh": "日志级别更改将在重启 VPN 服务后生效。"
+  },
+  "Меню": {
+    "en": "Menu",
+    "zh": "菜单"
+  },
+  "Подготовка релиза": {
+    "en": "Preparing release",
+    "zh": "准备发布版本"
+  },
+  "Загрузка готового релиза и установка. Можно переключиться на другой экран.": {
+    "en": "Downloading and installing the release. You can switch to another screen.",
+    "zh": "正在下载并安装发布版本。您可以切换到其他页面。"
+  },
+  "Загрузка готового релиза": {
+    "en": "Downloading release",
+    "zh": "下载发布版本"
+  },
+  "Пароль сохранён": {
+    "en": "Password saved",
+    "zh": "密码已保存"
+  },
+  "Участники группы": {
+    "en": "Group members",
+    "zh": "分组成员"
+  },
+  "Включить всех": {
+    "en": "Enable all",
+    "zh": "启用全部"
+  },
+  "Отключить всех": {
+    "en": "Disable all",
+    "zh": "停用全部"
+  },
+  "Добавьте участников в группу": {
+    "en": "Add members to this group",
+    "zh": "向分组添加成员"
+  },
+  "Выбрано": {
+    "en": "Selected",
+    "zh": "已选择"
+  },
+  "Основное": {
+    "en": "General",
+    "zh": "基本信息"
+  },
+  "Доступ": {
+    "en": "Access",
+    "zh": "访问权限"
+  },
+  "Действия": {
+    "en": "Actions",
+    "zh": "操作"
+  },
+  "Показать ещё": {
+    "en": "Show more",
+    "zh": "显示更多"
+  },
+  "Поиск": {
+    "en": "Search",
+    "zh": "搜索"
+  },
+  "Состав группы изменился. Обновите её перед выполнением действия.": {
+    "en": "The group changed. Reload it before retrying.",
+    "zh": "分组已更改，请刷新后重试。"
+  },
+  "Часть участников уже обновлена. Обновите группу перед повторной попыткой.": {
+    "en": "Some members were updated. Reload the group before retrying.",
+    "zh": "部分成员已更新，请刷新分组后重试。"
+  },
+  "Без ограничения трафика": {
+    "en": "Unlimited traffic",
+    "zh": "不限流量"
+  },
+  "До {0}": {
+    "en": "Until {0}",
+    "zh": "有效期至 {0}"
+  },
+  "Добавьте подписку": {
+    "en": "Add a subscription",
+    "zh": "添加订阅"
+  },
+  "Доступ и сессии": {
+    "en": "Access and sessions",
+    "zh": "访问权限与会话"
+  },
+  "Запустите VPN, когда будете готовы": {
+    "en": "Start the VPN when you are ready",
+    "zh": "准备就绪后启动 VPN"
+  },
+  "Запущен": {
+    "en": "Running",
+    "zh": "运行中"
+  },
+  "Информация о подписке": {
+    "en": "Subscription details",
+    "zh": "订阅详情"
+  },
+  "Использовано: {0}": {
+    "en": "Used: {0}",
+    "zh": "已用：{0}"
+  },
+  "Осталось трафика": {
+    "en": "Traffic remaining",
+    "zh": "剩余流量"
+  },
+  "Остановлен": {
+    "en": "Stopped",
+    "zh": "已停止"
+  },
+  "Отправлено": {
+    "en": "Sent",
+    "zh": "已发送"
+  },
+  "Получено": {
+    "en": "Received",
+    "zh": "已接收"
+  },
+  "Порты и транспорты": {
+    "en": "Ports and transports",
+    "zh": "端口与传输方式"
+  },
+  "Сервер выключен": {
+    "en": "Server stopped",
+    "zh": "服务器已停止"
+  },
+  "Сервер работает": {
+    "en": "Server is running",
+    "zh": "服务器运行中"
+  },
+  "Серверов: {0}": {
+    "en": "Servers: {0}",
+    "zh": "服务器：{0}"
+  },
+  "Ссылка или QR-код — и серверы появятся здесь": {
+    "en": "Import a link or QR code to see your servers here",
+    "zh": "导入链接或二维码，即可在此查看服务器"
+  },
+  "Ссылки и лимиты": {
+    "en": "Links and limits",
+    "zh": "链接与限额"
+  },
+  "Управление": {
+    "en": "Manage",
+    "zh": "管理"
+  },
+  "Управляйте доступом и подключениями": {
+    "en": "Manage access and connections",
+    "zh": "管理访问权限与连接"
+  },
+  "Участники и доступ": {
+    "en": "Members and access",
+    "zh": "成员与访问权限"
+  },
+  "из {0}": {
+    "en": "of {0}",
+    "zh": "共 {0}"
+  },
+  "VPN включён": {
+    "en": "VPN is on",
+    "zh": "VPN 已开启"
+  },
+  "VPN выключен": {
+    "en": "VPN is off",
+    "zh": "VPN 已关闭"
+  },
+  "Подключение…": {
+    "en": "Connecting…",
+    "zh": "正在连接…"
+  },
+  "Проверить": {
+    "en": "Check",
+    "zh": "检查"
+  },
+  "Установка и управление": {
+    "en": "Install and manage",
+    "zh": "安装与管理"
+  },
+  "Ваш сервер": {
+    "en": "Your server",
+    "zh": "您的服务器"
+  },
+  "Осталось {0} из {1}": {
+    "en": "{0} left of {1}",
+    "zh": "剩余 {0}，共 {1}"
+  },
+  "Настроить группу": {
+    "en": "Group settings",
+    "zh": "分组设置"
+  },
+  "Создать группу": {
+    "en": "Create group",
+    "zh": "创建分组"
+  },
+  "Укажите название группы": {
+    "en": "Enter a group name",
+    "zh": "请输入分组名称"
+  },
+  "Показать пользователей": {
+    "en": "Show members",
+    "zh": "查看成员"
+  },
+  "Фильтр по группе": {
+    "en": "Filter by group",
+    "zh": "按分组筛选"
+  },
+  "Все группы": {
+    "en": "All groups",
+    "zh": "所有分组"
+  },
+  "Участников: {0}": {
+    "en": "Members: {0}",
+    "zh": "成员：{0}"
+  },
+  "Включено: {0}": {
+    "en": "Enabled: {0}",
+    "zh": "已启用：{0}"
+  },
+  "Сначала создайте пользователя или подписку": {
+    "en": "Create a user or subscription first",
+    "zh": "请先创建用户或订阅"
+  },
+  "Выбор": {
+    "en": "Selection",
+    "zh": "选择"
+  },
+  "Пока нет групп": {
+    "en": "No groups yet",
+    "zh": "暂无分组"
+  },
+  "Сначала создайте подключение в разделе «Подключения»": {
+    "en": "Create an inbound in the Inbounds section first",
+    "zh": "请先在连接页面创建入站连接"
+  },
+  "Нет доступных подключений": {
+    "en": "No available connections",
+    "zh": "没有可用连接"
+  },
+  "HTTPS-ссылка подписки не настроена. Ниже — прямые подключения без автоматического обновления.": {
+    "en": "The HTTPS subscription link is not configured. These direct connections do not update automatically.",
+    "zh": "尚未配置 HTTPS 订阅链接。以下为不自动更新的直连配置。"
+  },
+  "Сертификаты": {
+    "en": "Certificates",
+    "zh": "证书"
+  },
+  "HTTPS для подписок": {
+    "en": "Subscription HTTPS",
+    "zh": "订阅 HTTPS"
+  },
+  "HTTPS не запущен": {
+    "en": "HTTPS is stopped",
+    "zh": "HTTPS 未运行"
+  },
+  "HTTPS работает": {
+    "en": "HTTPS is running",
+    "zh": "HTTPS 已运行"
+  },
+  "HTTPS-ссылка недоступна": {
+    "en": "HTTPS link unavailable",
+    "zh": "HTTPS 链接不可用"
+  },
+  "Включить HTTPS-подписки": {
+    "en": "Enable HTTPS subscriptions",
+    "zh": "启用 HTTPS 订阅"
+  },
+  "Действует до": {
+    "en": "Valid until",
+    "zh": "有效期至"
+  },
+  "Домен": {
+    "en": "Domain",
+    "zh": "域名"
+  },
+  "IP-адрес": {
+    "en": "IP address",
+    "zh": "IP 地址"
+  },
+  "Домен или IP": {
+    "en": "Domain or IP",
+    "zh": "域名或 IP"
+  },
+  "Свой сертификат": {
+    "en": "Custom certificate",
+    "zh": "自定义证书"
+  },
+  "Порт HTTPS-подписок": {
+    "en": "Subscription HTTPS port",
+    "zh": "订阅 HTTPS 端口"
+  },
+  "Файл сертификата на сервере": {
+    "en": "Certificate file on server",
+    "zh": "服务器上的证书文件"
+  },
+  "Файл ключа на сервере": {
+    "en": "Key file on server",
+    "zh": "服务器上的密钥文件"
+  },
+  "Применить и перезапустить VPN": {
+    "en": "Apply and restart VPN",
+    "zh": "应用并重启 VPN"
+  },
+  "Примите условия Let’s Encrypt": {
+    "en": "Accept the Let’s Encrypt terms",
+    "zh": "请接受 Let’s Encrypt 条款"
+  },
+  "Принимаю условия Let’s Encrypt": {
+    "en": "I accept the Let’s Encrypt terms",
+    "zh": "我接受 Let’s Encrypt 条款"
+  },
+  "Укажите домен или IP": {
+    "en": "Enter a domain or IP",
+    "zh": "请输入域名或 IP"
+  },
+  "Укажите порт от 1 до 65535": {
+    "en": "Enter a port from 1 to 65535",
+    "zh": "请输入 1 至 65535 的端口"
+  },
+  "Укажите файлы сертификата и ключа": {
+    "en": "Enter certificate and key file paths",
+    "zh": "请输入证书和密钥文件路径"
+  },
+  "Создать HTTPS-ссылку": {
+    "en": "Create HTTPS link",
+    "zh": "创建 HTTPS 链接"
+  },
+  "Создать ссылку": {
+    "en": "Create link",
+    "zh": "创建链接"
+  },
+  "Ссылка этой подписки не сохранилась. Создать новую? Прежняя ссылка перестанет работать.": {
+    "en": "This subscription link was not saved. Create a new one? The previous link will stop working.",
+    "zh": "此订阅的链接未保存。创建新链接吗？原链接将失效。"
+  },
+  "Настройте HTTPS в разделе «Сертификаты», затем создайте ссылку подписки.": {
+    "en": "Configure HTTPS in Certificates, then create the subscription link.",
+    "zh": "请在证书页面配置 HTTPS，然后创建订阅链接。"
+  },
+  "Сертификат выпускается и обновляется автоматически. Для HTTP-01 нужен доступ к порту 80.": {
+    "en": "The certificate is issued and renewed automatically. HTTP-01 requires access to port 80.",
+    "zh": "证书会自动签发和续期。HTTP-01 需要访问端口 80。"
+  },
+  "Сертификат используется для HTTPS-подписок. VPN продолжает работать через REALITY.": {
+    "en": "The certificate is used for HTTPS subscriptions. The VPN continues to use REALITY.",
+    "zh": "证书用于 HTTPS 订阅，VPN 继续使用 REALITY。"
+  },
+  "Масштаб интерфейса": {
+    "en": "Interface scale",
+    "zh": "界面缩放"
+  },
+  "Сбросить до 100%": {
+    "en": "Reset to 100%",
+    "zh": "恢复到 100%"
+  },
+  "Размер текста, кнопок и отступов во всём приложении. Подключение VPN не прерывается.": {
+    "en": "Text, buttons and spacing throughout the app. Your VPN connection stays active.",
+    "zh": "调整整个应用的文字、按钮和间距。VPN 连接保持不中断。"
   }
 }

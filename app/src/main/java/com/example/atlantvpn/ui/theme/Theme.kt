@@ -15,23 +15,26 @@ import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Color(0xFF63D7C1), onPrimary = Color(0xFF073D34),
-    primaryContainer = Color(0xFF173E38), onPrimaryContainer = Color(0xFFB3F3E4),
-    secondary = Color(0xFFA5BEB7), background = Color(0xFF101918),
-    surface = Color(0xFF182321), surfaceContainerHigh = Color(0xFF22302D),
-    onBackground = Color(0xFFEDF4F0), onSurface = Color(0xFFEDF4F0),
-    onSurfaceVariant = Color(0xFFAEBCB6), outline = Color(0xFF7D9087),
-    outlineVariant = Color(0xFF33433D), error = Color(0xFFFFB4AB),
+    primary = Color(0xFFF4F4F5), onPrimary = Color(0xFF111113),
+    primaryContainer = Color(0xFF27272C), onPrimaryContainer = Color(0xFFF4F4F5),
+    secondary = Color(0xFFADADB5), secondaryContainer = Color(0xFF27272C), onSecondaryContainer = Color(0xFFF4F4F5),
+    background = Color(0xFF070708), surface = Color(0xFF141416),
+    surfaceDim = Color(0xFF101012), surfaceBright = Color(0xFF303035),
+    surfaceContainerLowest = Color(0xFF09090A), surfaceContainerLow = Color(0xFF141416),
+    surfaceContainer = Color(0xFF1A1A1D), surfaceContainerHigh = Color(0xFF202023), surfaceContainerHighest = Color(0xFF2A2A2F),
+    onBackground = Color(0xFFF4F4F5), onSurface = Color(0xFFF4F4F5),
+    onSurfaceVariant = Color(0xFFADADB5), outline = Color(0xFF72727C),
+    outlineVariant = Color(0xFF333338), error = Color(0xFFFFB4AB),
     errorContainer = Color(0xFF4D2827)
 )
 private val LightColorScheme = lightColorScheme(
-    primary = Color(0xFF087B68), onPrimary = Color.White,
-    primaryContainer = Color(0xFFD4EFE5), onPrimaryContainer = Color(0xFF063D32),
-    secondary = Color(0xFF506960), background = Color(0xFFF4F6F2),
-    surface = Color(0xFFFEFFFC), surfaceContainerHigh = Color(0xFFEAF0E9),
-    onBackground = Color(0xFF182C25), onSurface = Color(0xFF182C25),
-    onSurfaceVariant = Color(0xFF53675D), outline = Color(0xFF70877B),
-    outlineVariant = Color(0xFFD6E0D6), error = Color(0xFFB33D39),
+    primary = Color(0xFF202024), onPrimary = Color.White,
+    primaryContainer = Color(0xFFE8E8EC), onPrimaryContainer = Color(0xFF171719),
+    secondary = Color(0xFF626268), background = Color(0xFFF4F4F5),
+    surface = Color.White, surfaceContainerHigh = Color(0xFFEEEEEF),
+    onBackground = Color(0xFF171719), onSurface = Color(0xFF171719),
+    onSurfaceVariant = Color(0xFF626268), outline = Color(0xFF71717A),
+    outlineVariant = Color(0xFFDADADD), error = Color(0xFFB33D39),
     errorContainer = Color(0xFFFFDAD6)
 )
 @Composable

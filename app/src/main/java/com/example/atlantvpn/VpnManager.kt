@@ -284,7 +284,8 @@ object VpnManager {
                     fingerprint = obj.optString("fingerprint", "firefox"),
                     chaffingEnabled = obj.optBoolean("chaffing_enabled", true),
                     chaffingInterval = obj.optInt("chaffing_interval", 10),
-                    themeMode = ThemeMode.fromStored(obj.optString("theme_mode", "SYSTEM"))
+                    themeMode = ThemeMode.fromStored(obj.optString("theme_mode", "SYSTEM")),
+                    interfaceScale = normalizedInterfaceScale(obj.optDouble("interface_scale",1.0).toFloat())
                 )
             } catch (e: Exception) {
                 Log.e(TAG, "Failed to load settings: ${e.message}")
@@ -384,6 +385,7 @@ object VpnManager {
         val obj = JSONObject().apply {
             put("mtu", settings.mtu)
             put("theme_mode", settings.themeMode.name)
+            put("interface_scale", normalizedInterfaceScale(settings.interfaceScale))
             put("dns", settings.dns)
             put("tun_enabled", settings.tunEnabled)
             put("kill_switch", settings.killSwitch)

@@ -48,8 +48,8 @@ class SubscriptionGroupLayoutTest(private val dark: Boolean, private val large: 
         val toggle = compose.onNodeWithTag("subscription-toggle").fetchSemanticsNode().boundsInRoot
         val refresh = compose.onNodeWithTag("subscription-refresh").fetchSemanticsNode().boundsInRoot
         val actions = compose.onNodeWithTag("subscription-actions").fetchSemanticsNode().boundsInRoot
-        assertTrue("Expand and refresh targets overlap", toggle.right <= refresh.left)
-        assertTrue("Refresh and menu targets overlap", refresh.right <= actions.left)
+        assertFalse("Expand and refresh targets overlap", toggle.overlaps(refresh))
+        assertFalse("Refresh and menu targets overlap", refresh.overlaps(actions))
         compose.onNodeWithTag("subscription-toggle").performClick()
         compose.onNodeWithTag("subscription-server:one").assertDoesNotExist()
         compose.onNodeWithText("Мой сервер").assertIsDisplayed()

@@ -9,7 +9,7 @@ import org.junit.Test
 
 class SubscriptionQrTest {
     @Test fun linksRoundTripWithoutNetworkOrTruncation() {
-        for (url in listOf("https://vpn.example.test/sub/" + "a".repeat(43), "https://例子.测试/sub/" + "b".repeat(43), "https://vpn.example.test/" + "a".repeat(1200))) {
+        for (url in listOf("atlant://192.0.2.1:1026?sni=example.com&user=test&pbk="+"a".repeat(64)+"&server_pub_key="+"b".repeat(64)+"&wire_version=7", "https://vpn.example.test/sub/" + "a".repeat(43), "https://例子.测试/sub/" + "b".repeat(43), "https://vpn.example.test/" + "a".repeat(1200))) {
             val matrix = subscriptionQrMatrix(url)
             val pixels = IntArray(matrix.width * matrix.height) { i -> if (matrix[i % matrix.width, i / matrix.width]) -0x1000000 else -1 }
             val bitmap = BinaryBitmap(HybridBinarizer(RGBLuminanceSource(matrix.width, matrix.height, pixels)))

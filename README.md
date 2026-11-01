@@ -12,7 +12,9 @@ tunnel. Its QUIC REALITY handshake starts directly over UDP, without first
 opening a TCP connection. The VPN server does not need its own domain or a
 public CA certificate: the client checks its pinned key instead.
 
-The interface supports light and dark themes and English, Russian and Chinese.
+The interface supports light and dark themes, adjustable scale (80–125%), and English, Russian and Chinese.
+
+Use **My servers** to install or update your own server over SSH, then manage its subscriptions, inbounds, groups and HTTPS certificates from the app. Server installation uses published release binaries in Docker.
 
 ## Start using Atlant
 

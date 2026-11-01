@@ -88,6 +88,7 @@ enum class ThemeMode {
 
 data class AppSettings(
     val themeMode: ThemeMode = ThemeMode.SYSTEM,
+    val interfaceScale: Float = 1f,
     // Сеть и TUN
     val mtu: Int = 1360,
     val dns: String = "1.1.1.1",

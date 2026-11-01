@@ -119,7 +119,19 @@ internal fun SettingsContent(
                         }
                     }
                 }
-                SettingsPage.APPEARANCE -> item { SettingsSection(tr("Тема приложения")) {
+                SettingsPage.APPEARANCE -> {
+                item { SettingsSection(tr("Масштаб интерфейса")) {
+                    var scale by remember(settings.interfaceScale){mutableFloatStateOf(normalizedInterfaceScale(settings.interfaceScale))}
+                    Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.SpaceBetween,verticalAlignment=Alignment.CenterVertically){
+                        OutlinedIconButton(enabled=scale>MIN_INTERFACE_SCALE,onClick={onSave(settings.copy(interfaceScale=(scale-.05f).coerceAtLeast(MIN_INTERFACE_SCALE)))}){Text("−")}
+                        Text("${kotlin.math.round(scale*100).toInt()}%",style=MaterialTheme.typography.titleLarge)
+                        OutlinedIconButton(enabled=scale<MAX_INTERFACE_SCALE,onClick={onSave(settings.copy(interfaceScale=(scale+.05f).coerceAtMost(MAX_INTERFACE_SCALE)))}){Text("+")}
+                    }
+                    Slider(value=scale,onValueChange={scale=it},onValueChangeFinished={onSave(settings.copy(interfaceScale=scale))},valueRange=MIN_INTERFACE_SCALE..MAX_INTERFACE_SCALE,steps=8)
+                    TextButton(onClick={onSave(settings.copy(interfaceScale=1f))}){Text(tr("Сбросить до 100%"))}
+                    Hint(tr("Размер текста, кнопок и отступов во всём приложении. Подключение VPN не прерывается."))
+                } }
+                item { SettingsSection(tr("Тема приложения")) {
                     ThemeMode.entries.forEach { mode ->
                         ChoiceRow(themeLabel(mode), when (mode) {
                             ThemeMode.SYSTEM -> tr("Следовать настройкам телефона")
@@ -129,6 +141,7 @@ internal fun SettingsContent(
                     }
                     Hint(tr("Тема меняется сразу и не прерывает подключение."))
                 } }
+                }
                 SettingsPage.NETWORK -> {
                     item { SettingsSection(tr("Параметры сети")) {
                         MtuSetting(settings, onSave)

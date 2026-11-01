@@ -1,19 +1,15 @@
 package com.example.atlantvpn
 
-import androidx.compose.foundation.BorderStroke
+import android.net.Uri
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.selection.selectable
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ExpandLess
-import androidx.compose.material.icons.filled.ExpandMore
-import androidx.compose.material.icons.filled.MoreVert
-import androidx.compose.material.icons.filled.Refresh
-import androidx.compose.material.icons.filled.QrCode
-import androidx.compose.ui.res.stringResource
+import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -23,79 +19,78 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import com.example.atlantvpn.ui.theme.*
-import java.text.SimpleDateFormat
+import java.text.DateFormat
 import java.util.Date
 import java.util.Locale
 
+internal fun displayTraffic(bytes:Long):String {
+    val value=bytes.coerceAtLeast(0).toDouble()
+    return when {
+        value>=1073741824 -> String.format(Locale.getDefault(),"%.1f GiB",value/1073741824)
+        value>=1048576 -> String.format(Locale.getDefault(),"%.0f MiB",value/1048576)
+        else -> String.format(Locale.getDefault(),"%.0f KiB",value/1024)
+    }
+}
+
 @Composable
 fun SubscriptionServerList(
-    servers: List<ServerProfile>, selectedServer: ServerProfile?, subscription: SubscriptionInfo?,
-    onSelectServer: (ServerProfile) -> Unit, onDeleteServer: (ServerProfile) -> Unit,
-    onEditServer: (ServerProfile) -> Unit, onPingServer: (ServerProfile) -> Unit,
-    onCopyLink: (ServerProfile) -> Unit, onUpdateSubscription: () -> Unit,
-    onEditSubscription: () -> Unit, onClearSubscription: () -> Unit,
-    modifier: Modifier = Modifier,
-    subscriptions: List<SubscriptionInfo> = listOfNotNull(subscription),
-    onFocusSubscription: (String) -> Unit = {}
+    servers:List<ServerProfile>,selectedServer:ServerProfile?,subscription:SubscriptionInfo?,
+    onSelectServer:(ServerProfile)->Unit,onDeleteServer:(ServerProfile)->Unit,
+    onEditServer:(ServerProfile)->Unit,onPingServer:(ServerProfile)->Unit,
+    onCopyLink:(ServerProfile)->Unit,onUpdateSubscription:()->Unit,
+    onEditSubscription:()->Unit,onClearSubscription:()->Unit,
+    modifier:Modifier=Modifier,subscriptions:List<SubscriptionInfo> = listOfNotNull(subscription),onFocusSubscription:(String)->Unit={}
 ) {
-    var collapsed by rememberSaveable { mutableStateOf(listOf<String>()) }
-    val standalone = remember(servers) { servers.filterNot { it.isSubscription } }
-    val groupedServers = remember(servers) { servers.filter { it.isSubscription }.groupBy { it.subscriptionId } }
-
-    LazyColumn(modifier = modifier.testTag("server-list"), contentPadding = PaddingValues(bottom = 12.dp)) {
-        subscriptions.forEachIndexed { index, subscription ->
-            val groupKey = subscription.id.ifBlank { subscription.url }
-            val expanded = groupKey !in collapsed
-            val grouped = groupedServers[subscription.id].orEmpty()
-            if (index > 0) item(key = "subscription-gap:$groupKey") { Spacer(Modifier.height(4.dp)) }
-            item(key = "subscription-header:$groupKey", contentType = "subscription-header") {
-                SubscriptionGroupHeader(subscription, grouped.size, expanded,
-                    onToggle = { collapsed = if (expanded) collapsed + groupKey else collapsed - groupKey },
-                    onUpdate = { onFocusSubscription(subscription.id); onUpdateSubscription() },
-                    onEdit = { onFocusSubscription(subscription.id); onEditSubscription() },
-                    onClear = { onFocusSubscription(subscription.id); onClearSubscription() })
+    var collapsed by rememberSaveable {mutableStateOf(listOf<String>())}
+    val standalone=remember(servers){servers.filterNot{it.isSubscription}}
+    val grouped=remember(servers){servers.filter{it.isSubscription}.groupBy{it.subscriptionId}}
+    LazyColumn(modifier.testTag("server-list"),contentPadding=PaddingValues(bottom=16.dp)) {
+        subscriptions.forEachIndexed {index,sub->
+            val key=sub.id.ifBlank{sub.url};val expanded=key !in collapsed;val children=grouped[sub.id].orEmpty()
+            if(index>0)item(key="gap:$key"){Spacer(Modifier.height(12.dp))}
+            item(key="subscription:$key",contentType="subscription-header") {
+                SubscriptionGroupHeader(sub,children.size,expanded,
+                    onToggle={collapsed=if(expanded)collapsed+key else collapsed-key},
+                    onUpdate={onFocusSubscription(sub.id);onUpdateSubscription()},onEdit={onFocusSubscription(sub.id);onEditSubscription()},onClear={onFocusSubscription(sub.id);onClearSubscription()})
             }
-            if (expanded) {
-                itemsIndexed(grouped, key = { _, server -> "subscription:${server.id}" }, contentType = { _, _ -> "subscription-server" }) { serverIndex, server ->
-                    Surface(
-                        modifier = Modifier.fillMaxWidth().testTag("subscription-server:${server.id}"),
-                        color = AtlantSurface, border = BorderStroke(1.dp, AtlantCardBorder),
-                        shape = if (serverIndex == grouped.lastIndex)
-                            RoundedCornerShape(bottomStart = 16.dp, bottomEnd = 16.dp)
-                        else RoundedCornerShape(0.dp)
-                    ) {
-                        Box(Modifier.padding(start = 16.dp, end = 8.dp, top = 2.dp, bottom = 2.dp)) {
-                            ServerItemCard(server, server.id == selectedServer?.id,
-                                { onSelectServer(server) }, { onPingServer(server) },
-                                { onEditServer(server) }, { onCopyLink(server) }, { onDeleteServer(server) })
-                        }
+            if(expanded)itemsIndexed(children,key={_,server->"subscription:${server.id}"},contentType={_,_->"subscription-server"}) {position,server->
+                Surface(Modifier.fillMaxWidth().testTag("subscription-server:${server.id}"),shape=if(position==children.lastIndex)RoundedCornerShape(bottomStart=24.dp,bottomEnd=24.dp) else RoundedCornerShape(0.dp),color=MaterialTheme.colorScheme.surfaceContainerLow) {
+                    Column(Modifier.padding(horizontal=12.dp)) {
+                        if(position>0)HorizontalDivider(Modifier.padding(start=52.dp,end=8.dp),color=MaterialTheme.colorScheme.outlineVariant.copy(alpha=.35f))
+                        SubscriptionServerRow(server,server.id==selectedServer?.id,{onSelectServer(server)},{onPingServer(server)},{onEditServer(server)},{onCopyLink(server)},{onDeleteServer(server)})
+                        if(position==children.lastIndex)Spacer(Modifier.height(10.dp))
                     }
                 }
             }
         }
-        if (standalone.isNotEmpty() && subscriptions.isNotEmpty()) {
-            item(key = "standalone-header") {
-                Text(tr("Добавленные вручную"), color = AtlantTextMuted, fontSize = 12.sp,
-                    modifier = Modifier.padding(top = 16.dp, bottom = 8.dp))
+        if(standalone.isNotEmpty()&&subscriptions.isNotEmpty())item(key="manual-title"){Text(tr("Добавленные вручную"),style=MaterialTheme.typography.labelLarge,color=MaterialTheme.colorScheme.onSurfaceVariant,modifier=Modifier.padding(top=22.dp,bottom=10.dp,start=4.dp))}
+        items(standalone,key={"manual:${it.id}"},contentType={"standalone"}) {server->
+            Surface(shape=RoundedCornerShape(22.dp),color=MaterialTheme.colorScheme.surfaceContainerLow,modifier=Modifier.padding(bottom=8.dp)) {
+                Box(Modifier.padding(horizontal=12.dp,vertical=6.dp)){SubscriptionServerRow(server,server.id==selectedServer?.id,{onSelectServer(server)},{onPingServer(server)},{onEditServer(server)},{onCopyLink(server)},{onDeleteServer(server)})}
             }
         }
-        items(standalone, key = { "manual:${it.id}" }, contentType = { "server" }) { server ->
-            Box(Modifier.fillMaxWidth()) {
-                ServerItemCard(server, server.id == selectedServer?.id,
-                    { onSelectServer(server) }, { onPingServer(server) },
-                    { onEditServer(server) }, { onCopyLink(server) }, { onDeleteServer(server) })
-            }
+        if(servers.isEmpty()&&subscriptions.isEmpty())item(key="empty") {
+            Column(Modifier.fillMaxWidth().padding(vertical=32.dp),horizontalAlignment=Alignment.CenterHorizontally,verticalArrangement=Arrangement.spacedBy(12.dp)) {ServerGlyph(Icons.Default.Link);Text(tr("Добавьте подписку"),style=MaterialTheme.typography.titleMedium);Text(tr("Ссылка или QR-код — и серверы появятся здесь"),style=MaterialTheme.typography.bodySmall,color=MaterialTheme.colorScheme.onSurfaceVariant)}
         }
-        if (servers.isEmpty() && subscriptions.isEmpty()) {
-            item(key = "empty") {
-                Column(Modifier.fillMaxWidth().padding(vertical = 28.dp), horizontalAlignment = Alignment.CenterHorizontally) {
-                    Text(tr("Список серверов пуст"), color = AtlantTextPrimary, fontWeight = FontWeight.SemiBold)
-                    Text(tr("Нажмите +, чтобы добавить сервер или подписку"), color = AtlantTextMuted, fontSize = 12.sp)
+    }
+}
+
+@Composable
+private fun SubscriptionServerRow(server:ServerProfile,selected:Boolean,onSelect:()->Unit,onPing:()->Unit,onEdit:()->Unit,onCopy:()->Unit,onDelete:()->Unit) {
+    var menu by remember {mutableStateOf(false)}
+    Surface(shape=RoundedCornerShape(16.dp),color=if(selected)MaterialTheme.colorScheme.surfaceContainerHigh else MaterialTheme.colorScheme.surfaceContainerLow) {
+        Row(Modifier.fillMaxWidth().selectable(selected=selected,role=Role.RadioButton,onClick=onSelect).padding(start=10.dp,end=0.dp,top=10.dp,bottom=10.dp),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(10.dp)) {
+            ServerGlyph(if(selected)Icons.Default.Check else Icons.Default.Dns,Modifier.size(36.dp),bright=selected)
+            Column(Modifier.weight(1f),verticalArrangement=Arrangement.spacedBy(3.dp)) {Text(server.name,style=MaterialTheme.typography.titleSmall,maxLines=1,overflow=TextOverflow.Ellipsis);Text(server.server,style=MaterialTheme.typography.labelSmall,color=MaterialTheme.colorScheme.onSurfaceVariant,maxLines=1,overflow=TextOverflow.Ellipsis)}
+            TextButton(onClick=onPing,contentPadding=PaddingValues(horizontal=6.dp)) {Text(if(server.pingMs>0)tr("{0} мс",server.pingMs) else tr("Пинг"),style=MaterialTheme.typography.labelMedium)}
+            Box {
+                IconButton(onClick={menu=true},modifier=Modifier.size(40.dp)){Icon(Icons.Default.MoreVert,tr("Действия сервера {0}",server.name),Modifier.size(20.dp))}
+                DropdownMenu(expanded=menu,onDismissRequest={menu=false}) {
+                    DropdownMenuItem(text={Text(tr("Редактировать"))},onClick={menu=false;onEdit()})
+                    DropdownMenuItem(text={Text(tr("Копировать ссылку"))},onClick={menu=false;onCopy()})
+                    if(!server.isSubscription)DropdownMenuItem(text={Text(tr("Удалить сервер"),color=MaterialTheme.colorScheme.error)},onClick={menu=false;onDelete()})
                 }
             }
         }
@@ -103,93 +98,39 @@ fun SubscriptionServerList(
 }
 
 @Composable
-@OptIn(ExperimentalLayoutApi::class)
-private fun SubscriptionGroupHeader(
-    subscription: SubscriptionInfo, count: Int, expanded: Boolean,
-    onToggle: () -> Unit, onUpdate: () -> Unit, onEdit: () -> Unit, onClear: () -> Unit
-) {
-    var menu by remember { mutableStateOf(false) }
-    var confirmDelete by remember { mutableStateOf(false) }
-    var showQr by remember { mutableStateOf(false) }
-    Surface(
-        modifier = Modifier.fillMaxWidth(), color = AtlantSurface,
-        border = BorderStroke(1.dp, AtlantCardBorder),
-        shape = if (expanded && count > 0)
-            RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp)
-        else RoundedCornerShape(16.dp)
-    ) {
-        Column(Modifier.padding(start = 12.dp, end = 4.dp, top = 2.dp, bottom = 4.dp)) {
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Row(
-                    modifier = Modifier.weight(1f).heightIn(min = 48.dp)
-                        .testTag("subscription-toggle")
-                        .semantics { stateDescription = if (expanded) tr("Развёрнута") else tr("Свёрнута") }
-                        .clickable(role = Role.Button, onClick = onToggle),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Column(Modifier.weight(1f)) {
-                        Text(subscription.name, color = AtlantTextPrimary, fontSize = 14.sp,
-                            fontWeight = FontWeight.SemiBold, maxLines = 2, overflow = TextOverflow.Ellipsis)
-                        Text(tr("Подписка · серверов: {0}", count), color = AtlantTextMuted, fontSize = 11.sp)
-                    }
-                    Icon(if (expanded) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
-                        contentDescription = null, tint = AtlantTextMuted, modifier = Modifier.size(20.dp))
-                }
-                IconButton(onClick = { showQr = true }, enabled = subscription.url.isNotBlank(), modifier = Modifier.testTag("subscription-share")) {
-                    Icon(Icons.Default.QrCode, contentDescription = stringResource(R.string.subscription_qr), tint = AtlantTextSecondary, modifier = Modifier.size(18.dp))
-                }
-                IconButton(onClick = onUpdate, modifier = Modifier.testTag("subscription-refresh")) {
-                    Icon(Icons.Default.Refresh, contentDescription = tr("Обновить подписку"), tint = AtlantTextSecondary, modifier = Modifier.size(18.dp))
+internal fun SubscriptionGroupHeader(subscription:SubscriptionInfo,count:Int,expanded:Boolean,onToggle:()->Unit,onUpdate:()->Unit,onEdit:()->Unit,onClear:()->Unit) {
+    var menu by remember {mutableStateOf(false)};var remove by remember {mutableStateOf(false)};var qr by remember {mutableStateOf(false)};var info by remember {mutableStateOf(false)}
+    val usage=subscriptionUsage(subscription.upload,subscription.download,subscription.total)
+    val host=remember(subscription.url){runCatching{Uri.parse(subscription.url).host}.getOrNull().orEmpty()}
+    Surface(Modifier.fillMaxWidth().testTag("subscription-header"),shape=if(expanded&&count>0)RoundedCornerShape(topStart=24.dp,topEnd=24.dp) else RoundedCornerShape(24.dp),color=MaterialTheme.colorScheme.surfaceContainerLow) {
+        Column(Modifier.padding(start=16.dp,end=8.dp,top=12.dp,bottom=if(expanded&&count>0)4.dp else 8.dp),verticalArrangement=Arrangement.spacedBy(6.dp)) {
+            Row(verticalAlignment=Alignment.CenterVertically) {
+                Row(Modifier.weight(1f).testTag("subscription-toggle").semantics{stateDescription=if(expanded)tr("Развёрнута") else tr("Свёрнута")}.clickable(role=Role.Button,onClick=onToggle),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(12.dp)) {
+                    ServerGlyph(Icons.Default.Link)
+                    Column(Modifier.weight(1f),verticalArrangement=Arrangement.spacedBy(3.dp)) {Text(subscription.name.ifBlank{host},style=MaterialTheme.typography.titleMedium,maxLines=2,overflow=TextOverflow.Ellipsis);Text(tr("Серверов: {0}",count),style=MaterialTheme.typography.bodySmall,color=MaterialTheme.colorScheme.onSurfaceVariant)}
+                    Icon(if(expanded)Icons.Default.ExpandLess else Icons.Default.ExpandMore,null,Modifier.size(18.dp),tint=MaterialTheme.colorScheme.onSurfaceVariant)
                 }
                 Box {
-                    IconButton(onClick = { menu = true }, modifier = Modifier.testTag("subscription-actions")) {
-                        Icon(Icons.Default.MoreVert, contentDescription = tr("Действия подписки"), tint = AtlantTextSecondary, modifier = Modifier.size(18.dp))
+                    IconButton(onClick={menu=true},modifier=Modifier.testTag("subscription-actions")){Icon(Icons.Default.MoreVert,tr("Действия подписки"),Modifier.size(20.dp))}
+                    DropdownMenu(expanded=menu,onDismissRequest={menu=false}) {
+                        DropdownMenuItem(text={Text(tr("Редактировать подписку"))},onClick={menu=false;onEdit()})
+                        DropdownMenuItem(text={Text(tr("Информация о подписке"))},onClick={menu=false;info=true})
+                        DropdownMenuItem(text={Text(tr("Удалить подписку"),color=MaterialTheme.colorScheme.error)},onClick={menu=false;remove=true})
                     }
-                    DropdownMenu(expanded = menu, onDismissRequest = { menu = false }) {
-                        DropdownMenuItem(text = { Text(tr("Редактировать подписку")) }, onClick = { menu = false; onEdit() })
-                        DropdownMenuItem(text = { Text(tr("Удалить подписку"), color = AtlantDanger) }, onClick = { menu = false; confirmDelete = true })
-                    }
                 }
             }
-            FlowRow(
-                modifier = Modifier.fillMaxWidth().padding(end = 8.dp),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalArrangement = Arrangement.spacedBy(2.dp)
-            ) {
-                Text(tr("Трафик: {0}", subscription.remainingGB), color = AtlantPrimary, fontSize = 11.sp)
-                if (expanded && subscription.expire > 0) {
-                    Text(tr("До ") + SimpleDateFormat("dd.MM.yyyy", Locale.getDefault()).format(Date(subscription.expire * 1000)),
-                        color = AtlantTextMuted, fontSize = 10.sp, modifier = Modifier.padding(start = 8.dp))
+            Row(Modifier.fillMaxWidth(),verticalAlignment=Alignment.CenterVertically) {
+                Column(Modifier.weight(1f),verticalArrangement=Arrangement.spacedBy(4.dp)) {
+                    Text(if(subscription.total>0)tr("Осталось {0} из {1}",displayTraffic(usage.remaining),displayTraffic(subscription.total)) else tr("Безлимит"),style=MaterialTheme.typography.bodySmall,color=MaterialTheme.colorScheme.onSurfaceVariant,maxLines=1,overflow=TextOverflow.Ellipsis,modifier=Modifier.testTag("subscription-quota-summary"))
+                    if(subscription.total>0)LinearProgressIndicator(progress={usage.fraction},modifier=Modifier.fillMaxWidth().height(3.dp),color=MaterialTheme.colorScheme.primary,trackColor=MaterialTheme.colorScheme.surfaceContainerHighest)
+                    if(subscription.expire>0)Text(tr("До {0}",DateFormat.getDateInstance(DateFormat.MEDIUM).format(Date(subscription.expire*1000))),style=MaterialTheme.typography.labelSmall,color=MaterialTheme.colorScheme.onSurfaceVariant,maxLines=1,overflow=TextOverflow.Ellipsis)
                 }
-            }
-            if (subscription.total > 0) {
-                val usage = subscriptionUsage(subscription.upload, subscription.download, subscription.total)
-                LinearProgressIndicator(progress = { usage.fraction },
-                    modifier = Modifier.fillMaxWidth().padding(end = 8.dp, top = 6.dp, bottom = 6.dp), color = AtlantPrimary)
-            }
-            if (expanded) {
-                FlowRow(
-                    modifier = Modifier.fillMaxWidth().padding(end = 8.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalArrangement = Arrangement.spacedBy(2.dp)
-                ) {
-                    if (subscription.lastUpdated.isNotBlank()) Text(tr("Обновлено {0}", subscription.lastUpdated), color = AtlantTextMuted, fontSize = 10.sp)
-                    if (subscription.usageScope == "local-account") Text(tr("Учёт: сервер подписки"), color = AtlantTextMuted,
-                        fontSize = 10.sp, modifier = Modifier.padding(start = 8.dp))
-                    if (subscription.usageScope == "global-subscription") Text(tr("Общий учёт всех VDS"), color = AtlantTextMuted,
-                        fontSize = 10.sp, modifier = Modifier.padding(start = 8.dp))
-                }
-                if (subscription.announcement.isNotBlank()) Text(subscription.announcement, color = AtlantTextSecondary,
-                    fontSize = 11.sp, maxLines = 4, overflow = TextOverflow.Ellipsis, modifier = Modifier.padding(top = 2.dp, end = 8.dp))
+                IconButton(onClick={qr=true},enabled=subscription.url.isNotBlank(),modifier=Modifier.testTag("subscription-share")){Icon(Icons.Default.QrCode,tr("Ссылка и QR-код"),Modifier.size(20.dp))}
+                IconButton(onClick=onUpdate,modifier=Modifier.testTag("subscription-refresh")){Icon(Icons.Default.Refresh,tr("Обновить подписку"),Modifier.size(20.dp))}
             }
         }
     }
-    if (showQr) SubscriptionQrDialog(subscription, onDismiss = { showQr = false })
-    if (confirmDelete) {
-        AlertDialog(onDismissRequest = { confirmDelete = false },
-            title = { Text(tr("Удалить подписку?")) },
-            text = { Text(tr("«{0}» и её серверы будут удалены из приложения. Серверы, добавленные вручную, останутся.", subscription.name)) },
-            confirmButton = { TextButton(onClick = { confirmDelete = false; onClear() }) { Text(tr("Удалить"), color = AtlantDanger) } },
-            dismissButton = { TextButton(onClick = { confirmDelete = false }) { Text(tr("Отмена")) } })
-    }
+    if(qr)SubscriptionQrDialog(subscription){qr=false}
+    if(info)AlertDialog(onDismissRequest={info=false},title={Text(tr("Информация о подписке"))},text={Column(verticalArrangement=Arrangement.spacedBy(12.dp)){Text(host);if(subscription.lastUpdated.isNotBlank())Text(tr("Обновлено {0}",subscription.lastUpdated));Text(tr("Использовано: {0}",displayTraffic(usage.used)));if(subscription.announcement.isNotBlank())Text(subscription.announcement)}},confirmButton={TextButton(onClick={info=false}){Text(tr("Закрыть"))}})
+    if(remove)AlertDialog(onDismissRequest={remove=false},title={Text(tr("Удалить подписку?"))},text={Text(tr("«{0}» и её серверы будут удалены из приложения. Серверы, добавленные вручную, останутся.",subscription.name))},confirmButton={TextButton(onClick={remove=false;onClear()}){Text(tr("Удалить"),color=MaterialTheme.colorScheme.error)}},dismissButton={TextButton(onClick={remove=false}){Text(tr("Отмена"))}})
 }

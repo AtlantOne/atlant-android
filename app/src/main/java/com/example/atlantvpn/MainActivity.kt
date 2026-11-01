@@ -102,6 +102,9 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
+import androidx.compose.material3.FilledIconButton
+import androidx.compose.material3.FilledTonalIconButton
+import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
@@ -159,8 +162,12 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             val settings by VpnManager.appSettings.collectAsStateWithLifecycle()
-            AtlantVPNTheme(darkTheme = settings.themeMode.isDark(isSystemInDarkTheme())) {
-                MainApp()
+            val baseDensity=androidx.compose.ui.platform.LocalDensity.current
+            val scale=normalizedInterfaceScale(settings.interfaceScale)
+            androidx.compose.runtime.CompositionLocalProvider(androidx.compose.ui.platform.LocalDensity provides androidx.compose.ui.unit.Density(baseDensity.density*scale,baseDensity.fontScale)) {
+                AtlantVPNTheme(darkTheme = settings.themeMode.isDark(isSystemInDarkTheme())) {
+                    MainApp()
+                }
             }
         }
     }
@@ -169,6 +176,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MainApp() {
     val context = LocalContext.current
+    val serverList by VpnManager.servers.collectAsStateWithLifecycle()
     var selectedTab by remember { mutableIntStateOf(0) }
     var showAddDialog by remember { mutableStateOf(false) }
     var showQrDialog by rememberSaveable { mutableStateOf(false) }
@@ -177,7 +185,6 @@ fun MainApp() {
 
     val vpnStatus by VpnManager.status.collectAsStateWithLifecycle()
     val selectedServer by VpnManager.selectedServer.collectAsStateWithLifecycle()
-    val serverList by VpnManager.servers.collectAsStateWithLifecycle()
     val appSettings by VpnManager.appSettings.collectAsStateWithLifecycle()
     val routingSettings by VpnManager.routingSettings.collectAsStateWithLifecycle()
     val subscriptionInfo by VpnManager.subscription.collectAsStateWithLifecycle()
@@ -270,6 +277,12 @@ fun MainApp() {
                     )
                 )
                 NavigationBarItem(
+                    selected = selectedTab == 2,
+                    onClick = { selectedTab = 2 },
+                    icon = { Icon(Icons.Default.Dns, contentDescription = tr("Мои серверы")) },
+                    label = { Text(tr("Мои серверы"), fontSize = 11.sp) }
+                )
+                NavigationBarItem(
                     selected = selectedTab == 1,
                     onClick = { selectedTab = 1 },
                     icon = { Icon(Icons.Default.Settings, contentDescription = tr("Настройки")) },
@@ -292,6 +305,7 @@ fun MainApp() {
                 .padding(paddingValues)
         ) {
             when (selectedTab) {
+                2 -> ManagedServersScreen()
                 0 -> ConnectionScreen(
                     status = vpnStatus,
                     durationSec = null,
@@ -409,212 +423,38 @@ fun ConnectionScreen(
     subscriptions: List<SubscriptionInfo> = listOfNotNull(subscription),
     onFocusSubscription: (String) -> Unit = {}
 ) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(horizontal = 16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        // Top Header Row with Title and Small Plus Menu (at the very top)
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 0.dp, bottom = 6.dp),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Column {
-                Text(
-                    text = "Atlant",
-                    fontSize = 30.sp,
-                    fontWeight = FontWeight.ExtraBold,
-                    color = AtlantTextPrimary,
-                    letterSpacing = (-1).sp
-                )
-                Text(
-                    text = tr("Личное пространство в сети"),
-                    fontSize = 11.sp,
-                    color = AtlantTextMuted
-                )
-            }
-
-            // Small Plus Button in Top Right with Dropdown Menu
+    var showAddMenu by remember {mutableStateOf(false)}
+    Column(Modifier.fillMaxSize().padding(horizontal=16.dp),verticalArrangement=Arrangement.spacedBy(14.dp)) {
+        Row(Modifier.fillMaxWidth().padding(top=10.dp,bottom=2.dp),horizontalArrangement=Arrangement.SpaceBetween,verticalAlignment=Alignment.CenterVertically) {
+            Text("Atlant",style=MaterialTheme.typography.headlineLarge)
             Box {
-                var showAddMenu by remember { mutableStateOf(false) }
-
-                IconButton(
-                    onClick = { showAddMenu = true },
-                    modifier = Modifier
-                        .size(48.dp)
-                        .clip(RoundedCornerShape(8.dp))
-                        .background(AtlantSurfaceVariant)
-                ) {
-                    Icon(
-                        imageVector = Icons.Default.Add,
-                        contentDescription = tr("Добавить"),
-                        tint = AtlantTextPrimary,
-                        modifier = Modifier.size(20.dp)
-                    )
-                }
-
-                DropdownMenu(
-                    expanded = showAddMenu,
-                    onDismissRequest = { showAddMenu = false }
-                ) {
-                    DropdownMenuItem(
-                        text = { Text(tr("Вставить из буфера"), fontSize = 13.sp) },
-                        leadingIcon = { Icon(Icons.Default.ContentPaste, contentDescription = null, modifier = Modifier.size(18.dp)) },
-                        onClick = {
-                            showAddMenu = false
-                            onPasteClipboard()
-                        }
-                    )
-                        DropdownMenuItem(
-                            text = { Text(tr("Добавить вручную"), fontSize = 13.sp) },
-                            leadingIcon = { Icon(Icons.Default.Add, contentDescription = null, modifier = Modifier.size(18.dp)) },
-                            onClick = {
-                                showAddMenu = false
-                                onAddServerClick()
-                            }
-                        )
-                        DropdownMenuItem(
-                            text = { Text(tr("Сканировать QR-код"), fontSize = 13.sp) },
-                            leadingIcon = { Icon(Icons.Default.QrCodeScanner, contentDescription = null, modifier = Modifier.size(18.dp)) },
-                            onClick = {
-                                showAddMenu = false
-                                onQrScanClick()
-                            }
-                        )
-                    }
+                FilledTonalIconButton(onClick={showAddMenu=true},shape=RoundedCornerShape(16.dp),modifier=Modifier.size(48.dp)){Icon(Icons.Default.Add,tr("Добавить"))}
+                DropdownMenu(expanded=showAddMenu,onDismissRequest={showAddMenu=false}) {
+                    DropdownMenuItem(text={Text(tr("Вставить из буфера"))},leadingIcon={Icon(Icons.Default.ContentPaste,null)},onClick={showAddMenu=false;onPasteClipboard()})
+                    DropdownMenuItem(text={Text(tr("Сканировать QR-код"))},leadingIcon={Icon(Icons.Default.QrCodeScanner,null)},onClick={showAddMenu=false;onQrScanClick()})
+                    DropdownMenuItem(text={Text(tr("Добавить вручную"))},leadingIcon={Icon(Icons.Default.Add,null)},onClick={showAddMenu=false;onAddServerClick()})
                 }
             }
-
-        // Center Connect Button + Time Under Button
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.padding(top = 10.dp, bottom = 6.dp)
-        ) {
-            // Elegant Soft Grey Outlined White Disc Button
-            Box(
-                modifier = Modifier
-                    .size(132.dp)
-                    .shadow(
-                        elevation = if (status == VpnStatus.CONNECTED) 3.dp else 1.5.dp,
-                        shape = CircleShape,
-                        spotColor = Color(0x18000000)
-                    )
-                    .clip(CircleShape)
-                    .background(AtlantSurface)
-                    .border(
-                        width = if (status == VpnStatus.CONNECTED) 2.dp else 1.5.dp,
-                        color = when (status) {
-                            VpnStatus.CONNECTED -> AtlantPrimary
-                            VpnStatus.CONNECTING -> AtlantConnectingOrange
-                            VpnStatus.DISCONNECTED -> AtlantCardBorder
-                        },
-                        shape = CircleShape
-                    )
-                    .clickable(role = Role.Button) { onConnectToggle() },
-                contentAlignment = Alignment.Center
-            ) {
-                if (status == VpnStatus.CONNECTING) {
-                    CircularProgressIndicator(
-                        modifier = Modifier.size(30.dp),
-                        color = AtlantTextSecondary,
-                        strokeWidth = 2.dp,
-                        trackColor = AtlantCardBorder
-                    )
-                } else {
-                    Column(
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.Center
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.PowerSettingsNew,
-                            contentDescription = if (status == VpnStatus.CONNECTED) tr("Отключить VPN") else tr("Подключить VPN"),
-                            tint = if (status == VpnStatus.CONNECTED) AtlantPrimary else AtlantTextSecondary,
-                            modifier = Modifier.size(36.dp)
-                        )
-                        Spacer(modifier = Modifier.height(2.dp))
-                        Text(
-                            text = if (status == VpnStatus.CONNECTED) tr("ОТКЛЮЧИТЬ") else tr("ПОДКЛЮЧИТЬ"),
-                            color = if (status == VpnStatus.CONNECTED) AtlantPrimary else AtlantTextSecondary,
-                            fontWeight = FontWeight.Bold,
-                            fontSize = 10.sp,
-                            letterSpacing = 1.sp
-                        )
-                    }
+        }
+        Surface(shape=RoundedCornerShape(28.dp),color=MaterialTheme.colorScheme.surfaceContainerLow) {
+            Row(Modifier.fillMaxWidth().padding(20.dp),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(16.dp)) {
+                Column(Modifier.weight(1f),verticalArrangement=Arrangement.spacedBy(5.dp)) {
+                    Text(tr(when(status){VpnStatus.CONNECTED->"VPN включён";VpnStatus.CONNECTING->"Подключение…";else->"VPN выключен"}),style=MaterialTheme.typography.titleLarge)
+                    Text(selectedServer?.name?:tr("Выберите сервер"),style=MaterialTheme.typography.bodySmall,color=MaterialTheme.colorScheme.onSurfaceVariant,maxLines=1,overflow=TextOverflow.Ellipsis)
+                    if(status==VpnStatus.CONNECTED)ConnectionDurationText(durationSec)
+                }
+                FilledIconButton(onClick=onConnectToggle,shape=RoundedCornerShape(22.dp),modifier=Modifier.size(68.dp),colors=IconButtonDefaults.filledIconButtonColors(containerColor=if(status==VpnStatus.CONNECTED)MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surfaceContainerHigh,contentColor=if(status==VpnStatus.CONNECTED)MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurface)) {
+                    if(status==VpnStatus.CONNECTING)CircularProgressIndicator(Modifier.size(26.dp),strokeWidth=2.dp) else Icon(Icons.Default.PowerSettingsNew,tr(if(status==VpnStatus.CONNECTED)"Отключить VPN" else "Подключить VPN"),Modifier.size(28.dp))
                 }
             }
-
-            // Connection Time Directly Under Button (Soft White-Grey Typography)
-            if (status == VpnStatus.CONNECTED) {
-                Text(tr("Туннель запущен"), color = AtlantPrimary, fontSize = 13.sp,
-                    fontWeight = FontWeight.SemiBold, modifier = Modifier.padding(top = 10.dp))
-                ConnectionDurationText(durationSec)
-            } else {
-                Text(
-                    text = if (status == VpnStatus.CONNECTING) tr("Устанавливаем соединение…") else tr("Соединение отключено"),
-                    fontSize = 11.5.sp,
-                    color = AtlantTextMuted,
-                    modifier = Modifier.padding(top = 6.dp)
-                )
-            }
         }
-
-
-        selectedServer?.let { profile ->
-            Text(
-                text = profile.name,
-                color = AtlantTextSecondary, fontSize = 12.sp,
-                maxLines = 1, overflow = TextOverflow.Ellipsis,
-                modifier = Modifier.padding(vertical = 10.dp)
-            )
+        Row(Modifier.fillMaxWidth().padding(start=4.dp),horizontalArrangement=Arrangement.SpaceBetween,verticalAlignment=Alignment.CenterVertically) {
+            Text(tr("Серверы ({0})",servers.size),style=MaterialTheme.typography.titleMedium)
+            TextButton(onClick=onPingAll){Icon(Icons.Default.SignalCellularAlt,null,Modifier.size(16.dp));Spacer(Modifier.width(6.dp));Text(tr("Проверить"))}
         }
-
-        // Servers Section Header: Title & Ping All Button
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 4.dp, bottom = 6.dp),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Text(
-                text = tr("Серверы ({0})", servers.size),
-                fontWeight = FontWeight.Bold,
-                fontSize = 13.sp,
-                color = AtlantTextPrimary
-            )
-
-            IconButton(
-                onClick = onPingAll,
-                modifier = Modifier
-                    .size(30.dp)
-                    .clip(RoundedCornerShape(8.dp))
-                    .background(AtlantSurfaceVariant)
-            ) {
-                Icon(
-                    imageVector = Icons.Default.SignalCellularAlt,
-                    contentDescription = tr("Пинг всех"),
-                    tint = AtlantTextSecondary,
-                    modifier = Modifier.size(16.dp)
-                )
-            }
-        }
-
-        SubscriptionServerList(
-            servers = servers, selectedServer = selectedServer, subscription = subscription,
-            subscriptions = subscriptions, onFocusSubscription = onFocusSubscription,
-            onSelectServer = onSelectServer, onDeleteServer = onDeleteServer,
-            onEditServer = onEditServer, onPingServer = onPingServer, onCopyLink = onCopyLink,
-            onUpdateSubscription = onUpdateSubscription, onEditSubscription = onEditSubscription,
-            onClearSubscription = onClearSubscription,
-            modifier = Modifier.fillMaxWidth().weight(1f)
-        )
+        SubscriptionServerList(servers=servers,selectedServer=selectedServer,subscription=subscription,subscriptions=subscriptions,onFocusSubscription=onFocusSubscription,onSelectServer=onSelectServer,onDeleteServer=onDeleteServer,onEditServer=onEditServer,onPingServer=onPingServer,onCopyLink=onCopyLink,onUpdateSubscription=onUpdateSubscription,onEditSubscription=onEditSubscription,onClearSubscription=onClearSubscription,modifier=Modifier.fillMaxWidth().weight(1f))
     }
 }
-
 
 @Composable
 fun ServerItemCard(
@@ -1359,7 +1199,7 @@ fun EditServerScreen(
                         }
 
                         Text(
-                            tr("Профиль задаёт только ClientHello. Android/OkHttp несовместим с REALITY; случайный профиль не имитирует браузер. Импортированное значение: {0}.", fingerprint.ifBlank { "по умолчанию" }),
+                            tr("Профиль задаёт только ClientHello. Android/OkHttp несовместим с REALITY; случайный профиль не имитирует браузер. Импортированное значение: {0}.", fingerprint.ifBlank { tr("по умолчанию") }),
                             fontSize = 11.sp,
                             color = AtlantTextMuted,
                             modifier = Modifier.padding(top = 6.dp)

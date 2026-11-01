@@ -1,0 +1,211 @@
+\nДоверять этому ключу?	\nTrust this key?	\n信任此密钥？
+ Сохранить SSH-пароль в защищённом хранилище Windows	 Save SSH password in Windows protected storage	 将 SSH 密码保存到 Windows 安全存储
+IP или домен	IP address or domain	IP 地址或域名
+SSH недоступен	SSH unavailable	SSH 不可用
+SSH-канал закрыт; сервер продолжает работать	SSH channel closed; the server is still running	SSH 通道已关闭；服务器仍在运行
+SSH-логин	SSH username	SSH 用户名
+SSH-пароль	SSH password	SSH 密码
+SSH-подключение	Connecting over SSH	正在连接 SSH
+SSH-порт	SSH port	SSH 端口
+Будет создано отдельное Docker-развёртывание. Если Docker отсутствует, он будет установлен из пакетов Debian/Ubuntu. Существующие службы не заменяются. Сборка может занять несколько минут.	A separate Docker deployment will be created. If Docker is missing, it will be installed from Debian/Ubuntu packages. Existing services will be kept. The build may take several minutes.	将创建独立的 Docker 部署。如果未安装 Docker，将从 Debian/Ubuntu 软件包安装。现有服务将保留。构建可能需要几分钟。
+Данные на VDS останутся.	Data on the VDS will be kept.	VDS 上的数据将保留。
+Добавить по ключу или подписке	Add a key or subscription	添加密钥或订阅
+Добавить свой сервер	Add your own server	添加自己的服务器
+Доверять	Trust	信任
+Закрыть SSH-канал	Close SSH channel	关闭 SSH 通道
+Закрыть SSH-канал / отменить установку	Close SSH channel / cancel installation	关闭 SSH 通道 / 取消安装
+Как хотите использовать Atlant?	How would you like to use Atlant?	您想如何使用 Atlant？
+Канал закрыт; сервер продолжает работать	Channel closed; the server is still running	通道已关闭；服务器仍在运行
+Ключ или подписка	Key or subscription	密钥或订阅
+Локальный порт панели на сервере	Local panel port on the server	服务器上的本地面板端口
+Мои серверы	My servers	我的服务器
+Назад к моим серверам	Back to my servers	返回我的服务器
+Не удалось открыть защищённый список серверов	Could not open the protected server list	无法打开加密服务器列表
+Не удалось сохранить	Could not save	无法保存
+Новый сервер	New server	新服务器
+Операция не выполнена	Operation failed	操作失败
+Ошибка сохранения	Save failed	保存失败
+Панель готова	Panel ready	面板已就绪
+Подготовка исходников	Preparing source code	正在准备源代码
+Подключение закрыто	Connection closed	连接已关闭
+Подключение панели	Connecting to the panel	正在连接面板
+Подключиться по ключу или установить VPN на свой сервер. Оба варианта останутся доступны в меню.	Connect with a key or install VPN on your own server. Both options remain available in the menu.	通过密钥连接，或在自己的服务器上安装 VPN。两种方式都可以随时在菜单中使用。
+Подтвердите SSH-ключ	Confirm SSH host key	确认 SSH 主机密钥
+Подтверждённый SSH-отпечаток	Verified SSH fingerprint	已确认的 SSH 指纹
+Порт VPN	VPN port	VPN 端口
+Проверить SSH-ключ	Check SSH host key	检查 SSH 主机密钥
+Сверьте SSH-отпечаток с консолью провайдера:\n	Compare the SSH fingerprint with your provider console:\n	请与服务商控制台核对 SSH 指纹：\n
+Сверьте отпечаток с консолью провайдера:\n{0}	Compare the fingerprint with your provider console:\n{0}	请与服务商控制台核对指纹：\n{0}
+Свой сервер	Own server	自己的服务器
+Сервер сохранён	Server saved	服务器已保存
+Сначала проверьте и подтвердите SSH-ключ	Check and confirm the SSH host key first	请先检查并确认 SSH 主机密钥
+Сохранить пароль в Android Keystore	Save password using Android Keystore	使用 Android Keystore 保存密码
+Сохранить сервер	Save server	保存服务器
+Удалить из приложения	Remove from app	从应用中移除
+Удалить сервер из приложения? Данные на VDS останутся.	Remove this server from the app? Data on the VDS will be kept.	从应用中移除此服务器？VDS 上的数据将保留。
+Удалить сервер из списка?	Remove server from the list?	从列表中移除服务器？
+Укажите адрес сервера	Enter the server address	请输入服务器地址
+Управлять сервером	Manage server	管理服务器
+Установить	Install	安装
+Установить Atlant в Docker? Если Docker отсутствует, он будет установлен из пакетов Debian/Ubuntu. Существующие службы не заменяются. Сборка может занять несколько минут.	Install Atlant in Docker? If Docker is missing, it will be installed from Debian/Ubuntu packages. Existing services will be kept. The build may take several minutes.	在 Docker 中安装 Atlant？如果未安装 Docker，将从 Debian/Ubuntu 软件包安装。现有服务将保留。构建可能需要几分钟。
+Установить Atlant через Docker	Install Atlant with Docker	通过 Docker 安装 Atlant
+Установить на свой сервер	Install on your own server	安装到自己的服务器
+Установить сервер?	Install server?	安装服务器？
+Установить через Docker	Install with Docker	通过 Docker 安装
+Установка Docker и сборка	Installing Docker and building	正在安装 Docker 并构建
+Установка Docker и сборка. Можно переключиться на другой экран.	Installing Docker and building. You can switch to another screen.	正在安装 Docker 并构建。您可以切换到其他页面。
+Установка в Docker и управление через защищённый SSH-канал. Порты 80/443 не используются по умолчанию.	Install in Docker and manage over a secure SSH channel. Ports 80/443 are not used by default.	在 Docker 中安装并通过安全的 SSH 通道管理。默认不使用 80/443 端口。
+Установка через SSH в Docker. Панель управления открывается через защищённый SSH-канал; 80 и 443 не используются по умолчанию.	Install in Docker over SSH. The panel opens through a secure SSH channel; ports 80 and 443 are not used by default.	通过 SSH 在 Docker 中安装。面板通过安全的 SSH 通道打开；默认不使用 80 和 443 端口。
+по умолчанию	default	默认
+Дополнительно	Advanced	高级设置
+Изменить сервер	Edit server	编辑服务器
+Подключение к серверу	Connect to server	连接服务器
+Действия сервера	Server actions	服务器操作
+Добавьте свой сервер	Add your own server	添加自己的服务器
+Установить Atlant	Install Atlant	安装 Atlant
+Уже установлен	Already installed	已安装
+Сохранять пароль на этом устройстве	Remember password on this device	在此设备上保存密码
+Обновление Atlant	Updating Atlant	正在更新 Atlant
+Обновить Atlant	Update Atlant	更新 Atlant
+Контейнер остановлен	Container is stopped	容器已停止
+Установить или обновить Atlant? Существующая установка будет обновлена с сохранением пользователей, подписок, ключей и настроек. Другие службы не изменяются.	Install or update Atlant? An existing installation will be updated while keeping users, subscriptions, keys and settings. Other services are kept.	安装或更新 Atlant？现有安装将更新，并保留用户、订阅、密钥和设置。其他服务保持不变。
+QR-код	QR code	二维码
+Адрес VPN для клиентов (IP/домен:порт)	Public VPN address (IP/domain:port)	客户端 VPN 地址（IP/域名:端口）
+Адрес прослушивания	Listen address	监听地址
+Без срока	No expiry	永久有效
+В сети	Online	在线
+Версия	Version	版本
+Включено	Enabled	已启用
+Включить	Enable	启用
+Время работы	Uptime	运行时间
+Выберите подключения	Select connections	选择连接
+Выберите транспорт	Select a transport	选择传输方式
+Группа	Group	分组
+Группы	Groups	分组
+Добавить группу	Add group	添加分组
+Добавить подключение	Add connection	添加连接
+Добавить пользователя	Add user	添加用户
+Заметка	Note	备注
+Запустить	Start	启动
+Идентификатор	ID	标识符
+Изменить	Edit	编辑
+Изменить подключение	Edit connection	编辑连接
+Изменить подписку	Edit subscription	编辑订阅
+Имя пользователя	Username	用户名
+Имя сервера REALITY (SNI)	REALITY server name (SNI)	REALITY 服务器名称（SNI）
+Лимит IP	IP limit	IP 数量限制
+Лимит трафика (ГиБ)	Traffic limit (GiB)	流量限制（GiB）
+Некорректная дата	Invalid date	日期无效
+Обзор	Overview	概览
+Остановить	Stop	停止
+Отключить сессии	Disconnect sessions	断开会话
+Перезапустить	Restart	重启
+Подключения	Connections	连接
+Подписки	Subscriptions	订阅
+Подтвердить	Confirm	确认
+Подтвердить изменение	Confirm change	确认更改
+Пользователи	Users	用户
+Применить	Apply	应用
+Применить подключения	Apply connections	应用连接
+Сбросить	Reset	重置
+Служба VPN	VPN service	VPN 服务
+Создать подписку	Create subscription	创建订阅
+Срок действия	Expires	有效期
+Ссылка	Link	链接
+Ссылка и QR-код	Link and QR code	链接和二维码
+Ссылка недоступна	Link unavailable	链接不可用
+Управление сервером	Server management	服务器管理
+Уровень логирования	Log level	日志级别
+Это действие изменит доступ или остановит активные подключения.	This action changes access or stops active connections.	此操作将更改访问权限或断开活动连接。
+Изменение уровня логирования применяется после перезапуска службы VPN.	Log level changes take effect after restarting the VPN service.	日志级别更改将在重启 VPN 服务后生效。
+Меню	Menu	菜单
+Подготовка релиза	Preparing release	准备发布版本
+Загрузка готового релиза и установка. Можно переключиться на другой экран.	Downloading and installing the release. You can switch to another screen.	正在下载并安装发布版本。您可以切换到其他页面。
+Загрузка готового релиза	Downloading release	下载发布版本
+Пароль сохранён	Password saved	密码已保存
+Участники группы	Group members	分组成员
+Включить всех	Enable all	启用全部
+Отключить всех	Disable all	停用全部
+Добавьте участников в группу	Add members to this group	向分组添加成员
+Выбрано	Selected	已选择
+Основное	General	基本信息
+Доступ	Access	访问权限
+Действия	Actions	操作
+Показать ещё	Show more	显示更多
+Поиск	Search	搜索
+Состав группы изменился. Обновите её перед выполнением действия.	The group changed. Reload it before retrying.	分组已更改，请刷新后重试。
+Часть участников уже обновлена. Обновите группу перед повторной попыткой.	Some members were updated. Reload the group before retrying.	部分成员已更新，请刷新分组后重试。
+Без ограничения трафика	Unlimited traffic	不限流量
+До {0}	Until {0}	有效期至 {0}
+Добавьте подписку	Add a subscription	添加订阅
+Доступ и сессии	Access and sessions	访问权限与会话
+Запустите VPN, когда будете готовы	Start the VPN when you are ready	准备就绪后启动 VPN
+Запущен	Running	运行中
+Информация о подписке	Subscription details	订阅详情
+Использовано: {0}	Used: {0}	已用：{0}
+Осталось трафика	Traffic remaining	剩余流量
+Остановлен	Stopped	已停止
+Отправлено	Sent	已发送
+Получено	Received	已接收
+Порты и транспорты	Ports and transports	端口与传输方式
+Сервер выключен	Server stopped	服务器已停止
+Сервер работает	Server is running	服务器运行中
+Серверов: {0}	Servers: {0}	服务器：{0}
+Ссылка или QR-код — и серверы появятся здесь	Import a link or QR code to see your servers here	导入链接或二维码，即可在此查看服务器
+Ссылки и лимиты	Links and limits	链接与限额
+Управление	Manage	管理
+Управляйте доступом и подключениями	Manage access and connections	管理访问权限与连接
+Участники и доступ	Members and access	成员与访问权限
+из {0}	of {0}	共 {0}
+VPN включён	VPN is on	VPN 已开启
+VPN выключен	VPN is off	VPN 已关闭
+Подключение…	Connecting…	正在连接…
+Проверить	Check	检查
+Установка и управление	Install and manage	安装与管理
+Ваш сервер	Your server	您的服务器
+Осталось {0} из {1}	{0} left of {1}	剩余 {0}，共 {1}
+Настроить группу	Group settings	分组设置
+Создать группу	Create group	创建分组
+Укажите название группы	Enter a group name	请输入分组名称
+Показать пользователей	Show members	查看成员
+Фильтр по группе	Filter by group	按分组筛选
+Все группы	All groups	所有分组
+Участников: {0}	Members: {0}	成员：{0}
+Включено: {0}	Enabled: {0}	已启用：{0}
+Сначала создайте пользователя или подписку	Create a user or subscription first	请先创建用户或订阅
+Выбор	Selection	选择
+Пока нет групп	No groups yet	暂无分组
+
+Сначала создайте подключение в разделе «Подключения»	Create an inbound in the Inbounds section first	请先在连接页面创建入站连接
+
+Нет доступных подключений	No available connections	没有可用连接
+HTTPS-ссылка подписки не настроена. Ниже — прямые подключения без автоматического обновления.	The HTTPS subscription link is not configured. These direct connections do not update automatically.	尚未配置 HTTPS 订阅链接。以下为不自动更新的直连配置。
+Сертификаты	Certificates	证书
+HTTPS для подписок	Subscription HTTPS	订阅 HTTPS
+HTTPS не запущен	HTTPS is stopped	HTTPS 未运行
+HTTPS работает	HTTPS is running	HTTPS 已运行
+HTTPS-ссылка недоступна	HTTPS link unavailable	HTTPS 链接不可用
+Включить HTTPS-подписки	Enable HTTPS subscriptions	启用 HTTPS 订阅
+Действует до	Valid until	有效期至
+Домен	Domain	域名
+IP-адрес	IP address	IP 地址
+Домен или IP	Domain or IP	域名或 IP
+Свой сертификат	Custom certificate	自定义证书
+Порт HTTPS-подписок	Subscription HTTPS port	订阅 HTTPS 端口
+Файл сертификата на сервере	Certificate file on server	服务器上的证书文件
+Файл ключа на сервере	Key file on server	服务器上的密钥文件
+Применить и перезапустить VPN	Apply and restart VPN	应用并重启 VPN
+Примите условия Let’s Encrypt	Accept the Let’s Encrypt terms	请接受 Let’s Encrypt 条款
+Принимаю условия Let’s Encrypt	I accept the Let’s Encrypt terms	我接受 Let’s Encrypt 条款
+Укажите домен или IP	Enter a domain or IP	请输入域名或 IP
+Укажите порт от 1 до 65535	Enter a port from 1 to 65535	请输入 1 至 65535 的端口
+Укажите файлы сертификата и ключа	Enter certificate and key file paths	请输入证书和密钥文件路径
+Создать HTTPS-ссылку	Create HTTPS link	创建 HTTPS 链接
+Создать ссылку	Create link	创建链接
+Ссылка этой подписки не сохранилась. Создать новую? Прежняя ссылка перестанет работать.	This subscription link was not saved. Create a new one? The previous link will stop working.	此订阅的链接未保存。创建新链接吗？原链接将失效。
+Настройте HTTPS в разделе «Сертификаты», затем создайте ссылку подписки.	Configure HTTPS in Certificates, then create the subscription link.	请在证书页面配置 HTTPS，然后创建订阅链接。
+Сертификат выпускается и обновляется автоматически. Для HTTP-01 нужен доступ к порту 80.	The certificate is issued and renewed automatically. HTTP-01 requires access to port 80.	证书会自动签发和续期。HTTP-01 需要访问端口 80。
+Сертификат используется для HTTPS-подписок. VPN продолжает работать через REALITY.	The certificate is used for HTTPS subscriptions. The VPN continues to use REALITY.	证书用于 HTTPS 订阅，VPN 继续使用 REALITY。
+Масштаб интерфейса	Interface scale	界面缩放
+Сбросить до 100%	Reset to 100%	恢复到 100%
+Размер текста, кнопок и отступов во всём приложении. Подключение VPN не прерывается.	Text, buttons and spacing throughout the app. Your VPN connection stays active.	调整整个应用的文字、按钮和间距。VPN 连接保持不中断。
