@@ -1,6 +1,8 @@
 package com.example.atlantvpn
 
 import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.BorderStroke
@@ -31,6 +33,8 @@ import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Workspaces
 import androidx.compose.material.icons.filled.Tune
 import androidx.compose.material.icons.filled.FilterList
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.platform.LocalView
@@ -68,6 +72,12 @@ private fun quotaBytes(value: String): Long {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ServerManagementScreen(job: String, name: String, onBack: () -> Unit,rpc:suspend(String)->String={Atlant.adminCall(job,it)}) {
+    ManagementTheme { ServerManagementContent(job, name, onBack, rpc) }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun ServerManagementContent(job: String, name: String, onBack: () -> Unit, rpc: suspend (String) -> String) {
     val scope = rememberCoroutineScope()
     var page by remember { mutableStateOf("overview") }
     var data by remember { mutableStateOf<Any?>(null) }
@@ -230,22 +240,23 @@ fun ServerManagementScreen(job: String, name: String, onBack: () -> Unit,rpc:sus
         }while(page=="logs")
     }
     ModalNavigationDrawer(drawerState=drawerState,gesturesEnabled=false,drawerContent={
-        ModalDrawerSheet(drawerContainerColor=MaterialTheme.colorScheme.surface,drawerShape=RoundedCornerShape(topEnd=28.dp,bottomEnd=28.dp)) {
+        ModalDrawerSheet(drawerContainerColor=MaterialTheme.colorScheme.surface,drawerShape=RoundedCornerShape(topEnd=12.dp,bottomEnd=12.dp)) {
             Column(Modifier.verticalScroll(rememberScrollState()).padding(16.dp)) {
                 Text(name,style=MaterialTheme.typography.headlineSmall,modifier=Modifier.padding(12.dp,24.dp),maxLines=2,overflow=TextOverflow.Ellipsis)
-                for((key,label)in pages)NavigationDrawerItem(label={Text(tr(label))},selected=page==key,onClick={page=key;scope.launch{drawerState.snapTo(DrawerValue.Closed)}},modifier=Modifier.padding(vertical=3.dp),shape=RoundedCornerShape(16.dp))
+                for((key,label)in pages)NavigationDrawerItem(label={Text(tr(label))},selected=page==key,onClick={page=key;scope.launch{drawerState.snapTo(DrawerValue.Closed)}},modifier=Modifier.padding(vertical=3.dp).border(1.dp,if(page==key)MaterialTheme.colorScheme.outline else Color.Transparent,RoundedCornerShape(8.dp)),shape=RoundedCornerShape(8.dp))
                 Spacer(Modifier.height(20.dp))
                 TextButton(onClick=onBack) {Text(tr("Назад к моим серверам"))}
             }
         }
     }) {
-    Column(Modifier.fillMaxSize()) {
-        Row(Modifier.fillMaxWidth().padding(8.dp),verticalAlignment=androidx.compose.ui.Alignment.CenterVertically) {
+    Column(Modifier.fillMaxSize().background(MaterialTheme.colorScheme.background)) {
+        Row(Modifier.fillMaxWidth().background(MaterialTheme.colorScheme.surface).padding(8.dp),verticalAlignment=androidx.compose.ui.Alignment.CenterVertically) {
             IconButton(onClick={scope.launch{drawerState.snapTo(DrawerValue.Open)}}) {Icon(Icons.Default.Menu,contentDescription=tr("Меню"))}
             Column(Modifier.weight(1f)) {Text(name,style=MaterialTheme.typography.titleLarge,maxLines=1,overflow=TextOverflow.Ellipsis);Text(tr("Ваш сервер"),style=MaterialTheme.typography.labelSmall,color=MaterialTheme.colorScheme.onSurfaceVariant)}
             IconButton(onClick=onBack) {Icon(Icons.Default.Close,contentDescription=tr("Назад к моим серверам"))}
         }
-        Row(Modifier.fillMaxWidth().padding(start=20.dp,end=12.dp,bottom=12.dp),verticalAlignment=androidx.compose.ui.Alignment.CenterVertically) {
+        HorizontalDivider(color=MaterialTheme.colorScheme.outlineVariant)
+        Row(Modifier.fillMaxWidth().padding(start=20.dp,end=12.dp,top=16.dp,bottom=12.dp),verticalAlignment=androidx.compose.ui.Alignment.CenterVertically) {
             Text(tr(pages.firstOrNull{it.first==page}?.second?:"Участники группы"),style=MaterialTheme.typography.headlineSmall,modifier=Modifier.weight(1f))
             if(page in setOf("subscriptions","users","inbounds","groups"))FilledTonalIconButton(enabled=!loading,onClick={when(page){"subscriptions"->openSubscription();"users"->openUser();"inbounds"->openInbound();"groups"->openGroup()}}) {Icon(Icons.Default.Add,contentDescription=tr("Добавить"))}
         }
@@ -333,7 +344,7 @@ fun ServerManagementScreen(job: String, name: String, onBack: () -> Unit,rpc:sus
                 "logs" -> item {
                     val logs=(data as? JSONObject)?.opt("logs")
                     val text=if(logs is JSONArray)(maxOf(0,logs.length()-50) until logs.length()).joinToString("\n"){logs.optString(it)} else logs?.toString().orEmpty()
-                    Surface(shape=RoundedCornerShape(20.dp),tonalElevation=2.dp) {SelectionContainer {Text(text,style=MaterialTheme.typography.bodySmall,modifier=Modifier.padding(16.dp))}}
+                    Surface(shape=RoundedCornerShape(12.dp),border=BorderStroke(1.dp,MaterialTheme.colorScheme.outlineVariant),color=MaterialTheme.colorScheme.background) {SelectionContainer {Text(text,style=MaterialTheme.typography.bodySmall.copy(fontFamily=FontFamily.Monospace),modifier=Modifier.padding(16.dp))}}
                 }
                 "settings" -> item {
                     val level=(data as? JSONObject)?.optString("log_level","info") ?: "info"
@@ -364,13 +375,14 @@ private data class AdminAction(val label:String,val run:()->Unit,val danger:Bool
 @Composable
 private fun AdminActions(enabled:Boolean,actions:List<AdminAction>,prominent:Boolean=false) {
     var expanded by remember {mutableStateOf(false)}
-    Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.End) {
+    HorizontalDivider(color=MaterialTheme.colorScheme.outlineVariant)
+    Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(8.dp,androidx.compose.ui.Alignment.End),verticalAlignment=androidx.compose.ui.Alignment.CenterVertically) {
         actions.firstOrNull()?.let { first ->
-            if(prominent)FilledTonalButton(enabled=enabled&&first.enabled,onClick=first.run,shape=RoundedCornerShape(14.dp),modifier=Modifier.weight(1f)){Icon(Icons.Default.Edit,null,Modifier.size(16.dp));Spacer(Modifier.width(6.dp));Text(tr(first.label))}
-            else TextButton(enabled=enabled&&first.enabled,onClick=first.run) {Icon(Icons.Default.Edit,null,Modifier.size(16.dp));Spacer(Modifier.width(6.dp));Text(tr(first.label))}
+            if(prominent)FilledTonalButton(enabled=enabled&&first.enabled,onClick=first.run,shape=RoundedCornerShape(8.dp),modifier=Modifier.weight(1f)){Icon(Icons.Default.Edit,null,Modifier.size(16.dp));Spacer(Modifier.width(6.dp));Text(tr(first.label))}
+            else OutlinedButton(enabled=enabled&&first.enabled,onClick=first.run,shape=RoundedCornerShape(8.dp)) {Icon(Icons.Default.Edit,null,Modifier.size(16.dp));Spacer(Modifier.width(6.dp));Text(tr(first.label))}
         }
         if(actions.size>1)Box {
-            IconButton(enabled=enabled,onClick={expanded=true}) {Icon(Icons.Default.MoreVert,tr("Действия"))}
+            OutlinedIconButton(enabled=enabled,onClick={expanded=true},shape=RoundedCornerShape(8.dp)) {Icon(Icons.Default.MoreVert,tr("Действия"))}
             DropdownMenu(expanded=expanded,onDismissRequest={expanded=false}) {
                 for(action in actions.drop(1))DropdownMenuItem(text={Text(tr(action.label),color=if(action.danger)MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.onSurface)},enabled=enabled&&action.enabled,onClick={expanded=false;action.run()})
             }
@@ -380,10 +392,10 @@ private fun AdminActions(enabled:Boolean,actions:List<AdminAction>,prominent:Boo
 
 @Composable
 private fun AdminRecord(title: String, subtitle: String,icon:ImageVector=Icons.Default.Dns,onOpen:(()->Unit)?=null, content: @Composable ColumnScope.() -> Unit) {
-    Surface(Modifier.fillMaxWidth(),shape=RoundedCornerShape(24.dp),border=BorderStroke(1.dp,MaterialTheme.colorScheme.outlineVariant),color=MaterialTheme.colorScheme.surfaceContainerLow) {
-        Column(Modifier.padding(18.dp),verticalArrangement=Arrangement.spacedBy(12.dp)) {
+    Surface(Modifier.fillMaxWidth(),shape=RoundedCornerShape(12.dp),border=BorderStroke(1.dp,MaterialTheme.colorScheme.outlineVariant),color=MaterialTheme.colorScheme.surfaceContainerLow) {
+        Column(Modifier.padding(16.dp),verticalArrangement=Arrangement.spacedBy(12.dp)) {
             Row(Modifier.fillMaxWidth().then(if(onOpen!=null)Modifier.clickable(onClick=onOpen) else Modifier),verticalAlignment=androidx.compose.ui.Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(12.dp)) {
-                ServerGlyph(icon)
+                ManagementGlyph(icon)
                 Column(Modifier.weight(1f),verticalArrangement=Arrangement.spacedBy(4.dp)) {Text(title,style=MaterialTheme.typography.titleMedium,maxLines=2,overflow=TextOverflow.Ellipsis);if(subtitle.isNotBlank())Text(subtitle,style=MaterialTheme.typography.bodySmall,color=MaterialTheme.colorScheme.onSurfaceVariant,maxLines=2,overflow=TextOverflow.Ellipsis)}
             }
             content()
@@ -414,11 +426,12 @@ private fun AdminEditDialog(editor: AdminEditor, onDismiss: () -> Unit, onSaved:
     fun save(){scope.launch {busy=true;error="";try {editor.save(values.toMap(),selected.filterValues{it}.keys);onSaved()}catch(e:Exception){error=adminError(e)}finally{busy=false}}}
     ManagementDialog(onDismiss={if(!busy)onDismiss()}) {
         Column(Modifier.fillMaxSize().imePadding()) {
-            Row(Modifier.fillMaxWidth().padding(8.dp),verticalAlignment=androidx.compose.ui.Alignment.CenterVertically) {
+            Row(Modifier.fillMaxWidth().background(MaterialTheme.colorScheme.surface).padding(8.dp),verticalAlignment=androidx.compose.ui.Alignment.CenterVertically) {
                 IconButton(enabled=!busy,onClick=onDismiss){Icon(Icons.Default.Close,tr("Отмена"))}
                 Text(editor.title,style=MaterialTheme.typography.titleLarge,modifier=Modifier.weight(1f))
-                Button(enabled=!busy,onClick={save()},shape=RoundedCornerShape(14.dp)){Text(tr("Сохранить"))}
+                Button(enabled=!busy,onClick={save()},shape=RoundedCornerShape(8.dp)){Text(tr("Сохранить"))}
             }
+            HorizontalDivider(color=MaterialTheme.colorScheme.outlineVariant)
             if(busy)LinearProgressIndicator(Modifier.fillMaxWidth())
             if(error.isNotEmpty())Text(error,color=MaterialTheme.colorScheme.error,modifier=Modifier.padding(horizontal=20.dp,vertical=8.dp))
             LazyColumn(Modifier.fillMaxWidth().weight(1f),contentPadding=PaddingValues(20.dp),verticalArrangement=Arrangement.spacedBy(14.dp)) {
@@ -430,7 +443,7 @@ private fun AdminEditDialog(editor: AdminEditor, onDismiss: () -> Unit, onSaved:
                         else if(field.kind=="date") {
                             val timestamp=values[field.key]?.toLongOrNull()?:0
                             Column {Text(tr(field.label),style=MaterialTheme.typography.labelLarge);Row {OutlinedButton(enabled=!busy,onClick={dateField=field}){Text(if(timestamp>0)java.text.DateFormat.getDateInstance().format(java.util.Date(timestamp*1000)) else tr("Без срока"))};if(timestamp>0)TextButton(enabled=!busy,onClick={values[field.key]="0"}){Text(tr("Сбросить"))}}}
-                        } else OutlinedTextField(value=values[field.key].orEmpty(),onValueChange={values[field.key]=it},enabled=!busy&&!field.locked,label={Text(tr(field.label))},modifier=Modifier.fillMaxWidth(),singleLine=true,shape=RoundedCornerShape(16.dp),keyboardOptions=KeyboardOptions(keyboardType=when(field.kind){"number"->KeyboardType.Number;"decimal"->KeyboardType.Decimal;else->KeyboardType.Text}))
+                        } else OutlinedTextField(value=values[field.key].orEmpty(),onValueChange={values[field.key]=it},enabled=!busy&&!field.locked,label={Text(tr(field.label))},modifier=Modifier.fillMaxWidth(),singleLine=true,shape=RoundedCornerShape(8.dp),keyboardOptions=KeyboardOptions(keyboardType=when(field.kind){"number"->KeyboardType.Number;"decimal"->KeyboardType.Decimal;else->KeyboardType.Text}))
                     }
                 }
                 if(editor.choices.isNotEmpty()||editor.choicesTitle!=null) {
@@ -441,7 +454,7 @@ private fun AdminEditDialog(editor: AdminEditor, onDismiss: () -> Unit, onSaved:
                     if(editor.choices.isEmpty())item {Text(tr(editor.emptyChoicesText),style=MaterialTheme.typography.bodySmall,color=MaterialTheme.colorScheme.onSurfaceVariant)}
                     if(editor.choices.size>6)item(key="choices_search"){CompactManagementSearch(search,{search=it},Modifier.fillMaxWidth(),enabled=!busy)}
                     items(choices,key={"choice_"+it.first}) {(key,label)->
-                        Surface(shape=RoundedCornerShape(16.dp),border=BorderStroke(1.dp,if(selected[key]==true)MaterialTheme.colorScheme.outline else MaterialTheme.colorScheme.outlineVariant),color=MaterialTheme.colorScheme.surfaceContainerLow) {
+                        Surface(shape=RoundedCornerShape(8.dp),border=BorderStroke(1.dp,if(selected[key]==true)MaterialTheme.colorScheme.outline else MaterialTheme.colorScheme.outlineVariant),color=if(selected[key]==true)MaterialTheme.colorScheme.surfaceContainerHigh else MaterialTheme.colorScheme.background) {
                             Row(Modifier.fillMaxWidth().clickable(enabled=!busy){selected[key]=selected[key]!=true}.padding(start=16.dp,end=8.dp,top=2.dp,bottom=2.dp),verticalAlignment=androidx.compose.ui.Alignment.CenterVertically) {
                                 Text(label,modifier=Modifier.weight(1f),style=MaterialTheme.typography.bodyMedium);Checkbox(checked=selected[key]==true,onCheckedChange=null,enabled=!busy)
                             }

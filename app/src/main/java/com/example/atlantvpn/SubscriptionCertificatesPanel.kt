@@ -51,7 +51,7 @@ internal fun SubscriptionCertificatesPanel(settings:JSONObject,busy:Boolean,onSa
     var error by remember{mutableStateOf("")}
     val status=settings.optJSONObject("status")?:JSONObject()
     Column(verticalArrangement=Arrangement.spacedBy(16.dp)) {
-        Surface(shape=RoundedCornerShape(24.dp),border=BorderStroke(1.dp,MaterialTheme.colorScheme.outlineVariant),color=MaterialTheme.colorScheme.surfaceContainerLow){
+        Surface(shape=RoundedCornerShape(12.dp),border=BorderStroke(1.dp,MaterialTheme.colorScheme.outlineVariant),color=MaterialTheme.colorScheme.surfaceContainerLow){
             Column(Modifier.fillMaxWidth().padding(18.dp),verticalArrangement=Arrangement.spacedBy(8.dp)){
                 Text(tr("HTTPS для подписок"),style=MaterialTheme.typography.titleMedium)
                 Text(tr(if(status.optBoolean("listening"))"HTTPS работает" else "HTTPS не запущен"),style=MaterialTheme.typography.bodyMedium)
@@ -66,17 +66,17 @@ internal fun SubscriptionCertificatesPanel(settings:JSONObject,busy:Boolean,onSa
             for((id,label)in listOf("acme-domain" to "Домен","acme-ip" to "IP","manual" to "Свой сертификат"))
                 FilterChip(selected=mode==id,onClick={mode=id},enabled=!busy,label={Text(tr(label))})
         }
-        OutlinedTextField(host,{host=it},Modifier.fillMaxWidth(),enabled=!busy,label={Text(tr(if(mode=="acme-ip")"IP-адрес" else "Домен или IP"))},singleLine=true,shape=RoundedCornerShape(16.dp))
-        OutlinedTextField(port,{port=it},Modifier.fillMaxWidth(),enabled=!busy,label={Text(tr("Порт HTTPS-подписок"))},singleLine=true,keyboardOptions=KeyboardOptions(keyboardType=KeyboardType.Number),shape=RoundedCornerShape(16.dp))
+        OutlinedTextField(host,{host=it},Modifier.fillMaxWidth(),enabled=!busy,label={Text(tr(if(mode=="acme-ip")"IP-адрес" else "Домен или IP"))},singleLine=true,shape=RoundedCornerShape(8.dp))
+        OutlinedTextField(port,{port=it},Modifier.fillMaxWidth(),enabled=!busy,label={Text(tr("Порт HTTPS-подписок"))},singleLine=true,keyboardOptions=KeyboardOptions(keyboardType=KeyboardType.Number),shape=RoundedCornerShape(8.dp))
         if(mode=="manual"){
-            OutlinedTextField(cert,{cert=it},Modifier.fillMaxWidth(),enabled=!busy,label={Text(tr("Файл сертификата на сервере"))},singleLine=true,shape=RoundedCornerShape(16.dp))
-            OutlinedTextField(key,{key=it},Modifier.fillMaxWidth(),enabled=!busy,label={Text(tr("Файл ключа на сервере"))},singleLine=true,shape=RoundedCornerShape(16.dp))
+            OutlinedTextField(cert,{cert=it},Modifier.fillMaxWidth(),enabled=!busy,label={Text(tr("Файл сертификата на сервере"))},singleLine=true,shape=RoundedCornerShape(8.dp))
+            OutlinedTextField(key,{key=it},Modifier.fillMaxWidth(),enabled=!busy,label={Text(tr("Файл ключа на сервере"))},singleLine=true,shape=RoundedCornerShape(8.dp))
         }else{
             Text(tr("Сертификат выпускается и обновляется автоматически. Для HTTP-01 нужен доступ к порту 80."),style=MaterialTheme.typography.bodySmall,color=MaterialTheme.colorScheme.onSurfaceVariant)
             Row(verticalAlignment=Alignment.CenterVertically){Checkbox(accepted,{accepted=it},enabled=!busy);Text(tr("Принимаю условия Let’s Encrypt"),style=MaterialTheme.typography.bodySmall)}
         }
         if(error.isNotBlank())Text(tr(error),color=MaterialTheme.colorScheme.error)
-        Button(enabled=!busy,onClick={try {val patch=subscriptionHttpsSettings(settings,mode,host,port,cert,key,accepted,enabled);error="";onSave(patch)}catch(e:Exception){error=e.message.orEmpty()}},modifier=Modifier.fillMaxWidth(),shape=RoundedCornerShape(16.dp)){Text(tr("Сохранить"))}
-        OutlinedButton(enabled=!busy,onClick=onRestart,modifier=Modifier.fillMaxWidth(),shape=RoundedCornerShape(16.dp)){Text(tr("Применить и перезапустить VPN"))}
+        Button(enabled=!busy,onClick={try {val patch=subscriptionHttpsSettings(settings,mode,host,port,cert,key,accepted,enabled);error="";onSave(patch)}catch(e:Exception){error=e.message.orEmpty()}},modifier=Modifier.fillMaxWidth(),shape=RoundedCornerShape(8.dp)){Text(tr("Сохранить"))}
+        OutlinedButton(enabled=!busy,onClick=onRestart,modifier=Modifier.fillMaxWidth(),shape=RoundedCornerShape(8.dp)){Text(tr("Применить и перезапустить VPN"))}
     }
 }

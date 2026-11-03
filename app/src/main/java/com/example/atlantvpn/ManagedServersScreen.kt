@@ -1,6 +1,7 @@
 package com.example.atlantvpn
 
 import android.content.Context
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -37,6 +38,12 @@ private object ManagedServerSessions {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ManagedServersScreen() {
+    ManagementTheme { ManagedServersContent() }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun ManagedServersContent() {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
     var list by remember { mutableStateOf(JSONArray()) }
@@ -166,12 +173,12 @@ fun ManagedServersScreen() {
     Column(Modifier.fillMaxSize().padding(horizontal=20.dp,vertical=16.dp),verticalArrangement=Arrangement.spacedBy(18.dp)) {
         Row(Modifier.fillMaxWidth(),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.SpaceBetween) {
             Column(verticalArrangement=Arrangement.spacedBy(6.dp)){Text(tr("Мои серверы"),style=MaterialTheme.typography.headlineMedium);Text(tr("Установка и управление"),style=MaterialTheme.typography.bodySmall,color=MaterialTheme.colorScheme.onSurfaceVariant)}
-            if(list.length()>0) FilledTonalIconButton(enabled=!busy,onClick={add()},shape=RoundedCornerShape(16.dp),modifier=Modifier.size(48.dp)) {Icon(Icons.Default.Add,tr("Добавить сервер"))}
+            if(list.length()>0) FilledTonalIconButton(enabled=!busy,onClick={add()},shape=RoundedCornerShape(8.dp),modifier=Modifier.size(48.dp)) {Icon(Icons.Default.Add,tr("Добавить сервер"))}
         }
         if(list.length()==0) {
-            Surface(Modifier.fillMaxWidth().weight(1f),shape=RoundedCornerShape(28.dp),color=MaterialTheme.colorScheme.surface) {
+            Surface(Modifier.fillMaxWidth().weight(1f),shape=RoundedCornerShape(12.dp),border=BorderStroke(1.dp,MaterialTheme.colorScheme.outlineVariant),color=MaterialTheme.colorScheme.surface) {
                 Column(Modifier.padding(28.dp),horizontalAlignment=Alignment.CenterHorizontally,verticalArrangement=Arrangement.spacedBy(22.dp,Alignment.CenterVertically)) {
-                    Surface(shape=RoundedCornerShape(22.dp),color=MaterialTheme.colorScheme.surfaceContainerHigh) {Icon(Icons.Default.Dns,null,Modifier.padding(20.dp).size(32.dp),tint=MaterialTheme.colorScheme.onSurfaceVariant)}
+                    Surface(shape=RoundedCornerShape(12.dp),color=MaterialTheme.colorScheme.surfaceContainerHigh) {Icon(Icons.Default.Dns,null,Modifier.padding(20.dp).size(32.dp),tint=MaterialTheme.colorScheme.onSurfaceVariant)}
                     Text(tr("Добавьте свой сервер"),style=MaterialTheme.typography.titleLarge)
                     Button(enabled=!busy,onClick={add()},contentPadding=PaddingValues(horizontal=24.dp,vertical=14.dp)) {Icon(Icons.Default.Add,null);Spacer(Modifier.width(8.dp));Text(tr("Добавить сервер"))}
                 }
@@ -179,9 +186,9 @@ fun ManagedServersScreen() {
         } else LazyColumn(Modifier.weight(1f),verticalArrangement=Arrangement.spacedBy(12.dp)) {
             items((0 until list.length()).map {list.getJSONObject(it)},key={it.getString("id")}) { item ->
                 val id=item.getString("id")
-                Surface(onClick={if(!busy){load(item);val phase=ManagedServerSessions.jobs[id]?.let {JSONObject(Atlant.adminStatus(it)).optString("phase")};if(hasStoredPassword||phase in listOf("ready","connecting","preparing","installing","opening"))connect(false) else showEditor=true}},shape=RoundedCornerShape(26.dp),color=MaterialTheme.colorScheme.surfaceContainerLow) {
+                Surface(onClick={if(!busy){load(item);val phase=ManagedServerSessions.jobs[id]?.let {JSONObject(Atlant.adminStatus(it)).optString("phase")};if(hasStoredPassword||phase in listOf("ready","connecting","preparing","installing","opening"))connect(false) else showEditor=true}},shape=RoundedCornerShape(12.dp),border=BorderStroke(1.dp,MaterialTheme.colorScheme.outlineVariant),color=MaterialTheme.colorScheme.surfaceContainerLow) {
                     Row(Modifier.fillMaxWidth().padding(start=18.dp,end=8.dp,top=16.dp,bottom=16.dp),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(12.dp)) {
-                        ServerGlyph(Icons.Default.Dns)
+                        ManagementGlyph(Icons.Default.Dns)
                         Column(Modifier.weight(1f),verticalArrangement=Arrangement.spacedBy(4.dp)) {
                             Text(item.getString("name"),style=MaterialTheme.typography.titleMedium,maxLines=1,overflow=TextOverflow.Ellipsis)
                             Text(item.getJSONObject("request").optString("host"),style=MaterialTheme.typography.bodySmall,color=MaterialTheme.colorScheme.onSurfaceVariant,maxLines=1,overflow=TextOverflow.Ellipsis)
@@ -200,16 +207,16 @@ fun ManagedServersScreen() {
                 }
             }
         }
-        if(status.isNotBlank()) Surface(shape=RoundedCornerShape(18.dp),color=MaterialTheme.colorScheme.surfaceContainerHigh) {
+        if(status.isNotBlank()) Surface(shape=RoundedCornerShape(12.dp),color=MaterialTheme.colorScheme.surfaceContainerHigh) {
             Column(Modifier.fillMaxWidth().padding(16.dp),verticalArrangement=Arrangement.spacedBy(12.dp)) {if(busy) LinearProgressIndicator(Modifier.fillMaxWidth());Text(status,style=MaterialTheme.typography.bodySmall)}
         }
     }
     if(showEditor) ManagementDialog(onDismiss={if(!busy)showEditor=false}) {
         Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).imePadding().padding(start=24.dp,end=24.dp,bottom=28.dp),verticalArrangement=Arrangement.spacedBy(14.dp)) {
             Row(Modifier.fillMaxWidth(),verticalAlignment=Alignment.CenterVertically) {Text(tr(if(selected.isBlank())"Добавить сервер" else "Изменить сервер"),style=MaterialTheme.typography.headlineSmall,modifier=Modifier.weight(1f));TextButton(enabled=!busy,onClick={showEditor=false}){Text(tr("Отмена"))}}
-            OutlinedTextField(host,{host=it;fingerprint=""},enabled=!busy,label={Text(tr("IP или домен"))},singleLine=true,shape=RoundedCornerShape(16.dp),modifier=Modifier.fillMaxWidth())
-            OutlinedTextField(login,{login=it},enabled=!busy,label={Text(tr("SSH-логин"))},singleLine=true,shape=RoundedCornerShape(16.dp),modifier=Modifier.fillMaxWidth())
-            OutlinedTextField(password,{password=it},enabled=!busy,label={Text(tr("SSH-пароль"))},placeholder={if(hasStoredPassword)Text(tr("Пароль сохранён"))},singleLine=true,shape=RoundedCornerShape(16.dp),visualTransformation=PasswordVisualTransformation(),modifier=Modifier.fillMaxWidth())
+            OutlinedTextField(host,{host=it;fingerprint=""},enabled=!busy,label={Text(tr("IP или домен"))},singleLine=true,shape=RoundedCornerShape(8.dp),modifier=Modifier.fillMaxWidth())
+            OutlinedTextField(login,{login=it},enabled=!busy,label={Text(tr("SSH-логин"))},singleLine=true,shape=RoundedCornerShape(8.dp),modifier=Modifier.fillMaxWidth())
+            OutlinedTextField(password,{password=it},enabled=!busy,label={Text(tr("SSH-пароль"))},placeholder={if(hasStoredPassword)Text(tr("Пароль сохранён"))},singleLine=true,shape=RoundedCornerShape(8.dp),visualTransformation=PasswordVisualTransformation(),modifier=Modifier.fillMaxWidth())
             TextButton(onClick={advanced=!advanced}) {Text(tr("Дополнительно"))}
             if(advanced) {
                 OutlinedTextField(name,{name=it},enabled=!busy,label={Text(tr("Название"))},singleLine=true,modifier=Modifier.fillMaxWidth())
