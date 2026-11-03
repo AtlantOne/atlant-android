@@ -380,7 +380,7 @@ private fun AdminActions(enabled:Boolean,actions:List<AdminAction>,prominent:Boo
 
 @Composable
 private fun AdminRecord(title: String, subtitle: String,icon:ImageVector=Icons.Default.Dns,onOpen:(()->Unit)?=null, content: @Composable ColumnScope.() -> Unit) {
-    Surface(Modifier.fillMaxWidth(),shape=RoundedCornerShape(24.dp),color=MaterialTheme.colorScheme.surfaceContainerLow) {
+    Surface(Modifier.fillMaxWidth(),shape=RoundedCornerShape(24.dp),border=BorderStroke(1.dp,MaterialTheme.colorScheme.outlineVariant),color=MaterialTheme.colorScheme.surfaceContainerLow) {
         Column(Modifier.padding(18.dp),verticalArrangement=Arrangement.spacedBy(12.dp)) {
             Row(Modifier.fillMaxWidth().then(if(onOpen!=null)Modifier.clickable(onClick=onOpen) else Modifier),verticalAlignment=androidx.compose.ui.Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(12.dp)) {
                 ServerGlyph(icon)
@@ -441,7 +441,7 @@ private fun AdminEditDialog(editor: AdminEditor, onDismiss: () -> Unit, onSaved:
                     if(editor.choices.isEmpty())item {Text(tr(editor.emptyChoicesText),style=MaterialTheme.typography.bodySmall,color=MaterialTheme.colorScheme.onSurfaceVariant)}
                     if(editor.choices.size>6)item(key="choices_search"){CompactManagementSearch(search,{search=it},Modifier.fillMaxWidth(),enabled=!busy)}
                     items(choices,key={"choice_"+it.first}) {(key,label)->
-                        Surface(shape=RoundedCornerShape(16.dp),border=BorderStroke(1.dp,if(selected[key]==true)MaterialTheme.colorScheme.outline else MaterialTheme.colorScheme.outlineVariant.copy(alpha=.35f)),color=MaterialTheme.colorScheme.surfaceContainerLow) {
+                        Surface(shape=RoundedCornerShape(16.dp),border=BorderStroke(1.dp,if(selected[key]==true)MaterialTheme.colorScheme.outline else MaterialTheme.colorScheme.outlineVariant),color=MaterialTheme.colorScheme.surfaceContainerLow) {
                             Row(Modifier.fillMaxWidth().clickable(enabled=!busy){selected[key]=selected[key]!=true}.padding(start=16.dp,end=8.dp,top=2.dp,bottom=2.dp),verticalAlignment=androidx.compose.ui.Alignment.CenterVertically) {
                                 Text(label,modifier=Modifier.weight(1f),style=MaterialTheme.typography.bodyMedium);Checkbox(checked=selected[key]==true,onCheckedChange=null,enabled=!busy)
                             }

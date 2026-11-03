@@ -1,6 +1,7 @@
 package com.example.atlantvpn
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.*
@@ -50,7 +51,7 @@ internal fun SubscriptionCertificatesPanel(settings:JSONObject,busy:Boolean,onSa
     var error by remember{mutableStateOf("")}
     val status=settings.optJSONObject("status")?:JSONObject()
     Column(verticalArrangement=Arrangement.spacedBy(16.dp)) {
-        Surface(shape=RoundedCornerShape(24.dp),color=MaterialTheme.colorScheme.surfaceContainerLow){
+        Surface(shape=RoundedCornerShape(24.dp),border=BorderStroke(1.dp,MaterialTheme.colorScheme.outlineVariant),color=MaterialTheme.colorScheme.surfaceContainerLow){
             Column(Modifier.fillMaxWidth().padding(18.dp),verticalArrangement=Arrangement.spacedBy(8.dp)){
                 Text(tr("HTTPS для подписок"),style=MaterialTheme.typography.titleMedium)
                 Text(tr(if(status.optBoolean("listening"))"HTTPS работает" else "HTTPS не запущен"),style=MaterialTheme.typography.bodyMedium)

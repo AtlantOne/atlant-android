@@ -1,6 +1,7 @@
 package com.example.atlantvpn
 
 import android.net.Uri
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -13,6 +14,10 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.draw.drawWithContent
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
@@ -56,9 +61,9 @@ fun SubscriptionServerList(
                     onUpdate={onFocusSubscription(sub.id);onUpdateSubscription()},onEdit={onFocusSubscription(sub.id);onEditSubscription()},onClear={onFocusSubscription(sub.id);onClearSubscription()})
             }
             if(expanded)itemsIndexed(children,key={_,server->"subscription:${server.id}"},contentType={_,_->"subscription-server"}) {position,server->
-                Surface(Modifier.fillMaxWidth().testTag("subscription-server:${server.id}"),shape=if(position==children.lastIndex)RoundedCornerShape(bottomStart=24.dp,bottomEnd=24.dp) else RoundedCornerShape(0.dp),color=MaterialTheme.colorScheme.surfaceContainerLow) {
+                Surface(Modifier.fillMaxWidth().testTag("subscription-server:${server.id}").subscriptionOutline(MaterialTheme.colorScheme.outlineVariant,first=false,last=position==children.lastIndex),shape=if(position==children.lastIndex)RoundedCornerShape(bottomStart=24.dp,bottomEnd=24.dp) else RoundedCornerShape(0.dp),color=MaterialTheme.colorScheme.surfaceContainerLow) {
                     Column(Modifier.padding(horizontal=12.dp)) {
-                        if(position>0)HorizontalDivider(Modifier.padding(start=52.dp,end=8.dp),color=MaterialTheme.colorScheme.outlineVariant.copy(alpha=.35f))
+                        if(position>0)HorizontalDivider(Modifier.padding(start=52.dp,end=8.dp),color=MaterialTheme.colorScheme.outlineVariant)
                         SubscriptionServerRow(server,server.id==selectedServer?.id,{onSelectServer(server)},{onPingServer(server)},{onEditServer(server)},{onCopyLink(server)},{onDeleteServer(server)})
                         if(position==children.lastIndex)Spacer(Modifier.height(10.dp))
                     }
@@ -67,7 +72,7 @@ fun SubscriptionServerList(
         }
         if(standalone.isNotEmpty()&&subscriptions.isNotEmpty())item(key="manual-title"){Text(tr("Добавленные вручную"),style=MaterialTheme.typography.labelLarge,color=MaterialTheme.colorScheme.onSurfaceVariant,modifier=Modifier.padding(top=22.dp,bottom=10.dp,start=4.dp))}
         items(standalone,key={"manual:${it.id}"},contentType={"standalone"}) {server->
-            Surface(shape=RoundedCornerShape(22.dp),color=MaterialTheme.colorScheme.surfaceContainerLow,modifier=Modifier.padding(bottom=8.dp)) {
+            Surface(shape=RoundedCornerShape(22.dp),border=BorderStroke(1.dp,MaterialTheme.colorScheme.outlineVariant),color=MaterialTheme.colorScheme.surfaceContainerLow,modifier=Modifier.padding(bottom=8.dp)) {
                 Box(Modifier.padding(horizontal=12.dp,vertical=6.dp)){SubscriptionServerRow(server,server.id==selectedServer?.id,{onSelectServer(server)},{onPingServer(server)},{onEditServer(server)},{onCopyLink(server)},{onDeleteServer(server)})}
             }
         }
@@ -80,7 +85,7 @@ fun SubscriptionServerList(
 @Composable
 private fun SubscriptionServerRow(server:ServerProfile,selected:Boolean,onSelect:()->Unit,onPing:()->Unit,onEdit:()->Unit,onCopy:()->Unit,onDelete:()->Unit) {
     var menu by remember {mutableStateOf(false)}
-    Surface(shape=RoundedCornerShape(16.dp),color=if(selected)MaterialTheme.colorScheme.surfaceContainerHigh else MaterialTheme.colorScheme.surfaceContainerLow) {
+    Surface(shape=RoundedCornerShape(16.dp),border=if(selected)BorderStroke(1.dp,MaterialTheme.colorScheme.outline) else null,color=if(selected)MaterialTheme.colorScheme.surfaceContainerHigh else MaterialTheme.colorScheme.surfaceContainerLow) {
         Row(Modifier.fillMaxWidth().selectable(selected=selected,role=Role.RadioButton,onClick=onSelect).padding(start=10.dp,end=0.dp,top=10.dp,bottom=10.dp),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(10.dp)) {
             ServerGlyph(if(selected)Icons.Default.Check else Icons.Default.Dns,Modifier.size(36.dp),bright=selected)
             Column(Modifier.weight(1f),verticalArrangement=Arrangement.spacedBy(3.dp)) {Text(server.name,style=MaterialTheme.typography.titleSmall,maxLines=1,overflow=TextOverflow.Ellipsis);Text(server.server,style=MaterialTheme.typography.labelSmall,color=MaterialTheme.colorScheme.onSurfaceVariant,maxLines=1,overflow=TextOverflow.Ellipsis)}
@@ -102,7 +107,7 @@ internal fun SubscriptionGroupHeader(subscription:SubscriptionInfo,count:Int,exp
     var menu by remember {mutableStateOf(false)};var remove by remember {mutableStateOf(false)};var qr by remember {mutableStateOf(false)};var info by remember {mutableStateOf(false)}
     val usage=subscriptionUsage(subscription.upload,subscription.download,subscription.total)
     val host=remember(subscription.url){runCatching{Uri.parse(subscription.url).host}.getOrNull().orEmpty()}
-    Surface(Modifier.fillMaxWidth().testTag("subscription-header"),shape=if(expanded&&count>0)RoundedCornerShape(topStart=24.dp,topEnd=24.dp) else RoundedCornerShape(24.dp),color=MaterialTheme.colorScheme.surfaceContainerLow) {
+    Surface(Modifier.fillMaxWidth().testTag("subscription-header").subscriptionOutline(MaterialTheme.colorScheme.outlineVariant,first=true,last=!expanded||count==0),shape=if(expanded&&count>0)RoundedCornerShape(topStart=24.dp,topEnd=24.dp) else RoundedCornerShape(24.dp),color=MaterialTheme.colorScheme.surfaceContainerLow) {
         Column(Modifier.padding(start=16.dp,end=8.dp,top=12.dp,bottom=if(expanded&&count>0)4.dp else 8.dp),verticalArrangement=Arrangement.spacedBy(6.dp)) {
             Row(verticalAlignment=Alignment.CenterVertically) {
                 Row(Modifier.weight(1f).testTag("subscription-toggle").semantics{stateDescription=if(expanded)tr("Развёрнута") else tr("Свёрнута")}.clickable(role=Role.Button,onClick=onToggle),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(12.dp)) {
@@ -133,4 +138,32 @@ internal fun SubscriptionGroupHeader(subscription:SubscriptionInfo,count:Int,exp
     if(qr)SubscriptionQrDialog(subscription){qr=false}
     if(info)AlertDialog(onDismissRequest={info=false},title={Text(tr("Информация о подписке"))},text={Column(verticalArrangement=Arrangement.spacedBy(12.dp)){Text(host);if(subscription.lastUpdated.isNotBlank())Text(tr("Обновлено {0}",subscription.lastUpdated));Text(tr("Использовано: {0}",displayTraffic(usage.used)));if(subscription.announcement.isNotBlank())Text(subscription.announcement)}},confirmButton={TextButton(onClick={info=false}){Text(tr("Закрыть"))}})
     if(remove)AlertDialog(onDismissRequest={remove=false},title={Text(tr("Удалить подписку?"))},text={Text(tr("«{0}» и её серверы будут удалены из приложения. Серверы, добавленные вручную, останутся.",subscription.name))},confirmButton={TextButton(onClick={remove=false;onClear()}){Text(tr("Удалить"),color=MaterialTheme.colorScheme.error)}},dismissButton={TextButton(onClick={remove=false}){Text(tr("Отмена"))}})
+}
+
+// Adjacent lazy rows share a continuous perimeter without boxing each server.
+private fun Modifier.subscriptionOutline(color: Color, first: Boolean, last: Boolean) = drawWithContent {
+    drawContent()
+    val stroke = 1.dp.toPx()
+    val inset = stroke / 2
+    val left = inset
+    val right = size.width - inset
+    val top = inset
+    val bottom = size.height - inset
+    val radius = minOf(24.dp.toPx(), (right-left)/2, (bottom-top)/2)
+    val edge = Path().apply {
+        if (first) {
+            moveTo(left, top+radius)
+            quadraticTo(left, top, left+radius, top)
+            lineTo(right-radius, top)
+            quadraticTo(right, top, right, top+radius)
+        } else moveTo(right, 0f)
+        lineTo(right, if(last) bottom-radius else size.height)
+        if (last) {
+            quadraticTo(right, bottom, right-radius, bottom)
+            lineTo(left+radius, bottom)
+            quadraticTo(left, bottom, left, bottom-radius)
+        } else moveTo(left, size.height)
+        lineTo(left, if(first) top+radius else 0f)
+    }
+    drawPath(edge, color, style=Stroke(stroke))
 }

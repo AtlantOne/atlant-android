@@ -61,8 +61,8 @@ android {
         if (localUiTest) applicationIdSuffix = ".uitest"
         minSdk = 24
         targetSdk = 37
-        versionCode = 16
-        versionName = "2.0.11"
+        versionCode = 17
+        versionName = "2.0.12"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 

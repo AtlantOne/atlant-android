@@ -475,7 +475,8 @@ fun ServerItemCard(
         colors = CardDefaults.cardColors(
             containerColor = if (isSelected) AtlantSurfaceVariant else AtlantSurface
         ),
-        elevation = CardDefaults.cardElevation(if (isSelected) 2.dp else 1.dp)
+        border = BorderStroke(1.dp, if (isSelected) MaterialTheme.colorScheme.outline else AtlantCardBorder),
+        elevation = CardDefaults.cardElevation(0.dp)
     ) {
         Row(
             modifier = Modifier
@@ -996,7 +997,8 @@ fun EditServerScreen(
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(16.dp),
                     colors = CardDefaults.cardColors(containerColor = AtlantSurface),
-                    elevation = CardDefaults.cardElevation(2.dp)
+                    border = BorderStroke(1.dp, AtlantCardBorder),
+                    elevation = CardDefaults.cardElevation(0.dp)
                 ) {
                     Column(modifier = Modifier.padding(16.dp)) {
                         Text(
@@ -1049,7 +1051,8 @@ fun EditServerScreen(
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(16.dp),
                     colors = CardDefaults.cardColors(containerColor = AtlantSurface),
-                    elevation = CardDefaults.cardElevation(2.dp)
+                    border = BorderStroke(1.dp, AtlantCardBorder),
+                    elevation = CardDefaults.cardElevation(0.dp)
                 ) {
                     Column(modifier = Modifier.padding(16.dp)) {
                         Text(
@@ -1128,7 +1131,8 @@ fun EditServerScreen(
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(16.dp),
                     colors = CardDefaults.cardColors(containerColor = AtlantSurface),
-                    elevation = CardDefaults.cardElevation(2.dp)
+                    border = BorderStroke(1.dp, AtlantCardBorder),
+                    elevation = CardDefaults.cardElevation(0.dp)
                 ) {
                     Column(modifier = Modifier.padding(16.dp)) {
                         Text(
@@ -1224,7 +1228,8 @@ fun EditServerScreen(
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(16.dp),
                     colors = CardDefaults.cardColors(containerColor = AtlantSurface),
-                    elevation = CardDefaults.cardElevation(2.dp)
+                    border = BorderStroke(1.dp, AtlantCardBorder),
+                    elevation = CardDefaults.cardElevation(0.dp)
                 ) {
                     Column(modifier = Modifier.padding(16.dp)) {
                         Text(
