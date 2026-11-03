@@ -2798,5 +2798,13 @@
   "Размер текста, кнопок и отступов во всём приложении. Подключение VPN не прерывается.": {
     "en": "Text, buttons and spacing throughout the app. Your VPN connection stays active.",
     "zh": "调整整个应用的文字、按钮和间距。VPN 连接保持不中断。"
+  },
+  "Изменения не применены": {
+    "en": "Changes not applied",
+    "zh": "更改尚未应用"
+  },
+  "Повторить применение": {
+    "en": "Retry activation",
+    "zh": "重试应用"
   }
 }

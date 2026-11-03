@@ -295,7 +295,10 @@ fun ServerManagementScreen(job: String, name: String, onBack: () -> Unit,rpc:sus
                     }
                 }
                 "inbounds" -> {
-                    item {TextButton(enabled=!loading,onClick={action("inboundapply ${catalog.optLong("revision")}")}) {Text(tr("Применить подключения"))}}
+                    if(catalog.optLong("revision")!=catalog.optLong("applied_revision"))item {
+                        Text(tr("Изменения не применены"),color=MaterialTheme.colorScheme.error,style=MaterialTheme.typography.bodySmall)
+                        TextButton(enabled=!loading,onClick={action("inboundapply ${catalog.optLong("revision")}")}) {Text(tr("Повторить применение"))}
+                    }
                     items(catalog.array("inbounds").records().filter{it.getJSONObject("settings").optString("name").contains(search,true)},key={it.getJSONObject("settings").getString("id")}) { record ->
                         val spec=record.getJSONObject("settings")
                         AdminRecord(spec.optString("name"),spec.optString("listen")+" · "+spec.array("transports").join(" / ").replace("\"","")) {
