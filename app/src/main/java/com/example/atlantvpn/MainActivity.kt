@@ -443,7 +443,7 @@ fun ConnectionScreen(
                     Text(selectedServer?.name?:tr("Выберите сервер"),style=MaterialTheme.typography.bodySmall,color=MaterialTheme.colorScheme.onSurfaceVariant,maxLines=1,overflow=TextOverflow.Ellipsis)
                     if(status==VpnStatus.CONNECTED)ConnectionDurationText(durationSec)
                 }
-                FilledIconButton(onClick=onConnectToggle,shape=RoundedCornerShape(22.dp),modifier=Modifier.size(68.dp),colors=IconButtonDefaults.filledIconButtonColors(containerColor=if(status==VpnStatus.CONNECTED)MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surfaceContainerHigh,contentColor=if(status==VpnStatus.CONNECTED)MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurface)) {
+                FilledIconButton(onClick=onConnectToggle,shape=CircleShape,modifier=Modifier.size(68.dp).border(1.dp, if(status==VpnStatus.CONNECTED) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outline, CircleShape),colors=IconButtonDefaults.filledIconButtonColors(containerColor=if(status==VpnStatus.CONNECTED)MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surfaceContainerHigh,contentColor=if(status==VpnStatus.CONNECTED)MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurface)) {
                     if(status==VpnStatus.CONNECTING)CircularProgressIndicator(Modifier.size(26.dp),strokeWidth=2.dp) else Icon(Icons.Default.PowerSettingsNew,tr(if(status==VpnStatus.CONNECTED)"Отключить VPN" else "Подключить VPN"),Modifier.size(28.dp))
                 }
             }
