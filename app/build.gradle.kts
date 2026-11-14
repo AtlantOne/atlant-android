@@ -65,8 +65,8 @@ android {
         if (designPreview) applicationIdSuffix = ".designpreview" else if (localUiTest) applicationIdSuffix = ".uitest"
         minSdk = 24
         targetSdk = 37
-        versionCode = 22
-        versionName = "2.0.17"
+        versionCode = 23
+        versionName = "2.0.18"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
