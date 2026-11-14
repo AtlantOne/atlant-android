@@ -26,8 +26,8 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 internal fun ServerGlyph(icon:ImageVector,modifier:Modifier=Modifier,bright:Boolean=false) {
-    Box(modifier.size(44.dp).background(if(bright)MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surfaceContainerHigh,RoundedCornerShape(16.dp)),contentAlignment=Alignment.Center) {
-        Icon(icon,null,Modifier.size(22.dp),tint=if(bright)MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurfaceVariant)
+    Box(modifier.size(36.dp).background(if(bright)MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surfaceContainerHigh,RoundedCornerShape(8.dp)),contentAlignment=Alignment.Center) {
+        Icon(icon,null,Modifier.size(18.dp),tint=if(bright)MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurfaceVariant)
     }
 }
 
@@ -41,7 +41,7 @@ internal fun ServerStatusPill(text:String,emphasized:Boolean=false) {
 @Composable
 internal fun ManagementDestination(title:String,detail:String,icon:ImageVector,onClick:()->Unit,modifier:Modifier=Modifier) {
     Surface(onClick=onClick,modifier=modifier,shape=RoundedCornerShape(12.dp),border=BorderStroke(1.dp,MaterialTheme.colorScheme.outlineVariant),color=MaterialTheme.colorScheme.surfaceContainerLow) {
-        Column(Modifier.padding(18.dp),verticalArrangement=Arrangement.spacedBy(14.dp)) {
+        Column(Modifier.padding(12.dp),verticalArrangement=Arrangement.spacedBy(8.dp)) {
             Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.SpaceBetween,verticalAlignment=Alignment.CenterVertically) {ManagementGlyph(icon);Icon(Icons.Default.ChevronRight,null,Modifier.size(18.dp),tint=MaterialTheme.colorScheme.onSurfaceVariant)}
             Column(verticalArrangement=Arrangement.spacedBy(4.dp)) {Text(title,style=MaterialTheme.typography.titleMedium,maxLines=2,overflow=TextOverflow.Ellipsis);Text(detail,style=MaterialTheme.typography.bodySmall,color=MaterialTheme.colorScheme.onSurfaceVariant,maxLines=2,overflow=TextOverflow.Ellipsis)}
         }
@@ -50,7 +50,7 @@ internal fun ManagementDestination(title:String,detail:String,icon:ImageVector,o
 
 @Composable
 internal fun ManagementMetric(label:String,value:String,modifier:Modifier=Modifier) {
-    Column(modifier.padding(vertical=4.dp),verticalArrangement=Arrangement.spacedBy(5.dp)) {Text(value,style=MaterialTheme.typography.headlineSmall);Text(label,style=MaterialTheme.typography.bodySmall,color=MaterialTheme.colorScheme.onSurfaceVariant)}
+    Column(modifier.padding(vertical=4.dp),verticalArrangement=Arrangement.spacedBy(3.dp)) {Text(value,style=MaterialTheme.typography.headlineSmall);Text(label,style=MaterialTheme.typography.bodySmall,color=MaterialTheme.colorScheme.onSurfaceVariant)}
 }
 
 @Composable
@@ -88,7 +88,7 @@ internal fun ManagementTheme(content: @Composable () -> Unit) {
         shapes = Shapes(
             extraSmall = RoundedCornerShape(4.dp), small = RoundedCornerShape(6.dp),
             medium = RoundedCornerShape(8.dp), large = RoundedCornerShape(12.dp),
-            extraLarge = RoundedCornerShape(16.dp)
+            extraLarge = RoundedCornerShape(8.dp)
         ),
         content = content
     )

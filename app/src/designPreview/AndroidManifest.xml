@@ -1,0 +1,11 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+    <application android:label="Atlant · Дизайн" tools:replace="android:label">
+        <activity android:name=".MainActivity" tools:node="remove" />
+        <activity android:name=".DesignPreviewActivity" android:exported="true" android:theme="@style/Theme.AtlantVPN">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>

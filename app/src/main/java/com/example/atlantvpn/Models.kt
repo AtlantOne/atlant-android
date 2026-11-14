@@ -116,6 +116,7 @@ data class AppSettings(
     val remoteDns: Boolean = true,
     val zeroRtt: Boolean = true,
     val fingerprint: String = "firefox",
+    val quicFingerprint: String = "chrome_156",
     val chaffingEnabled: Boolean = true,
     val chaffingInterval: Int = 10
 )

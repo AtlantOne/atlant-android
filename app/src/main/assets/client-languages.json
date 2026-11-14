@@ -2806,5 +2806,37 @@
   "Повторить применение": {
     "en": "Retry activation",
     "zh": "重试应用"
+  },
+  "Случайный Chrome": {
+    "en": "Random Chrome",
+    "zh": "随机 Chrome"
+  },
+  "Случайный Firefox": {
+    "en": "Random Firefox",
+    "zh": "随机 Firefox"
+  },
+  "Случайный браузер": {
+    "en": "Random browser",
+    "zh": "随机浏览器"
+  },
+  "TLS-профиль TCP/XHTTP": {
+    "en": "TCP/XHTTP TLS profile",
+    "zh": "TCP/XHTTP TLS 配置"
+  },
+  "QUIC-профиль": {
+    "en": "QUIC profile",
+    "zh": "QUIC 配置"
+  },
+  "Случайный режим выбирает готовый профиль браузера для каждого нового соединения. У существующего соединения профиль не меняется.": {
+    "en": "Random mode chooses a complete browser profile for each new connection. Established connections keep their profile.",
+    "zh": "随机模式会为每个新连接选择完整的浏览器配置，已建立的连接保持原有配置。"
+  },
+  "Случайный режим выбирает готовый профиль браузера для нового соединения. Профиль существующего соединения не меняется.": {
+    "en": "Random mode chooses a complete browser profile for a new connection. Established connections keep their profile.",
+    "zh": "随机模式会为新连接选择完整的浏览器配置，已建立的连接保持原有配置。"
+  },
+  "Профиль TCP/XHTTP этого сервера: {0}. Настройка QUIC задаётся отдельно.": {
+    "en": "This server’s TCP/XHTTP profile: {0}. QUIC is configured separately.",
+    "zh": "此服务器的 TCP/XHTTP 配置：{0}。QUIC 单独设置。"
   }
 }

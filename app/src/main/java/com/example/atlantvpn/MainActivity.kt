@@ -102,9 +102,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
-import androidx.compose.material3.FilledIconButton
 import androidx.compose.material3.FilledTonalIconButton
-import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
@@ -436,17 +434,51 @@ fun ConnectionScreen(
                 }
             }
         }
-        Surface(shape=RoundedCornerShape(28.dp),color=MaterialTheme.colorScheme.surfaceContainerLow) {
-            Row(Modifier.fillMaxWidth().padding(20.dp),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(16.dp)) {
-                Column(Modifier.weight(1f),verticalArrangement=Arrangement.spacedBy(5.dp)) {
-                    Text(tr(when(status){VpnStatus.CONNECTED->"VPN включён";VpnStatus.CONNECTING->"Подключение…";else->"VPN выключен"}),style=MaterialTheme.typography.titleLarge)
-                    Text(selectedServer?.name?:tr("Выберите сервер"),style=MaterialTheme.typography.bodySmall,color=MaterialTheme.colorScheme.onSurfaceVariant,maxLines=1,overflow=TextOverflow.Ellipsis)
-                    if(status==VpnStatus.CONNECTED)ConnectionDurationText(durationSec)
-                }
-                FilledIconButton(onClick=onConnectToggle,shape=CircleShape,modifier=Modifier.size(68.dp).border(1.dp, if(status==VpnStatus.CONNECTED) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outline, CircleShape),colors=IconButtonDefaults.filledIconButtonColors(containerColor=if(status==VpnStatus.CONNECTED)MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surfaceContainerHigh,contentColor=if(status==VpnStatus.CONNECTED)MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurface)) {
-                    if(status==VpnStatus.CONNECTING)CircularProgressIndicator(Modifier.size(26.dp),strokeWidth=2.dp) else Icon(Icons.Default.PowerSettingsNew,tr(if(status==VpnStatus.CONNECTED)"Отключить VPN" else "Подключить VPN"),Modifier.size(28.dp))
+        val connected = status == VpnStatus.CONNECTED
+        val connecting = status == VpnStatus.CONNECTING
+        val colors = MaterialTheme.colorScheme
+        val buttonLabel = tr(if (connected || connecting) "Отключить VPN" else "Подключить VPN")
+        Column(
+            Modifier.fillMaxWidth().padding(vertical = 12.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            Box(
+                modifier = Modifier
+                    .size(96.dp)
+                    .clip(CircleShape)
+                    .background(if (connected) colors.primary else colors.surfaceContainerHigh)
+                    .border(1.dp, if (connected) colors.primary else colors.outline, CircleShape)
+                    .clickable(role = Role.Button, onClickLabel = buttonLabel, onClick = onConnectToggle),
+                contentAlignment = Alignment.Center
+            ) {
+                if (connecting) {
+                    CircularProgressIndicator(Modifier.size(34.dp), strokeWidth = 2.dp)
+                } else {
+                    Icon(
+                        Icons.Default.PowerSettingsNew,
+                        contentDescription = buttonLabel,
+                        modifier = Modifier.size(38.dp),
+                        tint = if (connected) colors.onPrimary else colors.onSurface
+                    )
                 }
             }
+            Text(
+                tr(when (status) {
+                    VpnStatus.CONNECTED -> "VPN включён"
+                    VpnStatus.CONNECTING -> "Подключение…"
+                    else -> "VPN выключен"
+                }),
+                style = MaterialTheme.typography.titleLarge
+            )
+            Text(
+                selectedServer?.name ?: tr("Выберите сервер"),
+                style = MaterialTheme.typography.bodySmall,
+                color = colors.onSurfaceVariant,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis
+            )
+            if (connected) ConnectionDurationText(durationSec)
         }
         Row(Modifier.fillMaxWidth().padding(start=4.dp),horizontalArrangement=Arrangement.SpaceBetween,verticalAlignment=Alignment.CenterVertically) {
             Text(tr("Серверы ({0})",servers.size),style=MaterialTheme.typography.titleMedium)
@@ -1181,29 +1213,10 @@ fun EditServerScreen(
                         Text(tr("TLS-профиль:"), fontSize = 13.sp, fontWeight = FontWeight.SemiBold, color = AtlantTextPrimary)
                         Spacer(modifier = Modifier.height(6.dp))
 
-                        FlowRow(
-                            modifier = Modifier.fillMaxWidth(),
-                            horizontalArrangement = Arrangement.spacedBy(4.dp),
-                            verticalArrangement = Arrangement.spacedBy(6.dp)
-                        ) {
-                            listOf(
-                                "" to tr("По умолч."),
-                                "chrome" to "Chrome 144",
-                                "chrome_120" to tr("Chrome 120 (совместимость)"),
-                                "firefox" to "Firefox 120",
-                                "safari" to "Safari 16",
-                                "ios" to "iOS 14",
-                                "edge" to "Edge 106"
-                            ).forEach { (valKey, label) ->
-                                val isSel = fingerprint.equals(valKey, ignoreCase = true)
-                                ModeChip(text = label, isSelected = isSel) {
-                                    fingerprint = valKey
-                                }
-                            }
-                        }
+                        ValueSetting(tr("TLS-профиль TCP/XHTTP"), normalizeTlsProfile(fingerprint), listOf("" to tr("По умолч.")) + tlsProfileChoices()) { fingerprint = it }
 
                         Text(
-                            tr("Профиль задаёт только ClientHello. Android/OkHttp несовместим с REALITY; случайный профиль не имитирует браузер. Импортированное значение: {0}.", fingerprint.ifBlank { tr("по умолчанию") }),
+                            tr("Профиль TCP/XHTTP этого сервера: {0}. Настройка QUIC задаётся отдельно.", fingerprint.ifBlank { tr("по умолчанию") }),
                             fontSize = 11.sp,
                             color = AtlantTextMuted,
                             modifier = Modifier.padding(top = 6.dp)

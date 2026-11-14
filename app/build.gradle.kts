@@ -8,12 +8,13 @@ plugins {
 
 // Local UI tests use an isolated package/output and never load the ARM VPN library.
 val localUiTest = providers.gradleProperty("atlantUiTest").orNull == "true"
+val designPreview = providers.gradleProperty("atlantDesignPreview").orNull == "true"
 val atlantAar = providers.gradleProperty("atlantAar").orElse("atlant.aar").get()
 val requestedAbis = providers.gradleProperty("atlantAbis").orElse("arm64-v8a").get().split(',')
 require(requestedAbis.isNotEmpty() && requestedAbis.all { it in setOf("arm64-v8a", "armeabi-v7a", "x86", "x86_64") }) { "Unsupported Android ABI" }
 val splitPublicApks = providers.gradleProperty("atlantSplitApks").orNull == "true"
 require(Regex("[A-Za-z0-9_.-]+\\.aar").matches(atlantAar)) { "atlantAar must be a library filename" }
-layout.buildDirectory.set(rootProject.layout.projectDirectory.dir(if (localUiTest) "artifacts/build/android/ui-test" else "artifacts/build/android/app"))
+layout.buildDirectory.set(rootProject.layout.projectDirectory.dir(if (designPreview) "artifacts/build/android/design-preview" else if (localUiTest) "artifacts/build/android/ui-test" else "artifacts/build/android/app"))
 
 val verifyAtlantLibrary = tasks.register("verifyAtlantLibrary") {
     val library = rootProject.layout.projectDirectory.file("artifacts/android/$atlantAar")
@@ -27,6 +28,7 @@ val verifyAtlantLibrary = tasks.register("verifyAtlantLibrary") {
                 var hasRouter = false
                 var hasSetter = false
                 var hasAdministration = false
+                var hasQUICProfile = false
                 var entry = jar.nextJarEntry
                 while (entry != null) {
                     when (entry.name) {
@@ -34,12 +36,14 @@ val verifyAtlantLibrary = tasks.register("verifyAtlantLibrary") {
                         "atlant/Atlant.class" -> {
                             val api = jar.readBytes().toString(Charsets.ISO_8859_1)
                             hasSetter = api.contains("setAppRouter")
+                            hasQUICProfile = api.contains("setQUICFingerprint")
                             hasAdministration = api.contains("adminBegin") && api.contains("adminProbe") && api.contains("adminStatus") && api.contains("adminClose") && api.contains("adminCall")
                         }
                     }
                     entry = jar.nextJarEntry
                 }
                 check(hasRouter && hasSetter) { "Outdated $atlantAar: required routing API missing. $hint" }
+                check(hasQUICProfile) { "Outdated $atlantAar: QUIC profile API missing. Rebuild with scripts/build-aar.ps1." }
                 check(hasAdministration) { "Outdated $atlantAar: SSH administration API missing. Rebuild with scripts/build-aar.ps1." }
             }
         }
@@ -58,11 +62,11 @@ android {
 
     defaultConfig {
         applicationId = "com.example.atlantvpn"
-        if (localUiTest) applicationIdSuffix = ".uitest"
+        if (designPreview) applicationIdSuffix = ".designpreview" else if (localUiTest) applicationIdSuffix = ".uitest"
         minSdk = 24
         targetSdk = 37
-        versionCode = 19
-        versionName = "2.0.14"
+        versionCode = 22
+        versionName = "2.0.17"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
@@ -99,6 +103,7 @@ android {
     buildFeatures {
         compose = true
     }
+    if (designPreview) sourceSets.getByName("debug").manifest.srcFile("src/designPreview/AndroidManifest.xml")
 }
 
 dependencies {

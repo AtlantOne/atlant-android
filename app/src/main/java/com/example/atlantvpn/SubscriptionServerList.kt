@@ -54,14 +54,14 @@ fun SubscriptionServerList(
     LazyColumn(modifier.testTag("server-list"),contentPadding=PaddingValues(bottom=16.dp)) {
         subscriptions.forEachIndexed {index,sub->
             val key=sub.id.ifBlank{sub.url};val expanded=key !in collapsed;val children=grouped[sub.id].orEmpty()
-            if(index>0)item(key="gap:$key"){Spacer(Modifier.height(12.dp))}
+            if(index>0)item(key="gap:$key"){Spacer(Modifier.height(8.dp))}
             item(key="subscription:$key",contentType="subscription-header") {
                 SubscriptionGroupHeader(sub,children.size,expanded,
                     onToggle={collapsed=if(expanded)collapsed+key else collapsed-key},
                     onUpdate={onFocusSubscription(sub.id);onUpdateSubscription()},onEdit={onFocusSubscription(sub.id);onEditSubscription()},onClear={onFocusSubscription(sub.id);onClearSubscription()})
             }
             if(expanded)itemsIndexed(children,key={_,server->"subscription:${server.id}"},contentType={_,_->"subscription-server"}) {position,server->
-                Surface(Modifier.fillMaxWidth().testTag("subscription-server:${server.id}").subscriptionOutline(MaterialTheme.colorScheme.outlineVariant,first=false,last=position==children.lastIndex),shape=if(position==children.lastIndex)RoundedCornerShape(bottomStart=24.dp,bottomEnd=24.dp) else RoundedCornerShape(0.dp),color=MaterialTheme.colorScheme.surfaceContainerLow) {
+                Surface(Modifier.fillMaxWidth().testTag("subscription-server:${server.id}").subscriptionOutline(MaterialTheme.colorScheme.outlineVariant,first=false,last=position==children.lastIndex),shape=if(position==children.lastIndex)RoundedCornerShape(bottomStart=12.dp,bottomEnd=12.dp) else RoundedCornerShape(0.dp),color=MaterialTheme.colorScheme.surfaceContainerLow) {
                     Column(Modifier.padding(horizontal=12.dp)) {
                         if(position>0)HorizontalDivider(Modifier.padding(start=52.dp,end=8.dp),color=MaterialTheme.colorScheme.outlineVariant)
                         SubscriptionServerRow(server,server.id==selectedServer?.id,{onSelectServer(server)},{onPingServer(server)},{onEditServer(server)},{onCopyLink(server)},{onDeleteServer(server)})
@@ -70,9 +70,9 @@ fun SubscriptionServerList(
                 }
             }
         }
-        if(standalone.isNotEmpty()&&subscriptions.isNotEmpty())item(key="manual-title"){Text(tr("Добавленные вручную"),style=MaterialTheme.typography.labelLarge,color=MaterialTheme.colorScheme.onSurfaceVariant,modifier=Modifier.padding(top=22.dp,bottom=10.dp,start=4.dp))}
+        if(standalone.isNotEmpty()&&subscriptions.isNotEmpty())item(key="manual-title"){Text(tr("Добавленные вручную"),style=MaterialTheme.typography.labelLarge,color=MaterialTheme.colorScheme.onSurfaceVariant,modifier=Modifier.padding(top=14.dp,bottom=6.dp,start=4.dp))}
         items(standalone,key={"manual:${it.id}"},contentType={"standalone"}) {server->
-            Surface(shape=RoundedCornerShape(22.dp),border=BorderStroke(1.dp,MaterialTheme.colorScheme.outlineVariant),color=MaterialTheme.colorScheme.surfaceContainerLow,modifier=Modifier.padding(bottom=8.dp)) {
+            Surface(shape=RoundedCornerShape(12.dp),border=BorderStroke(1.dp,MaterialTheme.colorScheme.outlineVariant),color=MaterialTheme.colorScheme.surfaceContainerLow,modifier=Modifier.padding(bottom=8.dp)) {
                 Box(Modifier.padding(horizontal=12.dp,vertical=6.dp)){SubscriptionServerRow(server,server.id==selectedServer?.id,{onSelectServer(server)},{onPingServer(server)},{onEditServer(server)},{onCopyLink(server)},{onDeleteServer(server)})}
             }
         }
@@ -85,8 +85,8 @@ fun SubscriptionServerList(
 @Composable
 private fun SubscriptionServerRow(server:ServerProfile,selected:Boolean,onSelect:()->Unit,onPing:()->Unit,onEdit:()->Unit,onCopy:()->Unit,onDelete:()->Unit) {
     var menu by remember {mutableStateOf(false)}
-    Surface(shape=RoundedCornerShape(16.dp),border=if(selected)BorderStroke(1.dp,MaterialTheme.colorScheme.outline) else null,color=if(selected)MaterialTheme.colorScheme.surfaceContainerHigh else MaterialTheme.colorScheme.surfaceContainerLow) {
-        Row(Modifier.fillMaxWidth().selectable(selected=selected,role=Role.RadioButton,onClick=onSelect).padding(start=10.dp,end=0.dp,top=10.dp,bottom=10.dp),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(10.dp)) {
+    Surface(shape=RoundedCornerShape(8.dp),border=if(selected)BorderStroke(1.dp,MaterialTheme.colorScheme.outline) else null,color=if(selected)MaterialTheme.colorScheme.surfaceContainerHigh else MaterialTheme.colorScheme.surfaceContainerLow) {
+        Row(Modifier.fillMaxWidth().selectable(selected=selected,role=Role.RadioButton,onClick=onSelect).padding(start=10.dp,end=0.dp,top=6.dp,bottom=6.dp),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(10.dp)) {
             ServerGlyph(if(selected)Icons.Default.Check else Icons.Default.Dns,Modifier.size(36.dp),bright=selected)
             Column(Modifier.weight(1f),verticalArrangement=Arrangement.spacedBy(3.dp)) {Text(server.name,style=MaterialTheme.typography.titleSmall,maxLines=1,overflow=TextOverflow.Ellipsis);Text(server.server,style=MaterialTheme.typography.labelSmall,color=MaterialTheme.colorScheme.onSurfaceVariant,maxLines=1,overflow=TextOverflow.Ellipsis)}
             TextButton(onClick=onPing,contentPadding=PaddingValues(horizontal=6.dp)) {Text(if(server.pingMs>0)tr("{0} мс",server.pingMs) else tr("Пинг"),style=MaterialTheme.typography.labelMedium)}
@@ -107,16 +107,23 @@ internal fun SubscriptionGroupHeader(subscription:SubscriptionInfo,count:Int,exp
     var menu by remember {mutableStateOf(false)};var remove by remember {mutableStateOf(false)};var qr by remember {mutableStateOf(false)};var info by remember {mutableStateOf(false)}
     val usage=subscriptionUsage(subscription.upload,subscription.download,subscription.total)
     val host=remember(subscription.url){runCatching{Uri.parse(subscription.url).host}.getOrNull().orEmpty()}
-    Surface(Modifier.fillMaxWidth().testTag("subscription-header").subscriptionOutline(MaterialTheme.colorScheme.outlineVariant,first=true,last=!expanded||count==0),shape=if(expanded&&count>0)RoundedCornerShape(topStart=24.dp,topEnd=24.dp) else RoundedCornerShape(24.dp),color=MaterialTheme.colorScheme.surfaceContainerLow) {
-        Column(Modifier.padding(start=16.dp,end=8.dp,top=12.dp,bottom=if(expanded&&count>0)4.dp else 8.dp),verticalArrangement=Arrangement.spacedBy(6.dp)) {
+    Surface(Modifier.fillMaxWidth().testTag("subscription-header").subscriptionOutline(MaterialTheme.colorScheme.outlineVariant,first=true,last=!expanded||count==0),shape=if(expanded&&count>0)RoundedCornerShape(topStart=12.dp,topEnd=12.dp) else RoundedCornerShape(12.dp),color=MaterialTheme.colorScheme.surfaceContainerLow) {
+        Column(Modifier.padding(start=12.dp,end=4.dp,top=6.dp,bottom=6.dp),verticalArrangement=Arrangement.spacedBy(4.dp)) {
             Row(verticalAlignment=Alignment.CenterVertically) {
-                Row(Modifier.weight(1f).testTag("subscription-toggle").semantics{stateDescription=if(expanded)tr("Развёрнута") else tr("Свёрнута")}.clickable(role=Role.Button,onClick=onToggle),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(12.dp)) {
-                    ServerGlyph(Icons.Default.Link)
-                    Column(Modifier.weight(1f),verticalArrangement=Arrangement.spacedBy(3.dp)) {Text(subscription.name.ifBlank{host},style=MaterialTheme.typography.titleMedium,maxLines=2,overflow=TextOverflow.Ellipsis);Text(tr("Серверов: {0}",count),style=MaterialTheme.typography.bodySmall,color=MaterialTheme.colorScheme.onSurfaceVariant)}
+                Row(Modifier.weight(1f).heightIn(min=48.dp).testTag("subscription-toggle").semantics{stateDescription=if(expanded)tr("Развёрнута") else tr("Свёрнута")}.clickable(role=Role.Button,onClick=onToggle),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(8.dp)) {
                     Icon(if(expanded)Icons.Default.ExpandLess else Icons.Default.ExpandMore,null,Modifier.size(18.dp),tint=MaterialTheme.colorScheme.onSurfaceVariant)
+                    Column(Modifier.weight(1f),verticalArrangement=Arrangement.spacedBy(2.dp)) {
+                        Text(subscription.name.ifBlank{host},style=MaterialTheme.typography.titleSmall,maxLines=1,overflow=TextOverflow.Ellipsis)
+                        Row(horizontalArrangement=Arrangement.spacedBy(6.dp),verticalAlignment=Alignment.CenterVertically) {
+                            Text(tr("Серверов: {0}",count),style=MaterialTheme.typography.labelSmall,color=MaterialTheme.colorScheme.onSurfaceVariant,maxLines=1)
+                            if(subscription.total<=0)Text("· "+tr("Безлимит"),style=MaterialTheme.typography.labelSmall,color=MaterialTheme.colorScheme.onSurfaceVariant,maxLines=1,overflow=TextOverflow.Ellipsis,modifier=Modifier.testTag("subscription-quota-summary"))
+                        }
+                    }
                 }
+                IconButton(onClick={qr=true},enabled=subscription.url.isNotBlank(),modifier=Modifier.testTag("subscription-share")){Icon(Icons.Default.QrCode,tr("Ссылка и QR-код"),Modifier.size(18.dp))}
+                IconButton(onClick=onUpdate,modifier=Modifier.testTag("subscription-refresh")){Icon(Icons.Default.Refresh,tr("Обновить подписку"),Modifier.size(18.dp))}
                 Box {
-                    IconButton(onClick={menu=true},modifier=Modifier.testTag("subscription-actions")){Icon(Icons.Default.MoreVert,tr("Действия подписки"),Modifier.size(20.dp))}
+                    IconButton(onClick={menu=true},modifier=Modifier.testTag("subscription-actions")){Icon(Icons.Default.MoreVert,tr("Действия подписки"),Modifier.size(18.dp))}
                     DropdownMenu(expanded=menu,onDismissRequest={menu=false}) {
                         DropdownMenuItem(text={Text(tr("Редактировать подписку"))},onClick={menu=false;onEdit()})
                         DropdownMenuItem(text={Text(tr("Информация о подписке"))},onClick={menu=false;info=true})
@@ -124,15 +131,13 @@ internal fun SubscriptionGroupHeader(subscription:SubscriptionInfo,count:Int,exp
                     }
                 }
             }
-            Row(Modifier.fillMaxWidth(),verticalAlignment=Alignment.CenterVertically) {
-                Column(Modifier.weight(1f),verticalArrangement=Arrangement.spacedBy(4.dp)) {
-                    Text(if(subscription.total>0)tr("Осталось {0} из {1}",displayTraffic(usage.remaining),displayTraffic(subscription.total)) else tr("Безлимит"),style=MaterialTheme.typography.bodySmall,color=MaterialTheme.colorScheme.onSurfaceVariant,maxLines=1,overflow=TextOverflow.Ellipsis,modifier=Modifier.testTag("subscription-quota-summary"))
-                    if(subscription.total>0)LinearProgressIndicator(progress={usage.fraction},modifier=Modifier.fillMaxWidth().height(3.dp),color=MaterialTheme.colorScheme.primary,trackColor=MaterialTheme.colorScheme.surfaceContainerHighest)
-                    if(subscription.expire>0)Text(tr("До {0}",DateFormat.getDateInstance(DateFormat.MEDIUM).format(Date(subscription.expire*1000))),style=MaterialTheme.typography.labelSmall,color=MaterialTheme.colorScheme.onSurfaceVariant,maxLines=1,overflow=TextOverflow.Ellipsis)
+            if(subscription.total>0) {
+                Row(Modifier.fillMaxWidth().padding(end=8.dp),horizontalArrangement=Arrangement.spacedBy(8.dp)) {
+                    Text(tr("Осталось {0} из {1}",displayTraffic(usage.remaining),displayTraffic(subscription.total)),style=MaterialTheme.typography.labelSmall,color=MaterialTheme.colorScheme.onSurfaceVariant,maxLines=1,overflow=TextOverflow.Ellipsis,modifier=Modifier.weight(1f).testTag("subscription-quota-summary"))
+                    if(subscription.expire>0)Text(tr("До {0}",DateFormat.getDateInstance(DateFormat.MEDIUM).format(Date(subscription.expire*1000))),style=MaterialTheme.typography.labelSmall,color=MaterialTheme.colorScheme.onSurfaceVariant,maxLines=1)
                 }
-                IconButton(onClick={qr=true},enabled=subscription.url.isNotBlank(),modifier=Modifier.testTag("subscription-share")){Icon(Icons.Default.QrCode,tr("Ссылка и QR-код"),Modifier.size(20.dp))}
-                IconButton(onClick=onUpdate,modifier=Modifier.testTag("subscription-refresh")){Icon(Icons.Default.Refresh,tr("Обновить подписку"),Modifier.size(20.dp))}
-            }
+                LinearProgressIndicator(progress={usage.fraction},modifier=Modifier.fillMaxWidth().padding(end=8.dp).height(3.dp),color=MaterialTheme.colorScheme.primary,trackColor=MaterialTheme.colorScheme.surfaceContainerHighest)
+            } else if(subscription.expire>0)Text(tr("До {0}",DateFormat.getDateInstance(DateFormat.MEDIUM).format(Date(subscription.expire*1000))),style=MaterialTheme.typography.labelSmall,color=MaterialTheme.colorScheme.onSurfaceVariant,maxLines=1)
         }
     }
     if(qr)SubscriptionQrDialog(subscription){qr=false}
@@ -149,7 +154,7 @@ private fun Modifier.subscriptionOutline(color: Color, first: Boolean, last: Boo
     val right = size.width - inset
     val top = inset
     val bottom = size.height - inset
-    val radius = minOf(24.dp.toPx(), (right-left)/2, (bottom-top)/2)
+    val radius = minOf(12.dp.toPx(), (right-left)/2, (bottom-top)/2)
     val edge = Path().apply {
         if (first) {
             moveTo(left, top+radius)

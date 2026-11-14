@@ -16,6 +16,17 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.ChevronRight
+import androidx.compose.material.icons.outlined.Wifi
+import androidx.compose.material.icons.outlined.SwapHoriz
+import androidx.compose.material.icons.outlined.AltRoute
+import androidx.compose.material.icons.outlined.Language
+import androidx.compose.material.icons.outlined.Palette
+import androidx.compose.material.icons.outlined.Shield
+import androidx.compose.material.icons.outlined.Description
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.draw.scale
+import androidx.compose.ui.unit.sp
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -82,25 +93,27 @@ internal fun SettingsContent(
     onAndroidVpn: () -> Unit
 ) {
     Column(Modifier.fillMaxSize().imePadding()) {
-        SettingsHeader(tr(page.title), if (page == SettingsPage.HOME) null else onBack)
+        SettingsHeader(tr(page.title), if (page == SettingsPage.HOME) null else onBack, large = page == SettingsPage.HOME)
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
             contentPadding = PaddingValues(start = 16.dp, end = 16.dp, bottom = 24.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            item { Hint(if (page == SettingsPage.HOME) tr(page.description) else tr("Сохраняется автоматически. Сетевые параметры применятся после переподключения.")) }
+            if (page != SettingsPage.HOME) item { Hint(tr("Сохраняется автоматически. Сетевые параметры применятся после переподключения.")) }
             when (page) {
                 SettingsPage.HOME -> {
-                    item { SettingsSection(tr("Подключение и трафик")) {
-                        NavigationSetting(tr("Подключение"), "DNS: ${settings.dns} · MTU: ${settings.mtu}") { onNavigate("NETWORK") }
-                        NavigationSetting(tr("Транспорт"), tr("TCP, QUIC и XHTTP")) { onNavigate("TRANSPORT") }
-                        NavigationSetting(tr("Маршрутизация"), routingSummary(routing)) { onNavigate("ROUTING") }
+                    item { SettingsHomeGroup(tr("Соединение")) {
+                        NavigationSetting(tr("Подключение"), "DNS · MTU · IPv6", Icons.Outlined.Wifi, divider = true) { onNavigate("NETWORK") }
+                        NavigationSetting(tr("Транспорт"), tr("TCP, QUIC и XHTTP"), Icons.Outlined.SwapHoriz, divider = true) { onNavigate("TRANSPORT") }
+                        NavigationSetting(tr("Маршрутизация"), routingSummary(routing), Icons.Outlined.AltRoute) { onNavigate("ROUTING") }
                     } }
-                    item { SettingsSection(tr("Приложение")) {
-                        NavigationSetting(tr("Язык"), tr("English · Русский · 简体中文")) { onNavigate("LANGUAGE") }
-                        NavigationSetting(tr("Оформление"), themeLabel(settings.themeMode)) { onNavigate("APPEARANCE") }
-                        NavigationSetting(tr("Маскировка трафика"), tr("TLS-профиль, заполнение пакетов")) { onNavigate("PRIVACY") }
-                        NavigationSetting(tr("Диагностика"), tr("Журнал и сообщения об ошибках")) { onNavigate("DIAGNOSTICS") }
+                    item { SettingsHomeGroup(tr("Приложение")) {
+                        NavigationSetting(tr("Язык"), tr("Язык интерфейса"), Icons.Outlined.Language, divider = true) { onNavigate("LANGUAGE") }
+                        NavigationSetting(tr("Оформление"), themeLabel(settings.themeMode), Icons.Outlined.Palette) { onNavigate("APPEARANCE") }
+                    } }
+                    item { SettingsHomeGroup(tr("Дополнительно")) {
+                        NavigationSetting(tr("Маскировка трафика"), tr("TLS-профиль и параметры пакетов"), Icons.Outlined.Shield, divider = true) { onNavigate("PRIVACY") }
+                        NavigationSetting(tr("Диагностика"), tr("Журнал работы"), Icons.Outlined.Description) { onNavigate("DIAGNOSTICS") }
                     } }
                 }
                 SettingsPage.LANGUAGE -> item {
@@ -183,8 +196,10 @@ internal fun SettingsContent(
                     } }
                 }
                 SettingsPage.PRIVACY -> item { SettingsSection(tr("Параметры маскировки")) {
-                    ValueSetting(tr("TLS-профиль"), normalizeTlsProfile(settings.fingerprint), listOf("chrome" to "Chrome 144", "chrome_120" to tr("Chrome 120 (совместимость)"), "firefox" to "Firefox 120", "safari" to "Safari 16", "ios" to "iOS 14", "edge" to "Edge 106")) { onSave(settings.copy(fingerprint = it)) }
-                    Hint(tr("Профиль задаёт только ClientHello, а не поведение всего браузера. Старый профиль Android/OkHttp несовместим с REALITY: выберите один из списка. Случайный профиль не имитирует браузер."))
+                    ValueSetting(tr("TLS-профиль TCP/XHTTP"), normalizeTlsProfile(settings.fingerprint), tlsProfileChoices()) { onSave(settings.copy(fingerprint = it)) }
+                    ValueSetting(tr("QUIC-профиль"), settings.quicFingerprint, quicProfileChoices()) { onSave(settings.copy(quicFingerprint = it)) }
+
+                    Hint(tr("Случайный режим выбирает готовый профиль браузера для каждого нового соединения. У существующего соединения профиль не меняется."))
                     Hint(tr("Шаблон TLS ClientHello. В профиле сервера может быть указан отдельный шаблон."))
                     ToggleSetting(tr("Заполнение пакетов"), tr("Добавлять данные для изменения размеров зашифрованных блоков (Padding)."), settings.trafficPadding) { onSave(settings.copy(trafficPadding = it)) }
                     ToggleSetting(tr("Фоновые запросы"), tr("Отправлять дополнительные запросы к SNI-узлу. Увеличивает расход трафика."), settings.decoyTraffic) { onSave(settings.copy(decoyTraffic = it)) }
@@ -322,70 +337,88 @@ private fun RoutingActions(canSelect: Boolean, canClear: Boolean, onSelect: () -
 }
 
 @Composable
-private fun SettingsHeader(title: String, onBack: (() -> Unit)?) {
-    Row(Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 8.dp), verticalAlignment = Alignment.CenterVertically) {
-        if (onBack != null) IconButton(onClick = onBack) { Icon(Icons.AutoMirrored.Filled.ArrowBack, tr("Назад")) }
-        Text(title, modifier = Modifier.weight(1f).padding(horizontal = 4.dp), style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.Bold)
+private fun SettingsHeader(title: String, onBack: (() -> Unit)?, large: Boolean = false) {
+    Row(Modifier.fillMaxWidth().padding(horizontal = if (large) 20.dp else 8.dp, vertical = if (large) 18.dp else 6.dp), verticalAlignment = Alignment.CenterVertically) {
+        if (onBack != null) IconButton(onClick = onBack) { Icon(Icons.AutoMirrored.Filled.ArrowBack, tr("Назад"), modifier = Modifier.size(22.dp)) }
+        Text(title, modifier = Modifier.weight(1f).padding(horizontal = if (large) 0.dp else 4.dp),
+            style = if (large) MaterialTheme.typography.headlineLarge else MaterialTheme.typography.titleLarge,
+            fontWeight = FontWeight.Bold, letterSpacing = if (large) (-.8).sp else (-.3).sp)
     }
 }
 
 @Composable
 private fun SettingsSection(title: String, content: @Composable ColumnScope.() -> Unit) {
-    Surface(modifier = Modifier.fillMaxWidth(), color = AtlantSurface, shape = RoundedCornerShape(24.dp), border = BorderStroke(1.dp, AtlantCardBorder)) {
-        Column(Modifier.padding(18.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-            Text(title, style = MaterialTheme.typography.titleMedium, color = AtlantPrimary, fontWeight = FontWeight.SemiBold)
-            content()
+    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+        Text(title, Modifier.padding(start = 4.dp), style = MaterialTheme.typography.labelLarge, color = AtlantTextSecondary, fontWeight = FontWeight.SemiBold)
+        Surface(modifier = Modifier.fillMaxWidth(), color = AtlantSurface, shape = RoundedCornerShape(16.dp), border = BorderStroke(1.dp, AtlantCardBorder)) {
+            Column(Modifier.padding(horizontal = 14.dp, vertical = 8.dp), verticalArrangement = Arrangement.spacedBy(8.dp), content = content)
         }
     }
 }
 
 @Composable
-private fun Hint(text: String) { Text(text, style = MaterialTheme.typography.bodySmall, color = AtlantTextSecondary) }
+private fun SettingsHomeGroup(title: String, content: @Composable ColumnScope.() -> Unit) {
+    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+        Text(title, Modifier.padding(start = 4.dp), style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.SemiBold, color = AtlantTextSecondary)
+        Surface(Modifier.fillMaxWidth(), shape = RoundedCornerShape(16.dp), color = AtlantSurface, border = BorderStroke(1.dp, AtlantCardBorder)) {
+            Column(content = content)
+        }
+    }
+}
 
 @Composable
-private fun NavigationSetting(title: String, description: String, onClick: () -> Unit) {
-    Row(Modifier.fillMaxWidth().clickable(role = Role.Button, onClick = onClick).heightIn(min = 64.dp).padding(vertical = 8.dp),
-        verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-        Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(4.dp)) {
-            Text(title, style = MaterialTheme.typography.titleSmall)
-            Hint(description)
+private fun Hint(text: String) { if (text.isNotBlank()) Text(text, style = MaterialTheme.typography.bodySmall, color = AtlantTextSecondary) }
+
+@Composable
+private fun NavigationSetting(title: String, description: String, icon: ImageVector? = null, divider: Boolean = false, onClick: () -> Unit) {
+    Column {
+        Row(Modifier.fillMaxWidth().clickable(role = Role.Button, onClick = onClick).heightIn(min = 64.dp).padding(horizontal = 14.dp, vertical = 10.dp),
+            verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+            if (icon != null) Surface(shape = RoundedCornerShape(10.dp), color = MaterialTheme.colorScheme.onSurface.copy(alpha = .055f), modifier = Modifier.size(34.dp)) {
+                Box(contentAlignment = Alignment.Center) { Icon(icon, null, modifier = Modifier.size(19.dp), tint = MaterialTheme.colorScheme.onSurface.copy(alpha = .88f)) }
+            }
+            Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(3.dp)) {
+                Text(title, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
+                if (description.isNotBlank()) Text(description, style = MaterialTheme.typography.bodySmall, color = AtlantTextSecondary, maxLines = 1, overflow = TextOverflow.Ellipsis)
+            }
+            Icon(Icons.Default.ChevronRight, null, tint = AtlantTextSecondary.copy(alpha = .7f), modifier = Modifier.size(18.dp))
         }
-        Icon(Icons.Default.ChevronRight, null, tint = AtlantTextSecondary)
+        if (divider) HorizontalDivider(Modifier.padding(start = if (icon != null) 60.dp else 14.dp), thickness = 1.dp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = .07f))
     }
 }
 
 @Composable
 private fun ToggleSetting(title: String, description: String, checked: Boolean, onChange: (Boolean) -> Unit) {
-    Row(Modifier.fillMaxWidth().toggleable(checked, role = Role.Switch, onValueChange = onChange).heightIn(min = 56.dp).padding(vertical = 6.dp),
+    Row(Modifier.fillMaxWidth().toggleable(checked, role = Role.Switch, onValueChange = onChange).heightIn(min = 52.dp).padding(vertical = 2.dp),
         verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-        Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(4.dp)) {
-            Text(title, style = MaterialTheme.typography.titleSmall)
+        Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(2.dp)) {
+            Text(title, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
             Hint(description)
         }
-        Switch(checked, onCheckedChange = null)
+        Switch(checked, onCheckedChange = null, modifier = Modifier.scale(.82f))
     }
 }
 
 @Composable
 private fun ChoiceRow(title: String, description: String, selected: Boolean, onClick: () -> Unit) {
-    Row(Modifier.fillMaxWidth().selectable(selected, role = Role.RadioButton, onClick = onClick).heightIn(min = 56.dp).padding(vertical = 6.dp),
+    Row(Modifier.fillMaxWidth().selectable(selected, role = Role.RadioButton, onClick = onClick).heightIn(min = 52.dp).padding(vertical = 2.dp),
         verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
         RadioButton(selected, onClick = null)
-        Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(4.dp)) {
-            Text(title, style = MaterialTheme.typography.titleSmall)
+        Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(2.dp)) {
+            Text(title, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
             Hint(description)
         }
     }
 }
 
 @Composable
-private fun ValueSetting(title: String, value: String, choices: List<Pair<String, String>>, onSelect: (String) -> Unit) {
+internal fun ValueSetting(title: String, value: String, choices: List<Pair<String, String>>, onSelect: (String) -> Unit) {
     var expanded by remember { mutableStateOf(false) }
     val normalized = when (value.lowercase()) { "none", "silent" -> "off"; "random" -> "randomized"; else -> value.lowercase() }
     val label = choices.firstOrNull { it.first.equals(normalized, true) }?.second ?: value
     Box(Modifier.fillMaxWidth()) {
-        OutlinedButton(onClick = { expanded = true }, modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(14.dp), contentPadding = PaddingValues(14.dp)) {
-            Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+        OutlinedButton(onClick = { expanded = true }, modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(8.dp), contentPadding = PaddingValues(horizontal = 12.dp, vertical = 8.dp)) {
+            Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(2.dp)) {
                 Text(title, style = MaterialTheme.typography.labelMedium, color = AtlantTextSecondary)
                 Text(label, style = MaterialTheme.typography.bodyLarge)
             }
@@ -421,8 +454,8 @@ internal fun LogsContent(logs: List<LogEntry>, onBack: () -> Unit, onClear: () -
             }
         } else LazyColumn(state = listState, contentPadding = PaddingValues(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
             items(logs) { entry ->
-                Surface(shape = RoundedCornerShape(16.dp), color = AtlantSurface) {
-                    Column(Modifier.fillMaxWidth().padding(14.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                Surface(shape = RoundedCornerShape(8.dp), color = AtlantSurface) {
+                    Column(Modifier.fillMaxWidth().padding(10.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
                         val label = when (entry.level) { LogLevel.INFO -> tr("Информация"); LogLevel.SUCCESS -> tr("Готово"); LogLevel.WARN -> tr("Предупреждение"); LogLevel.ERROR -> tr("Ошибка") }
                         Text("${time.format(java.util.Date(entry.timestamp))} · $label", style = MaterialTheme.typography.labelMedium,
                             color = if (entry.level == LogLevel.ERROR || entry.level == LogLevel.WARN) MaterialTheme.colorScheme.error else AtlantPrimary)

@@ -282,6 +282,7 @@ object VpnManager {
                     remoteDns = obj.optBoolean("remote_dns", true),
                     zeroRtt = obj.optBoolean("zero_rtt", true),
                     fingerprint = obj.optString("fingerprint", "firefox"),
+                    quicFingerprint = obj.optString("quic_fingerprint", "chrome_156"),
                     chaffingEnabled = obj.optBoolean("chaffing_enabled", true),
                     chaffingInterval = obj.optInt("chaffing_interval", 10),
                     themeMode = ThemeMode.fromStored(obj.optString("theme_mode", "SYSTEM")),
@@ -405,6 +406,7 @@ object VpnManager {
             put("remote_dns", settings.remoteDns)
             put("zero_rtt", settings.zeroRtt)
             put("fingerprint", settings.fingerprint)
+            put("quic_fingerprint", settings.quicFingerprint)
             put("chaffing_enabled", settings.chaffingEnabled)
             put("chaffing_interval", settings.chaffingInterval)
         }

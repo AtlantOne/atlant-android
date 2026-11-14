@@ -170,7 +170,7 @@ private fun ManagedServersContent() {
         fingerprint=config.optString("fingerprint");hasStoredPassword=config.optString("password").isNotEmpty();advanced=false;status=""
     }
     fun add() {selected="";name="";host="";login="root";password="";fingerprint="";port="22";vpnPort="1026";panelPort="19090";hasStoredPassword=false;advanced=false;status="";showEditor=true}
-    Column(Modifier.fillMaxSize().padding(horizontal=20.dp,vertical=16.dp),verticalArrangement=Arrangement.spacedBy(18.dp)) {
+    Column(Modifier.fillMaxSize().padding(horizontal=12.dp,vertical=10.dp),verticalArrangement=Arrangement.spacedBy(10.dp)) {
         Row(Modifier.fillMaxWidth(),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.SpaceBetween) {
             Column(verticalArrangement=Arrangement.spacedBy(6.dp)){Text(tr("Мои серверы"),style=MaterialTheme.typography.headlineMedium);Text(tr("Установка и управление"),style=MaterialTheme.typography.bodySmall,color=MaterialTheme.colorScheme.onSurfaceVariant)}
             if(list.length()>0) FilledTonalIconButton(enabled=!busy,onClick={add()},shape=RoundedCornerShape(8.dp),modifier=Modifier.size(48.dp)) {Icon(Icons.Default.Add,tr("Добавить сервер"))}
@@ -180,14 +180,14 @@ private fun ManagedServersContent() {
                 Column(Modifier.padding(28.dp),horizontalAlignment=Alignment.CenterHorizontally,verticalArrangement=Arrangement.spacedBy(22.dp,Alignment.CenterVertically)) {
                     Surface(shape=RoundedCornerShape(12.dp),color=MaterialTheme.colorScheme.surfaceContainerHigh) {Icon(Icons.Default.Dns,null,Modifier.padding(20.dp).size(32.dp),tint=MaterialTheme.colorScheme.onSurfaceVariant)}
                     Text(tr("Добавьте свой сервер"),style=MaterialTheme.typography.titleLarge)
-                    Button(enabled=!busy,onClick={add()},contentPadding=PaddingValues(horizontal=24.dp,vertical=14.dp)) {Icon(Icons.Default.Add,null);Spacer(Modifier.width(8.dp));Text(tr("Добавить сервер"))}
+                    Button(enabled=!busy,onClick={add()},contentPadding=PaddingValues(horizontal=18.dp,vertical=10.dp)) {Icon(Icons.Default.Add,null);Spacer(Modifier.width(8.dp));Text(tr("Добавить сервер"))}
                 }
             }
-        } else LazyColumn(Modifier.weight(1f),verticalArrangement=Arrangement.spacedBy(12.dp)) {
+        } else LazyColumn(Modifier.weight(1f),verticalArrangement=Arrangement.spacedBy(8.dp)) {
             items((0 until list.length()).map {list.getJSONObject(it)},key={it.getString("id")}) { item ->
                 val id=item.getString("id")
                 Surface(onClick={if(!busy){load(item);val phase=ManagedServerSessions.jobs[id]?.let {JSONObject(Atlant.adminStatus(it)).optString("phase")};if(hasStoredPassword||phase in listOf("ready","connecting","preparing","installing","opening"))connect(false) else showEditor=true}},shape=RoundedCornerShape(12.dp),border=BorderStroke(1.dp,MaterialTheme.colorScheme.outlineVariant),color=MaterialTheme.colorScheme.surfaceContainerLow) {
-                    Row(Modifier.fillMaxWidth().padding(start=18.dp,end=8.dp,top=16.dp,bottom=16.dp),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(12.dp)) {
+                    Row(Modifier.fillMaxWidth().padding(start=12.dp,end=4.dp,top=8.dp,bottom=8.dp),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(12.dp)) {
                         ManagementGlyph(Icons.Default.Dns)
                         Column(Modifier.weight(1f),verticalArrangement=Arrangement.spacedBy(4.dp)) {
                             Text(item.getString("name"),style=MaterialTheme.typography.titleMedium,maxLines=1,overflow=TextOverflow.Ellipsis)
@@ -208,7 +208,7 @@ private fun ManagedServersContent() {
             }
         }
         if(status.isNotBlank()) Surface(shape=RoundedCornerShape(12.dp),color=MaterialTheme.colorScheme.surfaceContainerHigh) {
-            Column(Modifier.fillMaxWidth().padding(16.dp),verticalArrangement=Arrangement.spacedBy(12.dp)) {if(busy) LinearProgressIndicator(Modifier.fillMaxWidth());Text(status,style=MaterialTheme.typography.bodySmall)}
+            Column(Modifier.fillMaxWidth().padding(16.dp),verticalArrangement=Arrangement.spacedBy(8.dp)) {if(busy) LinearProgressIndicator(Modifier.fillMaxWidth());Text(status,style=MaterialTheme.typography.bodySmall)}
         }
     }
     if(showEditor) ManagementDialog(onDismiss={if(!busy)showEditor=false}) {

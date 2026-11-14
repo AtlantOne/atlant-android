@@ -271,10 +271,10 @@ private fun ServerManagementContent(job: String, name: String, onBack: () -> Uni
             }
         }
         val membersFilter=groupRecords.firstOrNull{it.optString("id")==selectedGroup}?.array("users")?.let{a->(0 until a.length()).map{a.getString(it)}.toSet()}?:emptySet()
-        if(selectedGroup.isNotEmpty()&&page in setOf("users","subscriptions"))Row(Modifier.fillMaxWidth().padding(start=20.dp,end=12.dp),verticalAlignment=androidx.compose.ui.Alignment.CenterVertically) {Text(groupRecords.firstOrNull{it.optString("id")==selectedGroup}?.optString("name").orEmpty(),style=MaterialTheme.typography.labelMedium,modifier=Modifier.weight(1f));TextButton(onClick={selectedGroup=""}){Text(tr("Сбросить"))}}
+        if(selectedGroup.isNotEmpty()&&page in setOf("users","subscriptions"))Row(Modifier.fillMaxWidth().padding(start=12.dp,end=8.dp),verticalAlignment=androidx.compose.ui.Alignment.CenterVertically) {Text(groupRecords.firstOrNull{it.optString("id")==selectedGroup}?.optString("name").orEmpty(),style=MaterialTheme.typography.labelMedium,modifier=Modifier.weight(1f));TextButton(onClick={selectedGroup=""}){Text(tr("Сбросить"))}}
         if(loading)LinearProgressIndicator(Modifier.fillMaxWidth())
         if(error.isNotEmpty())Text(error,color=MaterialTheme.colorScheme.error,modifier=Modifier.padding(16.dp))
-        LazyColumn(Modifier.weight(1f).fillMaxWidth(),contentPadding=PaddingValues(horizontal=16.dp,vertical=8.dp),verticalArrangement=Arrangement.spacedBy(8.dp)) {
+        LazyColumn(Modifier.weight(1f).fillMaxWidth(),contentPadding=PaddingValues(horizontal=12.dp,vertical=6.dp),verticalArrangement=Arrangement.spacedBy(8.dp)) {
             if(loadedPage==page) when(page) {
                 "certificates" -> item {SubscriptionCertificatesPanel((data as? JSONObject)?:JSONObject(),loading,
                     onSave={patch->action("tlsset $patch")},onRestart={action("service restart")})}
@@ -393,7 +393,7 @@ private fun AdminActions(enabled:Boolean,actions:List<AdminAction>,prominent:Boo
 @Composable
 private fun AdminRecord(title: String, subtitle: String,icon:ImageVector=Icons.Default.Dns,onOpen:(()->Unit)?=null, content: @Composable ColumnScope.() -> Unit) {
     Surface(Modifier.fillMaxWidth(),shape=RoundedCornerShape(12.dp),border=BorderStroke(1.dp,MaterialTheme.colorScheme.outlineVariant),color=MaterialTheme.colorScheme.surfaceContainerLow) {
-        Column(Modifier.padding(16.dp),verticalArrangement=Arrangement.spacedBy(12.dp)) {
+        Column(Modifier.padding(12.dp),verticalArrangement=Arrangement.spacedBy(8.dp)) {
             Row(Modifier.fillMaxWidth().then(if(onOpen!=null)Modifier.clickable(onClick=onOpen) else Modifier),verticalAlignment=androidx.compose.ui.Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(12.dp)) {
                 ManagementGlyph(icon)
                 Column(Modifier.weight(1f),verticalArrangement=Arrangement.spacedBy(4.dp)) {Text(title,style=MaterialTheme.typography.titleMedium,maxLines=2,overflow=TextOverflow.Ellipsis);if(subtitle.isNotBlank())Text(subtitle,style=MaterialTheme.typography.bodySmall,color=MaterialTheme.colorScheme.onSurfaceVariant,maxLines=2,overflow=TextOverflow.Ellipsis)}

@@ -375,6 +375,7 @@ class AtlantVpnService : VpnService() {
                     Atlant.setTrafficPadding(settings.trafficPadding)
                     Atlant.setPaddingRange(settings.minPadding.toLong(), settings.maxPadding.toLong())
                     Atlant.setFingerprint(effectiveFp)
+                    Atlant.setQUICFingerprint(settings.quicFingerprint)
                     Atlant.setChaffing(settings.chaffingEnabled, settings.chaffingInterval.toLong())
                     Atlant.setAutoFallback(settings.autoFallback)
                     Atlant.setPortHopping(settings.portHopping)
