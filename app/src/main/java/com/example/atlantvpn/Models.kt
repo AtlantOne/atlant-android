@@ -117,7 +117,7 @@ data class AppSettings(
     val zeroRtt: Boolean = true,
     val fingerprint: String = "firefox",
     val quicFingerprint: String = "chrome_156",
-    val chaffingEnabled: Boolean = true,
+    val chaffingEnabled: Boolean = false,
     val chaffingInterval: Int = 10
 )
 

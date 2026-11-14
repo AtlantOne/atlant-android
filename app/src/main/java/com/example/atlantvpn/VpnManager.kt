@@ -283,7 +283,7 @@ object VpnManager {
                     zeroRtt = obj.optBoolean("zero_rtt", true),
                     fingerprint = obj.optString("fingerprint", "firefox"),
                     quicFingerprint = obj.optString("quic_fingerprint", "chrome_156"),
-                    chaffingEnabled = obj.optBoolean("chaffing_enabled", true),
+                    chaffingEnabled = obj.optBoolean("chaffing_enabled", false),
                     chaffingInterval = obj.optInt("chaffing_interval", 10),
                     themeMode = ThemeMode.fromStored(obj.optString("theme_mode", "SYSTEM")),
                     interfaceScale = normalizedInterfaceScale(obj.optDouble("interface_scale",1.0).toFloat())
